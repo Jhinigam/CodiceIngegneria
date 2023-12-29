@@ -14,4 +14,20 @@ public class Post {
         this.Comune = Comune;
         this.Descrizione = Descrizione;
     }
+
+    public Date getDataPublicazione() {
+        return DataPublicazione;
+    }
+
+    public Utente getProprietario() {
+        return Proprietario;
+    }
+
+    public String getComune() {
+        return Comune;
+    }
+
+    public String getDescrizione() {
+        return Descrizione;
+    }
 }
