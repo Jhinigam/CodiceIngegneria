@@ -14,4 +14,8 @@ public class Itinerario extends Post{
             this.ListaPostBase.add(p);
         }
     }
+
+    public void setPending(boolean Pending) {
+        this.Pending = Pending;
+    }
 }

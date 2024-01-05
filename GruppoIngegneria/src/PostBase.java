@@ -8,7 +8,11 @@ public class PostBase extends Post {
     public PostBase(Date DataPublicazione, Utente Proprietario, String Comune, String Descrizione, Image Immagine) {
         super(DataPublicazione, Proprietario, Comune, Descrizione);
         this.Immagine = Immagine;
-        this.Pending = true;
+
+    }
+
+    public void setPending(boolean Pending) {
+        this.Pending = Pending;
     }
 
 
