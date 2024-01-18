@@ -10,11 +10,11 @@ public class Main {
         final String DB_URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11677848";
         final String USER = "sql11677848";
         final String PASS = "BQ9aLwIJDb";
-        final String QUERY = "SELECT * FROM comune";
+        String SELECTQUERY = "SELECT * FROM comune";
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(QUERY)
+            Statement stmt = conn.createStatement()
         ) {
+            ResultSet rs = stmt.executeQuery(SELECTQUERY);
             while(rs.next()){
                 //Display values
                 System.out.print("\nID: " + rs.getInt("id"));
