@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,7 +13,7 @@ public class Main {
         final String QUERY = "SELECT * FROM comune";
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(QUERY);
+            ResultSet rs = stmt.executeQuery(QUERY)
         ) {
             while(rs.next()){
                 //Display values
