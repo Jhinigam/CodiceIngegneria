@@ -1,4 +1,4 @@
-public abstract class Contributore extends Utente{
+public class Contributore extends Utente{
     private String Comune;
 
     public Contributore(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
@@ -7,12 +7,21 @@ public abstract class Contributore extends Utente{
     }
 
     public void Pubblica(Itinerario itinerario){
-        itinerario.setPending(false);
+        itinerario.setPending(true);
+
     }
 
-    public void Pubblica(PostBase postBase){
+    public String Pubblica(PostBase postBase){
         postBase.setPending(true);
-
+        String Query = "INSERT INTO post (dataPost, idcomune, idutente, descrizione_null, immagine_null, pending) " +
+                        "VALUES ( "  + postBase.getDataPublicazione() + ", " +
+                        postBase.getComune() + ", " +
+                        postBase.getProprietario() + ", " +
+                        postBase.getDescrizione() + ", " +
+                        postBase.getImmagine() + ", " +
+                        postBase.getPending() +
+                ")" ;
+        return Query;
     }
 
 }

@@ -1,8 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException {
@@ -10,10 +7,15 @@ public class Main {
         final String DB_URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11677848";
         final String USER = "sql11677848";
         final String PASS = "BQ9aLwIJDb";
-        String SELECTQUERY = "SELECT * FROM comune";
+        String SELECTQUERY = "SELECT * FROM post";
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement()
         ) {
+            Contributore Andrea = new Contributore("Andrea", "Bevilacqua", 21, "andrea@gmail.com", "1234", 1);
+            PostBase p = new PostBase(2023/01/19,Andrea,"Ancona","Passetto",null);
+            String insertQuery = Andrea.Pubblica(p);
+            stmt.executeUpdate(insertQuery);
+
             ResultSet rs = stmt.executeQuery(SELECTQUERY);
             while(rs.next()){
                 //Display values

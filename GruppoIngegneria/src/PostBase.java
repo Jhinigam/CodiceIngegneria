@@ -1,11 +1,11 @@
 import java.awt.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class PostBase extends Post {
     private Image Immagine;
     private boolean Pending;
 
-    public PostBase(Date DataPublicazione, Utente Proprietario, String Comune, String Descrizione, Image Immagine) {
+    public PostBase(Timestamp DataPublicazione, Utente Proprietario, String Comune, String Descrizione, Image Immagine) {
         super(DataPublicazione, Proprietario, Comune, Descrizione);
         this.Immagine = Immagine;
 
@@ -15,5 +15,11 @@ public class PostBase extends Post {
         this.Pending = Pending;
     }
 
+    public Image getImmagine() {
+        return Immagine;
+    }
 
+    public boolean getPending(){
+        return Pending;
+    }
 }

@@ -5,13 +5,13 @@ public class Contributore_Autorizzato extends Contributore{
 
     @Override
     public void Pubblica(Itinerario itinerario) {
-        itinerario.setPending(true);
+        itinerario.setPending(false);
         super.Pubblica(itinerario);
     }
 
     @Override
-    public void Pubblica(PostBase postBase) {
-        postBase.setPending(true);
-        super.Pubblica(postBase);
+    public String Pubblica(PostBase postBase) {
+        postBase.setPending(false);
+        return super.Pubblica(postBase);
     }
 }

@@ -6,5 +6,6 @@ public class Animatore extends Contributore_Autorizzato{
 
     public void Pubblica(Evento evento){
 
+
     }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -6,7 +7,7 @@ public class Itinerario extends Post{
     private ArrayList<Post> ListaPostBase;
     private boolean Pending;
     
-    public Itinerario(Date DataPublicazione, Utente Proprietario, String Comune, String Descrizione, ArrayList<Post> ListaPostBase){
+    public Itinerario(Timestamp DataPublicazione, Utente Proprietario, String Comune, String Descrizione, ArrayList<Post> ListaPostBase){
         super(DataPublicazione, Proprietario, Comune, Descrizione);
         this.ListaPostBase = new ArrayList<Post>();
         this.Pending = true;
