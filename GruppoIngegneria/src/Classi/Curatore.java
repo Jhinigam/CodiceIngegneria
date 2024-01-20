@@ -4,8 +4,8 @@ import Classi.Contributore_Autorizzato;
 
 public class Curatore extends Contributore_Autorizzato {
 
-    public Curatore(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
-        super(Nome, Cognome, Eta, Email, Password, ID);
+    public Curatore(String Nome, String Cognome, int Eta, String Email, String Password){
+        super(Nome, Cognome, Eta, Email, Password);
     }
 
     public void AccettaPending(Itinerario itinerario){
