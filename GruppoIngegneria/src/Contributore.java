@@ -1,8 +1,11 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Contributore extends Utente{
     private String Comune;
 
     public Contributore(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
-        super(Nome, Cognome, Eta, Email, Password, ID);
+        super(Nome, Cognome, Eta, Email, Password);
         this.Comune = Comune;
     }
 
@@ -11,17 +14,8 @@ public class Contributore extends Utente{
 
     }
 
-    public String Pubblica(PostBase postBase){
+    public void Pubblica(PostBase postBase) {
         postBase.setPending(true);
-        String Query = "INSERT INTO post (dataPost, idcomune, idutente, descrizione_null, immagine_null, pending) " +
-                        "VALUES ( "  + postBase.getDataPublicazione() + ", " +
-                        postBase.getComune() + ", " +
-                        postBase.getProprietario() + ", " +
-                        postBase.getDescrizione() + ", " +
-                        postBase.getImmagine() + ", " +
-                        postBase.getPending() +
-                ")" ;
-        return Query;
     }
 
 }

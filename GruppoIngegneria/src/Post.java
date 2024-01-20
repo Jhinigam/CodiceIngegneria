@@ -16,7 +16,7 @@ public class Post {
         this.Descrizione = Descrizione;
     }
 
-    public Date getDataPublicazione() {
+    public Timestamp getDataPublicazione() {
         return DataPublicazione;
     }
 

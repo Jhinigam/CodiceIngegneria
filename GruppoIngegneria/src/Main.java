@@ -1,30 +1,15 @@
-import java.sql.*;
-import java.util.Date;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        final String DB_URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11677848";
-        final String USER = "sql11677848";
-        final String PASS = "BQ9aLwIJDb";
-        String SELECTQUERY = "SELECT * FROM post";
-        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement()
-        ) {
-            Contributore Andrea = new Contributore("Andrea", "Bevilacqua", 21, "andrea@gmail.com", "1234", 1);
-            PostBase p = new PostBase(2023/01/19,Andrea,"Ancona","Passetto",null);
-            String insertQuery = Andrea.Pubblica(p);
-            stmt.executeUpdate(insertQuery);
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Singleton mySingleton = new Singleton();
 
-            ResultSet rs = stmt.executeQuery(SELECTQUERY);
-            while(rs.next()){
-                //Display values
-                System.out.print("\nID: " + rs.getInt("id"));
-                System.out.print(",\nNome: " + rs.getString("nome"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        List<String> comuni = mySingleton.getComuni();
+        for(String s: comuni){
+            System.out.print(s + "\n");
         }
 
     }
+
 }
