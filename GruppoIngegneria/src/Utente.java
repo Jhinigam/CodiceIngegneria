@@ -1,4 +1,6 @@
-public class Utente {
+import java.security.PublicKey;
+
+public abstract class Utente {
     private String Nome;
     private String Cognome;
     private int Eta;
@@ -12,5 +14,31 @@ public class Utente {
         this.Eta = Eta;
         this.Password = Password;
         this.ID = ID;
+        this.Email = Email;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getEta() {
+        return Eta;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public String getCognome() {
+        return Cognome;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 }
+
