@@ -5,7 +5,7 @@ public class Turista_Autenticato extends Utente{
     private List<Integer> idPostSalvati;
 
     public Turista_Autenticato(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
-        super(Nome, Cognome, Eta, Email, Password, ID);
+        super(Nome, Cognome, Eta, Email, Password);
         idPostSalvati = new ArrayList<>();
     }
 

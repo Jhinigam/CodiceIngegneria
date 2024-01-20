@@ -25,6 +25,10 @@ public class Singleton {
         }
     }
 
+    /**
+     * @return lista di nomi dei comuni
+     * @throws SQLException
+     */
     public List<String> getComuni() throws SQLException {           //Esegue una query che cerca tutti i comuni nel database
         
         ResultSet RS = null;
