@@ -2,11 +2,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Singleton utilizzato per comunicare direttamente con il database */
 public class Singleton {
     private final String DB_URL;
     private final String USER;
     private final String PASS;
     Statement stmt;
+
+
     public Singleton() throws ClassNotFoundException {
 
         DB_URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11677848";
