@@ -10,8 +10,8 @@ public class Contributore_Autorizzato extends Contributore{
     }
 
     @Override
-    public String Pubblica(PostBase postBase) {
+    public void Pubblica(PostBase postBase) {
         postBase.setPending(false);
-        return super.Pubblica(postBase);
+        super.Pubblica(postBase);
     }
 }
