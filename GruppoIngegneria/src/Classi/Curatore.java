@@ -1,4 +1,8 @@
-public class Curatore extends Contributore_Autorizzato{
+package Classi;
+
+import Classi.Contributore_Autorizzato;
+
+public class Curatore extends Contributore_Autorizzato {
 
     public Curatore(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
         super(Nome, Cognome, Eta, Email, Password, ID);

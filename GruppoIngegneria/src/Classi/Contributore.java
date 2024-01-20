@@ -1,10 +1,12 @@
+package Classi;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Contributore extends Utente{
+public class Contributore extends Utente {
     private String Comune;
 
-    public Contributore(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
+    public Contributore(String Nome, String Cognome, int Eta, String Email, String Password){
         super(Nome, Cognome, Eta, Email, Password);
         this.Comune = Comune;
     }

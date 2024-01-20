@@ -1,9 +1,11 @@
+package Classi;
+
 import java.awt.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Itinerario extends Post{
+public class Itinerario extends Post {
     private ArrayList<Post> ListaPostBase;
     private boolean Pending;
     

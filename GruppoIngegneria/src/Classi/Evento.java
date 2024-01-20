@@ -1,8 +1,10 @@
+package Classi;
+
 import java.awt.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Evento extends Post{
+public class Evento extends Post {
     private Date DataEvento;
     private String LuogoEvento;
 

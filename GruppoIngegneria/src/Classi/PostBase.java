@@ -1,3 +1,7 @@
+package Classi;
+
+import Classi.Post;
+
 import java.awt.*;
 import java.sql.Timestamp;
 

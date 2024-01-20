@@ -1,6 +1,10 @@
-public class Contributore_Autorizzato extends Contributore{
-    public Contributore_Autorizzato(String Nome, String Cognome, int Eta, String Email, String Password, int ID){
-        super(Nome, Cognome, Eta, Email, Password, ID);
+package Classi;
+
+import Classi.Contributore;
+
+public class Contributore_Autorizzato extends Contributore {
+    public Contributore_Autorizzato(String Nome, String Cognome, int Eta, String Email, String Password){
+        super(Nome, Cognome, Eta, Email, Password);
     }
 
     @Override
