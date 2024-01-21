@@ -53,4 +53,27 @@ public class Singleton {
         return list;
     }
 
+    public int getIdUser(String nome, String cognome, int eta) throws SQLException {
+        ResultSet RS = null;
+        int ID = -1;
+        try {
+            String SELECTQUERY = "SELECT id FROM utente WHERE nome='" + nome + "' AND cognome='" + cognome + "' AND eta=" + eta;
+            RS = stmt.executeQuery(SELECTQUERY);
+            if (RS.next()){
+                ID = RS.getInt("id");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return ID;
+    }
+
+    public void addUser(Utente utente){
+        ResultSet RS = null;
+    }
+
+
+    
+
 }

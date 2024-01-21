@@ -2,8 +2,10 @@ package Classi;
 
 import Classi.Contributore;
 
+import java.sql.SQLException;
+
 public class Contributore_Autorizzato extends Contributore {
-    public Contributore_Autorizzato(String Nome, String Cognome, int Eta, String Email, String Password){
+    public Contributore_Autorizzato(String Nome, String Cognome, int Eta, String Email, String Password) throws Exception {
         super(Nome, Cognome, Eta, Email, Password);
     }
 

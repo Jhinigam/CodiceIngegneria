@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class Contributore extends Utente {
     private String Comune;
 
-    public Contributore(String Nome, String Cognome, int Eta, String Email, String Password){
+    public Contributore(String Nome, String Cognome, int Eta, String Email, String Password) throws Exception {
         super(Nome, Cognome, Eta, Email, Password);
         this.Comune = Comune;
     }

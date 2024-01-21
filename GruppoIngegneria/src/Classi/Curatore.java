@@ -2,9 +2,11 @@ package Classi;
 
 import Classi.Contributore_Autorizzato;
 
+import java.sql.SQLException;
+
 public class Curatore extends Contributore_Autorizzato {
 
-    public Curatore(String Nome, String Cognome, int Eta, String Email, String Password){
+    public Curatore(String Nome, String Cognome, int Eta, String Email, String Password) throws Exception {
         super(Nome, Cognome, Eta, Email, Password);
     }
 
