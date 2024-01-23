@@ -1,4 +1,10 @@
 package Blarb.ProgettoIngegneria.Controller;
 
-public class AnimatoreController {
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/Animatore")
+public class AnimatoreController extends AbstractController{
+
 }

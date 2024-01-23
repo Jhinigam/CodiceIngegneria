@@ -1,10 +1,15 @@
-package Blarb.ProgettoIngegneria.Service.Factory;
+package Blarb.ProgettoIngegneria.Model;
 
+import Blarb.ProgettoIngegneria.Service.Factory.Ruolo;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.security.PublicKey;
 import java.util.List;
 
-
-public abstract class Utente {
+@Entity
+public class Utente {
+    @Id
     private Integer id;
     private String Nome;
     private String Cognome;
