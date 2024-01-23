@@ -4,11 +4,10 @@ import Blarb.ProgettoIngegneria.Service.Factory.Ruolo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.security.PublicKey;
 import java.util.List;
 
 @Entity
-public class Utente {
+public class UtenteModel {
     @Id
     private Integer id;
     private String Nome;
@@ -26,7 +25,7 @@ public class Utente {
      * @param Eta Int
      * @param ruolo se il ruolo è 0 o 1, l'utente non è autorizzato
      */
-    public Utente(String Nome, String Cognome, String Email, int Eta, Ruolo ruolo){
+    public UtenteModel(String Nome, String Cognome, String Email, int Eta, Ruolo ruolo){
         this.Nome = Nome;
         this.Cognome = Cognome;
         this.Email = Email;
