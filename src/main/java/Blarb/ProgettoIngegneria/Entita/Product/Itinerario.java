@@ -1,6 +1,5 @@
-package Blarb.ProgettoIngegneria.Service.Product;
+package Blarb.ProgettoIngegneria.Entita.Product;
 
-import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 

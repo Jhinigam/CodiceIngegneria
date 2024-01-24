@@ -1,4 +1,4 @@
-package Blarb.ProgettoIngegneria.Service.Product;
+package Blarb.ProgettoIngegneria.Entita.Product;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public abstract class Post{
     }
 
     public int getId(){
-        //introdure il set del Id preso dal Database
+        //introdurre il set dell' Id preso dal Database
         return Id;
     }
 

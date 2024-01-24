@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/Animatore")
 public class AnimatoreController extends AbstractController{
 
+
 }

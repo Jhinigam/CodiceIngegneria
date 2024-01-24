@@ -1,4 +1,4 @@
-package Blarb.ProgettoIngegneria.Service.Product;
+package Blarb.ProgettoIngegneria.Entita.Product;
 
 import java.util.Date;
 

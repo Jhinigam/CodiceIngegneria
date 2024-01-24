@@ -14,4 +14,10 @@ public abstract class AbstractController {
     public String status(){
         return "OK";
     }
+
+    @GetMapping("/createPost")
+    @ResponseBody
+    public String creazionePost(){
+        return "Post creato";
+    }
 }

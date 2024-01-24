@@ -1,4 +1,4 @@
-package Blarb.ProgettoIngegneria.Service.Factory;
+package Blarb.ProgettoIngegneria.Entita.Factory;
 
 public class Animatore extends Utente{
 
