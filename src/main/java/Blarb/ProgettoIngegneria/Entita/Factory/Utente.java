@@ -1,5 +1,8 @@
 package Blarb.ProgettoIngegneria.Entita.Factory;
 
+import Blarb.ProgettoIngegneria.Entita.Product.Post;
+import Blarb.ProgettoIngegneria.Entita.Product.PostBase;
+
 import java.util.List;
 
 
@@ -28,5 +31,8 @@ public abstract class Utente {
         this.ruolo = ruolo;
     }
 
+    public void SavePost(Post Temp){
+        Temp.SalvaSuDatabase();
+    }
 
 }

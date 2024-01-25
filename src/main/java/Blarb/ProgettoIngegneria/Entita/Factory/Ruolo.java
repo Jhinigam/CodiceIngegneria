@@ -5,12 +5,14 @@ package Blarb.ProgettoIngegneria.Entita.Factory;
  * Turista = 1
  * ContributoreAutorizzato = 2
  * TuristaAutorizzato = 3
- * Curatore = 4
+ * Animatore = 4
+ * Curatore = 5
  */
 public enum Ruolo {
     Contributore,
     Turista,
     ContributoreAutorizzato,
     TuristaAutorizzato,
+    Animatore,
     Curatore
 }

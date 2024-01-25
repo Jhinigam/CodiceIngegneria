@@ -1,5 +1,7 @@
 package Blarb.ProgettoIngegneria.Entita.Product;
 
+
+import java.security.PublicKey;
 import java.util.Date;
 
 public abstract class Post{
@@ -21,4 +23,7 @@ public abstract class Post{
         return Id;
     }
 
+    public void SalvaSuDatabase(){
+        //non so salvare ancora
+    }
 }

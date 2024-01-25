@@ -1,5 +1,6 @@
 package Blarb.ProgettoIngegneria.Entita.Product;
 
+
 import java.util.Date;
 
 public class Evento extends Post{

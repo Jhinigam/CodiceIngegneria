@@ -3,6 +3,7 @@ package Blarb.ProgettoIngegneria.Entita.Product;
 import java.awt.*;
 import java.util.Date;
 
+
 public class PostBase extends Post{
 
     private Image Immagine; //non sappaiamo momentaneamente se tenere le immagini come immage o string di collegamento ad esse
