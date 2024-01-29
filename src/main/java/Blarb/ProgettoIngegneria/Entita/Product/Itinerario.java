@@ -1,6 +1,7 @@
 package Blarb.ProgettoIngegneria.Entita.Product;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class Itinerario extends Post {
@@ -11,7 +12,7 @@ public class Itinerario extends Post {
      * @param DataPubblicazione Data di Pubblicazione
      * @param Descrizione Descrizione
      */
-    public Itinerario (LocalDateTime DataPubblicazione, String Descrizione){
+    public Itinerario (Date DataPubblicazione, String Descrizione){
         super(DataPubblicazione, Descrizione);
     }
 
@@ -21,7 +22,7 @@ public class Itinerario extends Post {
      * @param Descrizione Descrizione
      * @param P Primo post da aggiungere alla lista
      */
-    public Itinerario (LocalDateTime DataPubblicazione, String Descrizione, PostBase P){
+    public Itinerario (Date DataPubblicazione, String Descrizione, PostBase P){
         super(DataPubblicazione, Descrizione);
         AddPost(P);
     }
