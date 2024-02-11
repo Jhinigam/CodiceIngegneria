@@ -5,37 +5,51 @@
     <!--Stylesheet-->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="title"><h2>Home di gestione Social</h2></div>
+<body onload="TestSing()">
+<div class="title"><h2>Home di gestione Social [<label id="Test"></label>]</h2></div>
+<br>
 
 <div class="box">
-    <h1>Post</h1>
-    <div class="quest">aa</div>
-    <br>
-    <div class="quest">aaa</div>
-    <br>
-    <div class="quest">aaaa</div>
-    <br>
+    <h1>Aggiungi Utente</h1>
+    <input type="text" id="Nome" placeholder="Nome">
+    <input type="text" id="Cognome" placeholder="Cognome">
+    <input type="text" id="Email" placeholder="Email">
+    <select id="Comuni" name="Comuni">
+        <option value="" disabled selected>Comuni</option>
+        <option value="Ancona">Ancona</option>
+        <option value="Macerata">Macerata</option>
+        <option value="Osimo">Osimo</option>
+        <option value="Jesi">Jesi</option>
+        <option value="Camerino">Camerino</option>
+    </select>
+    <select id="Ruolo" name="Ruolo">
+        <option value="" disabled selected>Ruolo</option>
+        <option value="Contributore">Contributore</option>
+        <option value="Turista">Turista</option>
+        <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
+        <option value="TuristaAutorizzato">Turista Autorizzato</option>
+        <option value="Curatore">Curatore</option>
+    </select>
+    <input type="number" id="eta" name="tentacles" min="10" max="100" placeholder="Eta'"/>
+
+    <button class="quest" onclick="">Conferma</button>
 </div>
+
+
 <br>
 <div class="box">
     <h1>User</h1>
-    <div class="quest">aa</div>
-    <br>
-    <div class="quest">aaa</div>
-    <br>
-    <div class="quest">aaaa</div>
-    <br>
+    <button class="quest">Conferma</button>
 </div>
 <br>
 <div class="box">
     <h1>Dati</h1>
-    <div class="quest">aa</div>
-    <br>
-    <div class="quest">aaa</div>
-    <br>
-    <div class="quest">aaaa</div>
-    <br>
+    <label id="NomeL"></label>
+    <label id="CognomeL"></label>
+    <label id="EmailL"></label>
+    <label id="RuoloL"></label>
+    <label id="EtaL"></label>
+    <button class="quest">Aggiorna</button>
 </div>
 <!--Script-->
 <script src="Script.js"></script>

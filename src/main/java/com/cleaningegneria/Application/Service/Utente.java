@@ -3,7 +3,7 @@ package com.cleaningegneria.Application.Service;
 import java.util.List;
 
 
-public abstract class Utente {
+public class Utente {
     private Integer id;
     private String Nome;
     private String Cognome;
@@ -28,5 +28,22 @@ public abstract class Utente {
         this.ruolo = ruolo;
     }
 
+    public String getNome() {
+        return Nome;
+    }
 
+    public String getCognome() {
+        return Cognome;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+    public int getEta(){
+        return Eta;
+    }
+
+    public String getRuolo() {
+        return ruolo.toString();
+    }
 }
