@@ -23,7 +23,7 @@ body{ background-color: #dddddd;}
 .box{
     position:relative;
     left: 10%;
-    top: 60px;
+    top: 80px;
     height: auto;
     width: 80%;
     padding: 20px;
@@ -54,41 +54,3 @@ h2{
     font-weight: bold;
     font-family: Arial, Verdana, sans-serif;
 }
-
-input[type=text]{
-    width: 70%;
-    padding: 8px 20px;
-    margin: 3px 0;
-    border-radius: 500px;
-    border: 2px solid;
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-input[type=number]{
-    width: 70%;
-    padding: 8px 20px;
-    margin: 3px 0;
-    border-radius: 500px;
-    border: 2px solid;
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-
-}
-
-select{
-    width: 70%;
-    padding: 8px 20px;
-    margin: 3px 0;
-    border-radius: 500px;
-    border: 2px solid;
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
