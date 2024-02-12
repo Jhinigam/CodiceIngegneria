@@ -1,8 +1,9 @@
 package com.cleaningegneria.Application.Controller;
 
-import com.cleaningegneria.Application.Service.Ruolo;
-import com.cleaningegneria.Application.Service.Utente;
-import org.springframework.beans.factory.config.CustomEditorConfigurer;
+import com.cleaningegneria.Application.Models.Comune;
+import com.cleaningegneria.Application.Models.Ruolo;
+import com.cleaningegneria.Application.Models.Utente;
+import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,21 +21,33 @@ public class UtenteController extends AbstractController {
      */
 
     private Utente User;
+    private final UtenteRepository utenteRepository;
+
+    public UtenteController(UtenteRepository utenteRepository) {
+        this.utenteRepository = utenteRepository;
+    }
 
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/Creazione")
     @ResponseBody
-    public String CreateUtente(@RequestParam String Nome,
+    public Utente CreateUtente(){
+
+        User = new Utente("Nome", "Cognome", "Email", 13, IntToRuolo(1),new Comune("c", "desc"));
+
+        //utenteRepository.save(User);
+        return User;
+    }/*
+    public Utente CreateUtente(@RequestParam String Nome,
                                @RequestParam String Cognome,
                                @RequestParam String Email,
-                               @RequestParam String Comune,
+                               @RequestParam Comune Comune,
                                @RequestParam int ruolo,
                                @RequestParam Integer Eta){
 
-        User = new Utente(Nome, Cognome, Email, Eta, IntToRuolo(ruolo));
-        return Comune;
+        User = new Utente(Nome, Cognome, Email, Eta, IntToRuolo(ruolo),Comune);
+        return User;
     }
-
+*/
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/Dati")
     @ResponseBody
