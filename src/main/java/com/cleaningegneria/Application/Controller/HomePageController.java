@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -13,9 +14,8 @@ public class HomePageController {
 
     @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/")
-    @ResponseBody
-    public String hello(){
-        return "Hello world!";
+    public ModelAndView index(){
+        return new ModelAndView("index.html");
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
