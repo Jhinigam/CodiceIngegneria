@@ -27,8 +27,22 @@ function TestSing(){
 
 
 //Connection List
-function ConnectAddUtente(){
-    return fetch(`${BASE_URL}Test`)
+function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
+    var nome2 = nome;
+    return fetch(`${BASE_URL}Utente/Creazione?
+        Nome=${name}
+        &Cognome=${cognome}
+        &Email=${email}
+        &Comune=${comune}
+        &ruolo=${ruolo}
+        &Eta=${eta}`,{
+
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nome),
+        })
          .then(response => {
          if (response.status !== 200) {
             throw new Error(JSON.stringify(response.json()));
@@ -39,5 +53,21 @@ function ConnectAddUtente(){
 
 //Funzioni
 function AddUtente(){
+   var ValNome = document.getElementById('Nome').value;
+   var ValCognome = document.getElementById('Cognome').value;
+   var ValEmail = document.getElementById('Email').value;
+   var ValComuni = document.getElementById('Comuni').value;
+   var ValRuolo = document.getElementById('Ruolo').value;
+   var ValEta = document.getElementById('eta').value;
 
+   if(ConnectAddUtente(String(ValNome),
+                       String(ValCognome),
+                       String(ValEmail),
+                       String(ValComuni),
+                       String(ValRuolo),
+                       String(ValEta)) != null){
+        return "ok";
+   }
+
+   return "non Ok";
 }
