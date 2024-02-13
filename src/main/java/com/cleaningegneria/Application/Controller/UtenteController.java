@@ -43,6 +43,7 @@ public class UtenteController extends AbstractController {
     public String CreateUtente(@RequestBody UtenteDTO uDTO){
 
         User = new Utente(uDTO.getNome(),uDTO.getCognome(), uDTO.getEmail(), uDTO.getEta(), StringToRuolo(uDTO.getRuolo()), uDTO.getComune());
+
         return "ok";
     }
 

@@ -1,16 +1,14 @@
 package com.cleaningegneria.Application.Models.DTO;
 
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
+@Getter
 public class UtenteDTO {
 
         @NotNull(message = "Il nome non può essere nullo")
