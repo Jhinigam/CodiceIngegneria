@@ -52,6 +52,7 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         }
         return response.text();
     });
+
 }
 
 //Funzioni
