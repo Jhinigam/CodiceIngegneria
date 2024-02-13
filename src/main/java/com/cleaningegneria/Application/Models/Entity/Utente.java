@@ -1,4 +1,4 @@
-package com.cleaningegneria.Application.Models;
+package com.cleaningegneria.Application.Models.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @Data
 @Entity
-@Table(name="Utente")
+@Table(name="utente")
 public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -21,8 +21,7 @@ public class Utente {
     private String Nome;
     private String Cognome;
     private String Email;
-    @ManyToOne
-    private Comune Comune;
+    private String Comune;
     @OneToMany()
     private List<Post> PostSalvati;
     private Ruolo ruolo;
@@ -36,9 +35,9 @@ public class Utente {
      * @param Email String
      * @param Eta Int
      * @param ruolo se il ruolo è 0 o 1, l'utente non è autorizzato
-     * @param comune Comune
+     * @param comune String
      */
-    public Utente(String Nome, String Cognome, String Email, int Eta, Ruolo ruolo, Comune comune){
+    public Utente(String Nome, String Cognome, String Email, int Eta, Ruolo ruolo, String comune){
         this.Nome = Nome;
         this.Cognome = Cognome;
         this.Email = Email;

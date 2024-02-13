@@ -1,10 +1,9 @@
 package com.cleaningegneria.Application.Controller;
 
-import com.cleaningegneria.Application.Models.Comune;
-import com.cleaningegneria.Application.Models.Ruolo;
-import com.cleaningegneria.Application.Models.Utente;
+import com.cleaningegneria.Application.Models.DTO.UtenteDTO;
+import com.cleaningegneria.Application.Models.Entity.Ruolo;
+import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
-import org.springframework.jdbc.support.CustomSQLErrorCodesTranslation;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,15 +40,9 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/Creazione")
     @ResponseBody
-    public String CreateUtente(@RequestParam String Nome,
-                               @RequestParam String Cognome,
-                               @RequestParam String Email,
-                               @RequestParam String comune,
-                               @RequestParam String ruolo,
-                               @RequestParam String Eta){
+    public String CreateUtente(@RequestBody UtenteDTO uDTO){
 
-        Comune comuneR = new Comune(comune,comune);
-        User = new Utente(Nome, Cognome, Email, Integer.valueOf(Eta), StringToRuolo(ruolo),comuneR);
+        User = new Utente(uDTO.getNome(),uDTO.getCognome(), uDTO.getEmail(), uDTO.getEta(), StringToRuolo(uDTO.getRuolo()), uDTO.getComune());
         return "ok";
     }
 

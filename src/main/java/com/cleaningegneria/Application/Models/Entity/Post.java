@@ -1,4 +1,4 @@
-package com.cleaningegneria.Application.Models;
+package com.cleaningegneria.Application.Models.Entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
