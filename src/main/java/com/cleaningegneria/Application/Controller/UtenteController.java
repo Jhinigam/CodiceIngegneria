@@ -39,32 +39,27 @@ public class UtenteController extends AbstractController {
         return User;
     }*/
     @CrossOrigin(origins = "http://localhost:63342/")
-    @GetMapping("/Creazione")
+    @PutMapping("/Creazione")
     @ResponseBody
-    public void CreateUtente(@RequestParam String Nome,
+    public String CreateUtente(@RequestParam String Nome,
                                @RequestParam String Cognome,
                                @RequestParam String Email,
-                               @RequestParam Comune Comune,
-                               @RequestParam int ruolo,
-                               @RequestParam Integer Eta){
+                               @RequestParam String comune,
+                               @RequestParam String ruolo,
+                               @RequestParam String Eta){
 
-        User = new Utente(Nome, Cognome, Email, Eta, IntToRuolo(ruolo),Comune);
+        Comune comuneR = new Comune(comune,comune);
+        User = new Utente(Nome, Cognome, Email, Integer.valueOf(Eta), StringToRuolo(ruolo),comuneR);
+        return "ok";
     }
+
+
 
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/DatiUtente")
     @ResponseBody
     public Utente VisualizzaDatiUtenteTest(){
         return User;
-    }
-
-
-    @CrossOrigin(origins = "http://localhost:63342")
-    @GetMapping("/Dati")
-    @ResponseBody
-    public String DettagliUtente(){
-        String Result = User.getNome() + User.getCognome() + User.getEmail() + User.getRuolo().toString() + User.getEta();
-        return Result;
     }
 
     public Ruolo IntToRuolo(int A){
@@ -80,7 +75,21 @@ public class UtenteController extends AbstractController {
             case 4:
                 return Ruolo.Curatore;
         }
-        return null;
+        return Ruolo.Animatore;
     }
-
+    public Ruolo StringToRuolo(String A){
+        switch (A){
+            case "Contributore":
+                return Ruolo.Contributore;
+            case "Turista":
+                return Ruolo.Turista;
+            case "Contributore Autorizzato":
+                return Ruolo.ContributoreAutorizzato;
+            case "Turista Autorizzato":
+                return Ruolo.TuristaAutorizzato;
+            case "Curatore":
+                return Ruolo.Curatore;
+        }
+        return Ruolo.Animatore;
+    }
 }

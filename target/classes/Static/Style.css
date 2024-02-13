@@ -18,6 +18,17 @@ body{ background-color: #dddddd;}
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: calc(1vw + 1vh + .5vmin);
+}
+
+h2{
+    font-size: 110%;
+    font-weight: bold;
+    font-family: Arial, Verdana, sans-serif;
 }
 
 .box{
@@ -49,11 +60,7 @@ h1{
     font-family: "Poppins",sans-serif;
 }
 
-h2{
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Arial, Verdana, sans-serif;
-}
+
 
 input[type=text]{
     width: 70%;

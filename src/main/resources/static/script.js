@@ -28,27 +28,30 @@ function TestSing(){
 
 //Connection List
 function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
-    var nome2 = nome;
-    return fetch(`${BASE_URL}Utente/Creazione?
-        Nome=${name}
-        &Cognome=${cognome}
-        &Email=${email}
-        &Comune=${comune}
-        &ruolo=${ruolo}
-        &Eta=${eta}`,{
+    // Costruzione corretta dell'URL con i valori delle variabili
+    const url = `${BASE_URL}Utente/Creazione?Nome=${encodeURIComponent(nome)}&Cognome=${encodeURIComponent(cognome)}&Email=${encodeURIComponent(email)}&Comune=${encodeURIComponent(comune)}&ruolo=${encodeURIComponent(ruolo)}&Eta=${encodeURIComponent(eta)}`;
 
-        method: 'PUT',
+    return fetch(url, {
+        method: 'PUT', // Assicurati che questo metodo sia supportato dal backend
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(nome),
+        // Invio di un oggetto JSON nel corpo della richiesta, se necessario
+        body: JSON.stringify({
+            Nome: nome,
+            Cognome: cognome,
+            Email: email,
+            Comune: comune,
+            ruolo: ruolo,
+            Eta: eta
         })
-         .then(response => {
-         if (response.status !== 200) {
-            throw new Error(JSON.stringify(response.json()));
-         }
-         return response.text();
-        });
+    })
+    .then(response => {
+        if (response.status !== 200) {
+            throw new Error('Errore nella richiesta: ' + response.statusText);
+        }
+        return response.text();
+    });
 }
 
 //Funzioni
