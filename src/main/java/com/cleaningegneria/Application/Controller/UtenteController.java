@@ -4,6 +4,7 @@ import com.cleaningegneria.Application.Models.Comune;
 import com.cleaningegneria.Application.Models.Ruolo;
 import com.cleaningegneria.Application.Models.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
+import org.springframework.jdbc.support.CustomSQLErrorCodesTranslation;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,17 +28,20 @@ public class UtenteController extends AbstractController {
         this.utenteRepository = utenteRepository;
     }
 
-    @CrossOrigin(origins = "http://localhost:63342")
-    @GetMapping("/Creazione")
-    @ResponseBody
+
+
+    /*
     public Utente CreateUtente(){
 
         User = new Utente("Nome", "Cognome", "Email", 13, IntToRuolo(1),new Comune("c", "desc"));
 
         //utenteRepository.save(User);
         return User;
-    }/*
-    public Utente CreateUtente(@RequestParam String Nome,
+    }*/
+    @CrossOrigin(origins = "http://localhost:63342/")
+    @GetMapping("/Creazione")
+    @ResponseBody
+    public void CreateUtente(@RequestParam String Nome,
                                @RequestParam String Cognome,
                                @RequestParam String Email,
                                @RequestParam Comune Comune,
@@ -45,14 +49,21 @@ public class UtenteController extends AbstractController {
                                @RequestParam Integer Eta){
 
         User = new Utente(Nome, Cognome, Email, Eta, IntToRuolo(ruolo),Comune);
+    }
+
+    @CrossOrigin(origins = "http://localhost:63342")
+    @GetMapping("/DatiUtente")
+    @ResponseBody
+    public Utente VisualizzaDatiUtenteTest(){
         return User;
     }
-*/
+
+
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/Dati")
     @ResponseBody
     public String DettagliUtente(){
-        String Result = User.getNome() + User.getCognome() + User.getEmail() + User.getRuolo() + User.getEta();
+        String Result = User.getNome() + User.getCognome() + User.getEmail() + User.getRuolo().toString() + User.getEta();
         return Result;
     }
 
