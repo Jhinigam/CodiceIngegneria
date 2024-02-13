@@ -14,10 +14,16 @@ public abstract class AbstractController {
         return "OK";
     }
 
-    @GetMapping("/Status")
+    @GetMapping("/status2")
     @ResponseBody
     public String statusPersonalizzato(@RequestParam String P){
         return "OK " + P;
+    }
+
+    @GetMapping("/status3")
+    @ResponseBody
+    public String statusPersonalizzato(@RequestParam String P, @RequestParam String C){
+        return "OK " + P + C;
     }
 
     @GetMapping("/createPost")

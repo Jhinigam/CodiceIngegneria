@@ -28,23 +28,24 @@ function TestSing(){
 
 //Connection List
 function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
-    // Costruzione corretta dell'URL con i valori delle variabili
-    const url = `${BASE_URL}Utente/Creazione?Nome=${encodeURIComponent(nome)}&Cognome=${encodeURIComponent(cognome)}&Email=${encodeURIComponent(email)}&Comune=${encodeURIComponent(comune)}&ruolo=${encodeURIComponent(ruolo)}&Eta=${encodeURIComponent(eta)}`;
+    const url = `${BASE_URL}Utente/Creazione`;
+
+    // Assicurati che i nomi dei campi qui corrispondano esattamente a quelli della tua classe DTO in Java
+    const data = {
+        nome: nome, // anziché Nome
+        cognome: cognome, // anziché Cognome
+        email: email, // anziché Email
+        comune: comune, // anziché Comune
+        ruolo: ruolo, // ruolo è corretto se la tua classe DTO ha il campo con la lettera minuscola
+        eta: eta // anziché Eta
+    };
 
     return fetch(url, {
-        method: 'PUT', // Assicurati che questo metodo sia supportato dal backend
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        // Invio di un oggetto JSON nel corpo della richiesta, se necessario
-        body: JSON.stringify({
-            Nome: nome,
-            Cognome: cognome,
-            Email: email,
-            Comune: comune,
-            ruolo: ruolo,
-            Eta: eta
-        })
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (response.status !== 200) {
@@ -52,8 +53,20 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         }
         return response.text();
     });
-
 }
+
+function ConnectionDati(){
+    return fetch(`${BASE_URL}Utente/DatiUtente`)
+         .then(response => {
+         if (response.status !== 200) {
+            throw new Error(JSON.stringify(response.json()));
+         }
+         return response.text();
+        });
+}
+
+
+
 
 //Funzioni
 function AddUtente(){
@@ -74,4 +87,13 @@ function AddUtente(){
    }
 
    return "non Ok";
+}
+
+function Dati(){
+       var ValNome = document.getElementById('NomeL');
+       var ValCognome = document.getElementById('CognomeL');
+       var ValEmail = document.getElementById('EmailL');
+       var ValRuolo = document.getElementById('RuoloL');
+       var ValEta = document.getElementById('etaL');
+       ValNome.textContent = ConnectionDati();
 }
