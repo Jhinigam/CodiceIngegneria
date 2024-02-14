@@ -11,6 +11,8 @@ import jakarta.validation.constraints.NotNull;
 @Getter
 public class UtenteDTO {
 
+        private String id;
+
         @NotNull(message = "Il nome non può essere nullo")
         private String nome;
 

@@ -46,4 +46,7 @@ public class Utente {
         this.Comune = comune;
     }
 
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
+    }
 }

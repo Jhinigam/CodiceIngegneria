@@ -28,15 +28,6 @@ public class UtenteController extends AbstractController {
     }
 
 
-
-    /*
-    public Utente CreateUtente(){
-
-        User = new Utente("Nome", "Cognome", "Email", 13, IntToRuolo(1),new Comune("c", "desc"));
-
-        //utenteRepository.save(User);
-        return User;
-    }*/
     @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/Creazione")
     @ResponseBody
@@ -52,13 +43,19 @@ public class UtenteController extends AbstractController {
         return "ok";
     }
 
-
-
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/DatiUtente")
     @ResponseBody
     public Utente VisualizzaDatiUtenteTest(){
         return User;
+    }
+
+    @CrossOrigin(origins = "http://localhost:63342")
+    @PutMapping("/CambioRuolo")
+    @ResponseBody
+    public String VisualizzaDatiUtenteTest(@RequestBody UtenteDTO uDTO){
+        User.setRuolo(StringToRuolo(uDTO.getRuolo()));
+        return "ok";
     }
 
     public Ruolo IntToRuolo(int A){

@@ -39,8 +39,19 @@
 
 <br>
 <div class="box">
-    <h1>User</h1>
-    <button class="quest" onclick="CaccaTest()">Conferma</button>
+    <h1>Modifica Ruolo</h1>
+    <input type="number" id="idMR" placeholder="Id del Utente">
+    <select id="RuoloMR" name="Ruolo">
+        <option value="" disabled selected>Ruolo</option>
+        <option value="Contributore">Contributore</option>
+        <option value="Turista">Turista</option>
+        <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
+        <option value="TuristaAutorizzato">Turista Autorizzato</option>
+        <option value="Curatore">Curatore</option>
+        <option value="Animatore">Animatore</option>
+    </select>
+    <label id="NomeMR"></label><label id="RuoloMRr"></label>
+    <button class="quest" onclick="CambioRuolo()">Conferma</button>
 </div>
 <br>
 <div class="box">

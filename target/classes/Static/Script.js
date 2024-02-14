@@ -54,18 +54,42 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         return response.text();
     });
 }
-
 function ConnectionDati(){
     return fetch(`${BASE_URL}Utente/DatiUtente`)
-         .then(response => {
-         if (response.status !== 200) {
-            throw new Error(JSON.stringify(response.json()));
-         }
-         return response.text();
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+//fune esempio
+function ConnectionModificaRuolo(Id, Ruolo){
+    const url = `${BASE_URL}Utente/CambioRuolo`;
 
+    const data = {
+        nome: 'nome', // anziché Nome
+        cognome: 'cognome', // anziché Cognome
+        email: 'email', // anziché Email
+        comune: 'comune', // anziché Comune
+        ruolo: 'Ruolo', // ruolo è corretto se la tua classe DTO ha il campo con la lettera minuscola
+        eta: 'eta' // anziché Eta
+    };
 
+    return fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+       if (response.status !== 200) {
+            throw new Error('Request failed with status ' + response.status);
+       }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 
 //Funzioni
@@ -83,17 +107,25 @@ function AddUtente(){
                        String(ValComuni),
                        String(ValRuolo),
                        String(ValEta)) != null){
-        return "ok";
-   }
+        console.log("Utente aggiunto correttamente");
+   }else{ console.log("Utente non aggiunto"); }
 
-   return "non Ok";
 }
-
 function Dati(){
-       var ValNome = document.getElementById('NomeL');
-       var ValCognome = document.getElementById('CognomeL');
-       var ValEmail = document.getElementById('EmailL');
-       var ValRuolo = document.getElementById('RuoloL');
-       var ValEta = document.getElementById('etaL');
-       ValNome.textContent = ConnectionDati();
+    ConnectionDati().then(dati => {
+    console.log(dati);
+        // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
+        document.getElementById('NomeL').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
+        document.getElementById('CognomeL').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
+    }).catch(error => {
+        console.log(dati);
+        console.error(error);
+    });
+}
+function CambioRuolo(){
+    var tempId = String(document.getElementById('idMR').value);
+    var tempRuolo = String(document.getElementById('RuoloMR').value);
+
+     if(ConnectionModificaRuolo(tempId, tempRuolo) != null){
+            console.log("Utente modificato correttamente");}else{console.log("Utente non modificato")}
 }
