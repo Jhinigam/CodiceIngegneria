@@ -19,6 +19,14 @@ public class UtenteController extends AbstractController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:63342")
+    @PutMapping("/MRuolo")
+    @ResponseBody
+    public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
+        User.setRuolo(StringToRuolo(uDTO.getNewRuolo()));
+        return "ok";
+    }
+
     @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/Creazione")
     @ResponseBody
@@ -34,6 +42,8 @@ public class UtenteController extends AbstractController {
         return "ok";
     }
 
+
+
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/DatiUtente")
     @ResponseBody
@@ -41,13 +51,6 @@ public class UtenteController extends AbstractController {
         return User;
     }
 
-    @CrossOrigin(origins = "http://localhost:63342")
-    @PutMapping("/CambioRuolo")
-    @ResponseBody
-    public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
-        User.setRuolo(StringToRuolo(uDTO.getNewRuolo()));
-        return "ok";
-    }
 
     public Ruolo IntToRuolo(int A){
         switch (A){
@@ -70,9 +73,9 @@ public class UtenteController extends AbstractController {
                 return Ruolo.Contributore;
             case "Turista":
                 return Ruolo.Turista;
-            case "Contributore Autorizzato":
+            case "ContributoreAutorizzato":
                 return Ruolo.ContributoreAutorizzato;
-            case "Turista Autorizzato":
+            case "TuristaAutorizzato":
                 return Ruolo.TuristaAutorizzato;
             case "Curatore":
                 return Ruolo.Curatore;

@@ -63,7 +63,7 @@ function ConnectionDati(){
 }
 //fune esempio
 function ConnectionModificaRuolo(Id, Ruolo){
-    const url = `${BASE_URL}Utente/CambioRuolo`;
+    const url = `${BASE_URL}Utente/MRuolo`;
 
     const data= {
         id: Id,
@@ -77,11 +77,11 @@ function ConnectionModificaRuolo(Id, Ruolo){
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-       if (response.status !== 200) {
-            throw new Error('Request failed with status ' + response.status);
-       }
-            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
 
