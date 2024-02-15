@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 @Builder
 @Data
 
-public class UtenteDTO {
+public class CreazioneUtenteDTO {
 
         private String id;
 

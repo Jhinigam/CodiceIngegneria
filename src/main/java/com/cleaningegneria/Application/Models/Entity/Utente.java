@@ -22,8 +22,8 @@ public class Utente {
     private String Cognome;
     private String Email;
     private String Comune;
-    @OneToMany()
-    private List<Post> PostSalvati;
+    //@OneToMany()
+    //private List<Post> PostSalvati;
     private Ruolo ruolo;
     private int Eta;
 
@@ -46,7 +46,4 @@ public class Utente {
         this.Comune = comune;
     }
 
-    public void setRuolo(Ruolo ruolo) {
-        this.ruolo = ruolo;
-    }
 }
