@@ -23,7 +23,7 @@ public class Evento {
     private Timestamp datafine;
     private String comune;
     @ManyToOne
-    private Integer idutente;
+    private Utente utente;
     private String descrizione;
 
 
@@ -32,7 +32,8 @@ public class Evento {
         this.datainizio = datainizio;
         this.datafine = datafine;
         this.comune = comune;
-        this.idutente = idutente;
+        this.utente = new Utente();
+        this.utente.setId(idutente);
         this.descrizione = descrizione;
     }
 }
