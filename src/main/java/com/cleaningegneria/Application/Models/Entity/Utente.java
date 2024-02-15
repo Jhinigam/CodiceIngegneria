@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name="utente")
 public class Utente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String Nome;
     private String Cognome;
