@@ -24,8 +24,6 @@ function TestSing(){
         });
 }
 
-
-
 //Connection List
 function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
     const url = `${BASE_URL}Utente/Creazione`;
@@ -67,13 +65,9 @@ function ConnectionDati(){
 function ConnectionModificaRuolo(Id, Ruolo){
     const url = `${BASE_URL}Utente/CambioRuolo`;
 
-    const data = {
-        nome: 'nome', // anziché Nome
-        cognome: 'cognome', // anziché Cognome
-        email: 'email', // anziché Email
-        comune: 'comune', // anziché Comune
-        ruolo: 'Ruolo', // ruolo è corretto se la tua classe DTO ha il campo con la lettera minuscola
-        eta: 'eta' // anziché Eta
+    const data= {
+        id: Id,
+        newRuolo: Ruolo
     };
 
     return fetch(url, {
@@ -81,7 +75,7 @@ function ConnectionModificaRuolo(Id, Ruolo){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.parse(data)
     })
     .then(response => {
        if (response.status !== 200) {

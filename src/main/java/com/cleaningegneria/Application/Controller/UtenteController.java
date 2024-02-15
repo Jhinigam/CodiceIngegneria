@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Controller;
 
+import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.UtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.Ruolo;
 import com.cleaningegneria.Application.Models.Entity.Utente;
@@ -9,16 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/Utente")
 public class UtenteController extends AbstractController {
-
-    /*
-     @GetMapping("/contests")
-    public List<Contest> searchContests(@RequestParam String name,
-                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
-                                        @RequestParam String type) {
-        return searchService.searchContests(name, startDate, endDate, type);
-    }
-     */
 
     private Utente User;
     private final UtenteRepository utenteRepository;
@@ -53,8 +44,8 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CambioRuolo")
     @ResponseBody
-    public String VisualizzaDatiUtenteTest(@RequestBody UtenteDTO uDTO){
-        User.setRuolo(StringToRuolo(uDTO.getRuolo()));
+    public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
+        User.setRuolo(StringToRuolo(uDTO.getNewRuolo()));
         return "ok";
     }
 

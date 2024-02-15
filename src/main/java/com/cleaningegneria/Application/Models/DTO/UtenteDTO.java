@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
+
 public class UtenteDTO {
 
         private String id;
