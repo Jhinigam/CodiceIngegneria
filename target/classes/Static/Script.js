@@ -75,7 +75,7 @@ function ConnectionModificaRuolo(Id, Ruolo){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.parse(data)
+        body: JSON.stringify(data)
     })
     .then(response => {
        if (response.status !== 200) {
