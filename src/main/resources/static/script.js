@@ -65,6 +65,7 @@ function ConnectionDati(){
 function ConnectionModificaRuolo(Id, Ruolo){
     const url = `${BASE_URL}Utente/MRuolo`;
 
+
     const data= {
         id: Id,
         newRuolo: Ruolo
