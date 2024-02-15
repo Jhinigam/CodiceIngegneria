@@ -23,7 +23,7 @@ public class Post {
     private Timestamp datapubblicazione;
     private String comune;
     @ManyToOne
-    private Integer idutente;
+    private Utente utente;
     private String descrizione;
     private boolean pending;
 
@@ -31,7 +31,8 @@ public class Post {
     public Post(Timestamp datapubblicazione, String comune, Integer idutente, String descrizione, boolean pending) {
         this.datapubblicazione = datapubblicazione;
         this.comune = comune;
-        this.idutente = idutente;
+        this.utente = new Utente();
+        this.utente.setId(idutente);
         this.descrizione = descrizione;
         this.pending = pending;
     }
