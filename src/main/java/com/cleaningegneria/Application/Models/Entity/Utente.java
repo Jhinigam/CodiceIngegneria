@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Models.Entity;
 
+import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,22 +29,34 @@ public class Utente {
     private int Eta;
 
 
-    /**
-     * Costruttore Utente
-     * @param Nome String
-     * @param Cognome String
-     * @param Email String
-     * @param Eta Int
-     * @param ruolo se il ruolo è 0 o 1, l'utente non è autorizzato
-     * @param comune String
-     */
-    public Utente(String Nome, String Cognome, String Email, int Eta, Ruolo ruolo, String comune){
-        this.Nome = Nome;
-        this.Cognome = Cognome;
-        this.Email = Email;
-        this.Eta = Eta;
-        this.ruolo = ruolo;
-        this.Comune = comune;
+    public Utente(CreazioneUtenteDTO uDTO){
+        this.id = 0;
+        this.Nome = uDTO.getNome();
+        this.Cognome = uDTO.getCognome();
+        this.Email = uDTO.getEmail();
+        this.Eta = uDTO.getEta();
+        this.ruolo = StringToRuolo(uDTO.getRuolo());
+        this.Comune = uDTO.getComune();
+    }
+    public Ruolo IntToRuolo(int A){
+        return switch (A) {
+            case 0 -> Ruolo.Contributore;
+            case 1 -> Ruolo.Turista;
+            case 2 -> Ruolo.ContributoreAutorizzato;
+            case 3 -> Ruolo.TuristaAutorizzato;
+            case 4 -> Ruolo.Curatore;
+            default -> Ruolo.Animatore;
+        };
+    }
+    public Ruolo StringToRuolo(String A){
+        return switch (A) {
+            case "Contributore" -> Ruolo.Contributore;
+            case "Turista" -> Ruolo.Turista;
+            case "ContributoreAutorizzato" -> Ruolo.ContributoreAutorizzato;
+            case "TuristaAutorizzato" -> Ruolo.TuristaAutorizzato;
+            case "Curatore" -> Ruolo.Curatore;
+            default -> Ruolo.Animatore;
+        };
     }
 
 }

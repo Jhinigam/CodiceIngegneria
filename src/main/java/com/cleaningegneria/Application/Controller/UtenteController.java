@@ -4,16 +4,20 @@ import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Service.UtenteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Utente")
 public class UtenteController extends AbstractController {
 
+
     private UtenteService utenteService;
     private Utente User;
-    public UtenteController() {
-        utenteService = new UtenteService();
+    public UtenteController(UtenteService utenteService) {
+        this.utenteService = utenteService;
 
     }
 
@@ -30,7 +34,7 @@ public class UtenteController extends AbstractController {
     @PutMapping("/Creazione")
     @ResponseBody
     public Utente CreateUtente(@RequestBody CreazioneUtenteDTO uDTO){
-        return utenteService.creaUtente(uDTO.getNome(),uDTO.getCognome(), uDTO.getEmail(), uDTO.getEta(), uDTO.getRuolo(), uDTO.getComune());
+        return utenteService.creaUtente(new Utente(uDTO));
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
