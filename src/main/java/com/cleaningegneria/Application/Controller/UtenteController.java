@@ -31,10 +31,7 @@ public class UtenteController extends AbstractController {
     @ResponseBody
     public Utente CreateUtente(@RequestBody CreazioneUtenteDTO uDTO){
         return utenteService.creaUtente(uDTO.getNome(),uDTO.getCognome(), uDTO.getEmail(), uDTO.getEta(), uDTO.getRuolo(), uDTO.getComune());
-
     }
-
-
 
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/DatiUtente")
