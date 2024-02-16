@@ -9,60 +9,99 @@
 <div class="title"><h2>Home di gestione Social [<label id="Test"></label>]</h2></div>
 <br>
 
-<div class="box">
-    <h1>Aggiungi Utente</h1>
-    <input type="text" id="Nome" placeholder="Nome">
-    <input type="text" id="Cognome" placeholder="Cognome">
-    <input type="text" id="Email" placeholder="Email">
-    <select id="Comuni" name="Comuni">
-        <option value="" disabled selected>Comuni</option>
-        <option value="Ancona">Ancona</option>
-        <option value="Macerata">Macerata</option>
-        <option value="Osimo">Osimo</option>
-        <option value="Jesi">Jesi</option>
-        <option value="Camerino">Camerino</option>
-    </select>
-    <select id="Ruolo" name="Ruolo">
-        <option value="" disabled selected>Ruolo</option>
-        <option value="Contributore">Contributore</option>
-        <option value="Turista">Turista</option>
-        <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
-        <option value="TuristaAutorizzato">Turista Autorizzato</option>
-        <option value="Curatore">Curatore</option>
-        <option value="Animatore">Animatore</option>
-    </select>
-    <input type="number" id="eta" name="tentacles" min="10" max="100" placeholder="Eta'"/>
+<table>
+    <tr>
+        <td>
+            <div class="box">
+                <h1>Aggiungi Utente</h1>
+                <input type="text" id="Nome" placeholder="Nome">
+                <input type="text" id="Cognome" placeholder="Cognome">
+                <input type="text" id="Email" placeholder="Email">
+                <select id="Comuni" name="Comuni">
+                    <option value="" disabled selected>Comuni</option>
+                    <option value="Ancona">Ancona</option>
+                    <option value="Macerata">Macerata</option>
+                    <option value="Osimo">Osimo</option>
+                    <option value="Jesi">Jesi</option>
+                    <option value="Camerino">Camerino</option>
+                </select>
+                <select id="Ruolo" name="Ruolo">
+                    <option value="" disabled selected>Ruolo</option>
+                    <option value="Contributore">Contributore</option>
+                    <option value="Turista">Turista</option>
+                    <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
+                    <option value="TuristaAutorizzato">Turista Autorizzato</option>
+                    <option value="Curatore">Curatore</option>
+                    <option value="Animatore">Animatore</option>
+                </select>
+                <input type="number" id="eta" name="tentacles" min="10" max="100" placeholder="Eta'"/>
 
-    <button class="quest" onclick="AddUtente()">Conferma</button>
-</div>
+                <button class="quest" onclick="AddUtente()">Conferma</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Modifica Ruolo Utente</h1>
+                <input type="number" id="idMR" placeholder="Id del Utente">
+                <select id="RuoloMR" name="Ruolo">
+                    <option value="" disabled selected>Ruolo</option>
+                    <option value="Contributore">Contributore</option>
+                    <option value="Turista">Turista</option>
+                    <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
+                    <option value="TuristaAutorizzato">Turista Autorizzato</option>
+                    <option value="Curatore">Curatore</option>
+                    <option value="Animatore">Animatore</option>
+                </select>
+                <label id="NomeMR"></label><label id="RuoloMRr"></label>
+                <button class="quest" onclick="CambioRuolo()">Conferma</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="box">
+                <h1>Post Base</h1>
+                <input type="number" id="IdUtentePost" placeholder="IdUtente" min="10" max="100">
+                <input type="text" id="Descrizione" placeholder="Descrizione">
+                <button class="quest" onclick="Dati()">Aggiorna</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Post Evento</h1>
+                <input type="number" id="IdUtentePostEvento" placeholder="IdUtente" min="10" max="100">
+                <input type="text" id="DescrizioneEvento" placeholder="Descrizione">
+                <input type="date" id="DataEvento" >
+                <button class="quest" onclick="Dati()">Aggiorna</button>
+            </div>
+        </td>
+    </tr>
+    <td>
+        <div class="box">
+            <h1>Post Itinerario</h1>
+            <input type="number" id="IdUtentePostItinerario" placeholder="IdUtente" min="10" max="100">
+            <input type="text" id="DescrizioneItinerario" placeholder="Descrizione">
+            <button class="quest" onclick="Dati()">Aggiorna</button>
+        </div>
+    </td>
+    <td>
+        <div class="box">
+            <h1>Dati</h1>
+            <label id="NomeL"></label>
+            <label id="CognomeL"></label>
+            <button class="quest" onclick="Dati()">Aggiorna</button>
+        </div>
+    </td>
+
+</table>
+
+
 
 
 <br>
-<div class="box">
-    <h1>Modifica Ruolo</h1>
-    <input type="number" id="idMR" placeholder="Id del Utente">
-    <select id="RuoloMR" name="Ruolo">
-        <option value="" disabled selected>Ruolo</option>
-        <option value="Contributore">Contributore</option>
-        <option value="Turista">Turista</option>
-        <option value="ContributoreAutorizzato">Contributore Autorizzato</option>
-        <option value="TuristaAutorizzato">Turista Autorizzato</option>
-        <option value="Curatore">Curatore</option>
-        <option value="Animatore">Animatore</option>
-    </select>
-    <label id="NomeMR"></label><label id="RuoloMRr"></label>
-    <button class="quest" onclick="CambioRuolo()">Conferma</button>
-</div>
+
 <br>
-<div class="box">
-    <h1>Dati</h1>
-    <label id="NomeL"></label>
-    <label id="CognomeL"></label>
-    <label id="EmailL"></label>
-    <label id="RuoloL"></label>
-    <label id="EtaL"></label>
-    <button class="quest" onclick="Dati()">Aggiorna</button>
-</div>
+
 <!--Script-->
 <script src="script.js"></script>
 </body>
