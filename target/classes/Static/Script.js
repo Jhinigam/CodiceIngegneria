@@ -24,6 +24,29 @@ function TestSing(){
         });
 }
 
+function ConnectionDeletUtente(Id){
+const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
+
+return fetch(url, {
+    method: 'GET', // Specifica che si tratta di una richiesta PUT
+
+}).then(response => {
+    return response.json(); // Converti la risposta in JSON
+}).then(data => {
+    console.log(data); // Stampa il risultato
+}).catch(error => {
+    console.error('Errore durante la richiesta:', error);
+});
+}
+function TestP(){
+    let P = document.getElementById('TestP').value;
+    console.log(P);
+    console.log(ConnectionDeletUtente(P));
+}
+
+
+
+
 //Connection List
 function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
     const url = `${BASE_URL}Utente/Creazione`;
@@ -84,6 +107,50 @@ function ConnectionModificaRuolo(Id, Ruolo){
             return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionAddPostBase(Id, Descrizione){
+const url = `${BASE_URL}Post/CreazionePostBase`;
+
+    const data= {
+        idUtente: Id,
+        descrizione: Descrizione
+    };
+
+    return fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
+function ConnectionAddItinerario(Id, Descrizione){
+const url = `${BASE_URL}Post/CreazioneItinerario`;
+
+    const data= {
+        idUtente: Id,
+        descrizione: Descrizione
+    };
+
+    return fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 
 //Funzioni
@@ -122,4 +189,16 @@ function CambioRuolo(){
 
      if(ConnectionModificaRuolo(tempId, tempRuolo) != null){
             console.log("Utente modificato correttamente");}else{console.log("Utente non modificato")}
+}
+function PostBase(){
+    var tempId = document.getElementById('IdUtentePost').value;
+    var tempDesc = String(document.getElementById('DescrizionePost').value);
+
+    ConnectionAddPostBase(tempId, tempDesc);
+}
+function Itinerario(){
+    var tempId = document.getElementById('IdUtenteItinerario').value;
+    var tempDesc = String(document.getElementById('DescrizioneItinerario').value);
+
+    ConnectionAddItinerario(tempId, tempDesc);
 }

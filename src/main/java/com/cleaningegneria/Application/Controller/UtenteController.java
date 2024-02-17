@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+import java.io.Console;
+
 @RestController
 @RequestMapping("/Utente")
 public class UtenteController extends AbstractController {
 
 
     private UtenteService utenteService;
-    private Utente User;
     public UtenteController(UtenteService utenteService) {
         this.utenteService = utenteService;
 
@@ -38,7 +39,7 @@ public class UtenteController extends AbstractController {
     public Utente CreateUtente(@RequestBody CreazioneUtenteDTO uDTO){
         return utenteService.creaUtente(new Utente(uDTO));
     }
-    @PutMapping("/Cancella")
+    @GetMapping("/Cancella")
     @ResponseBody
     public void DeleteUtente(@RequestParam int idUtente){
         if(utenteService.deleteUtente(idUtente).equals(Optional.empty())){
@@ -51,7 +52,7 @@ public class UtenteController extends AbstractController {
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
     public Utente VisualizzaDatiUtenteTest(){
-        return User;
+        return null;
     }
 
 
