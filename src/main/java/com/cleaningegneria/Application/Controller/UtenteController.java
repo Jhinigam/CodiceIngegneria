@@ -23,7 +23,7 @@ public class UtenteController extends AbstractController {
 
 
     @CrossOrigin(origins = "http://localhost:63342")
-    @PutMapping("/MRuolo")
+    @PutMapping("/ModificaRuolo")
     @ResponseBody
     public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
         //User.setRuolo(StringToRuolo(uDTO.getNewRuolo()));
@@ -38,7 +38,7 @@ public class UtenteController extends AbstractController {
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
-    @GetMapping("/DatiUtente")
+    @GetMapping("/VisualizzaUtente")
     @ResponseBody
     public Utente VisualizzaDatiUtenteTest(){
         return User;
