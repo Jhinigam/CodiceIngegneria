@@ -24,6 +24,26 @@ function TestSing(){
         });
 }
 
+function ConnectionDeletUtente(Id){
+const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
+
+return fetch(url, {
+    method: 'GET', // Specifica che si tratta di una richiesta PUT
+
+}).then(response => {
+    return response.json(); // Converti la risposta in JSON
+}).then(data => {
+    console.log(data); // Stampa il risultato
+}).catch(error => {
+    console.error('Errore durante la richiesta:', error);
+});
+}
+function TestP(){
+    let P = document.getElementById('TestP').value;
+    console.log(P);
+    console.log(ConnectionDeletUtente(P));
+}
+
 
 
 
@@ -134,16 +154,17 @@ const url = `${BASE_URL}Post/CreazioneItinerario`;
 function ConnectionDeleteUtente(Id){
 const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
 
+let Ris = '';
+
 return fetch(url, {
     method: 'GET',
 
 }).then(response => {
-    return response.json(); // Converti la risposta in JSON
-}).then(data => {
-    console.log(data); // Stampa il risultato
+    return response.text();
 }).catch(error => {
     console.error('Errore durante la richiesta:', error);
 });
+
 }
 
 
@@ -178,26 +199,33 @@ function Dati(){
     });
 }
 function CambioRuolo(){
-    var tempId = String(document.getElementById('idMR').value);
-    var tempRuolo = String(document.getElementById('RuoloMR').value);
+    let tempId = String(document.getElementById('idMR').value);
+    let tempRuolo = String(document.getElementById('RuoloMR').value);
 
      if(ConnectionModificaRuolo(tempId, tempRuolo) != null){
             console.log("Utente modificato correttamente");}else{console.log("Utente non modificato")}
 }
 function PostBase(){
-    var tempId = document.getElementById('IdUtentePost').value;
-    var tempDesc = String(document.getElementById('DescrizionePost').value);
+    let tempId = document.getElementById('IdUtentePost').value;
+    let tempDesc = String(document.getElementById('DescrizionePost').value);
 
     ConnectionAddPostBase(tempId, tempDesc);
 }
 function Itinerario(){
-    var tempId = document.getElementById('IdUtenteItinerario').value;
-    var tempDesc = String(document.getElementById('DescrizioneItinerario').value);
+    let tempId = document.getElementById('IdUtenteItinerario').value;
+    let tempDesc = String(document.getElementById('DescrizioneItinerario').value);
 
     ConnectionAddItinerario(tempId, tempDesc);
 }
-function EliminaUtente(){
+function EliminaUtente() {
     let temp = document.getElementById('IdEliminaUtente').value;
+    let templable = document.getElementById('UtenteEliminato');
     console.log(temp);
-    ConnectionDeleteUtente(temp);
+
+    ConnectionDeleteUtente(temp).then(text => {
+        templable.textContent = text;
+    }).catch(error => {
+        console.error('Error:', error);
+        templable.textContent = 'Errore durante l\'eliminazione dell\'utente.';
+    });
 }

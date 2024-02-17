@@ -55,7 +55,7 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
-    public Utente VisualizzaDatiUtenteTest(){
+    public Utente VisualizzaDatiUtenteTest(@RequestParam int idUtente){
         return null;
     }
 

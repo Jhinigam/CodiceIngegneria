@@ -55,8 +55,8 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         return response.text();
     });
 }
-function ConnectionDati(){
-    return fetch(`${BASE_URL}Utente/DatiUtente`)
+function ConnectionVisualizzaUtenteId(Id){
+    return fetch(`${BASE_URL}Utente/VisualizzaUtente?idUtente=`+ String(Id))
         .then(response => {
             if (response.status !== 200) {
                 throw new Error('Request failed with status ' + response.status);
@@ -138,12 +138,11 @@ return fetch(url, {
     method: 'GET',
 
 }).then(response => {
-    return response.json(); // Converti la risposta in JSON
-}).then(data => {
-    console.log(data); // Stampa il risultato
+    return response.text();
 }).catch(error => {
     console.error('Errore durante la richiesta:', error);
 });
+
 }
 
 
@@ -166,38 +165,47 @@ function AddUtente(){
    }else{ console.log("Utente non aggiunto"); }
 
 }
-function Dati(){
-    ConnectionDati().then(dati => {
+function VisualizzaUtenteId(){
+    let tepId = document.getElementById('IdVisualizzazioneDati').value;
+
+    ConnectionVisualizzaUtenteId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('NomeL').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
-        document.getElementById('CognomeL').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
+        document.getElementById('NomeVisuallizzaDati').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
+        document.getElementById('CognomeVisualizzaDati').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
     }).catch(error => {
         console.log(dati);
         console.error(error);
     });
 }
 function CambioRuolo(){
-    var tempId = String(document.getElementById('idMR').value);
-    var tempRuolo = String(document.getElementById('RuoloMR').value);
+    let tempId = String(document.getElementById('idMR').value);
+    let tempRuolo = String(document.getElementById('RuoloMR').value);
 
      if(ConnectionModificaRuolo(tempId, tempRuolo) != null){
             console.log("Utente modificato correttamente");}else{console.log("Utente non modificato")}
 }
 function PostBase(){
-    var tempId = document.getElementById('IdUtentePost').value;
-    var tempDesc = String(document.getElementById('DescrizionePost').value);
+    let tempId = document.getElementById('IdUtentePost').value;
+    let tempDesc = String(document.getElementById('DescrizionePost').value);
 
     ConnectionAddPostBase(tempId, tempDesc);
 }
 function Itinerario(){
-    var tempId = document.getElementById('IdUtenteItinerario').value;
-    var tempDesc = String(document.getElementById('DescrizioneItinerario').value);
+    let tempId = document.getElementById('IdUtenteItinerario').value;
+    let tempDesc = String(document.getElementById('DescrizioneItinerario').value);
 
     ConnectionAddItinerario(tempId, tempDesc);
 }
-function EliminaUtente(){
+function EliminaUtente() {
     let temp = document.getElementById('IdEliminaUtente').value;
+    let templable = document.getElementById('UtenteEliminato');
     console.log(temp);
-    ConnectionDeleteUtente(temp);
+
+    ConnectionDeleteUtente(temp).then(text => {
+        templable.textContent = text;
+    }).catch(error => {
+        console.error('Error:', error);
+        templable.textContent = 'Errore durante l\'eliminazione dell\'utente.';
+    });
 }

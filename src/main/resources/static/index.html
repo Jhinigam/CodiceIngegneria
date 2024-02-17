@@ -60,19 +60,19 @@
     <tr>
         <td>
             <div class="box">
-                <h1>Post Base</h1>
-                <input type="number" id="IdUtentePost" placeholder="IdUtente" min="10" max="100">
-                <input type="text" id="DescrizionePost" placeholder="Descrizione">
-                <button class="quest" onclick="PostBase()">Aggiorna</button>
+                <h1>Elimina utente Tramite ID</h1>
+                <h2><label id="UtenteEliminato"></label></h2>
+                <input type="number" id="IdEliminaUtente" placeholder="ID" min="1" >
+                <button class="quest" onclick="EliminaUtente()">P</button>
             </div>
         </td>
         <td>
             <div class="box">
-                <h1>Post Evento</h1>
-                <input type="number" id="IdUtentePostEvento" placeholder="IdUtente" min="10" max="100">
-                <input type="text" id="DescrizioneEvento" placeholder="Descrizione">
-                <input type="date" id="DataEvento" >
-                <button class="quest" onclick="Dati()">Aggiorna</button>
+                <h1>Visualizzazione Dati Utente</h1>
+                <input type="number" id="IdVisualizzazioneDati" placeholder="Id Utente">
+                <label id="NomeVisuallizzaDati"></label>
+                <label id="CognomeVisualizzaDati"></label>
+                <button class="quest" onclick="VisualizzaUtenteId()">Aggiorna</button>
             </div>
         </td>
     </tr>
@@ -87,9 +87,10 @@
     </td>
     <td>
         <div class="box">
-            <h1>Dati</h1>
-            <label id="NomeL"></label>
-            <label id="CognomeL"></label>
+            <h1>Post Evento</h1>
+            <input type="number" id="IdUtentePostEvento" placeholder="IdUtente" min="10" max="100">
+            <input type="text" id="DescrizioneEvento" placeholder="Descrizione">
+            <input type="date" id="DataEvento" >
             <button class="quest" onclick="Dati()">Aggiorna</button>
         </div>
     </td>
@@ -97,9 +98,10 @@
     <tr>
         <td>
             <div class="box">
-                <h1>Test P</h1>
-                <input type="number" id="IdEliminaUtente" placeholder="P" min="1" >
-                <button class="quest" onclick="EliminaUtente()">P</button>
+                <h1>Post Base</h1>
+                <input type="number" id="IdUtentePost" placeholder="IdUtente" min="10" max="100">
+                <input type="text" id="DescrizionePost" placeholder="Descrizione">
+                <button class="quest" onclick="PostBase()">Aggiorna</button>
             </div>
         </td>
         <td>
