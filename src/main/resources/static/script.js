@@ -199,5 +199,5 @@ function Itinerario(){
 function EliminaUtente(){
     let temp = document.getElementById('IdEliminaUtente').value;
     console.log(temp);
-    ConnectionDeleteUtente(temp));
+    ConnectionDeleteUtente(temp);
 }
