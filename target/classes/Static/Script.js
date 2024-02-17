@@ -24,26 +24,6 @@ function TestSing(){
         });
 }
 
-function ConnectionDeletUtente(Id){
-const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
-
-return fetch(url, {
-    method: 'GET', // Specifica che si tratta di una richiesta PUT
-
-}).then(response => {
-    return response.json(); // Converti la risposta in JSON
-}).then(data => {
-    console.log(data); // Stampa il risultato
-}).catch(error => {
-    console.error('Errore durante la richiesta:', error);
-});
-}
-function TestP(){
-    let P = document.getElementById('TestP').value;
-    console.log(P);
-    console.log(ConnectionDeletUtente(P));
-}
-
 
 
 
@@ -151,6 +131,20 @@ const url = `${BASE_URL}Post/CreazioneItinerario`;
             return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionDeleteUtente(Id){
+const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
+
+return fetch(url, {
+    method: 'GET',
+
+}).then(response => {
+    return response.json(); // Converti la risposta in JSON
+}).then(data => {
+    console.log(data); // Stampa il risultato
+}).catch(error => {
+    console.error('Errore durante la richiesta:', error);
+});
+}
 
 
 //Funzioni
@@ -201,4 +195,9 @@ function Itinerario(){
     var tempDesc = String(document.getElementById('DescrizioneItinerario').value);
 
     ConnectionAddItinerario(tempId, tempDesc);
+}
+function EliminaUtente(){
+    let temp = document.getElementById('IdEliminaUtente').value;
+    console.log(temp);
+    ConnectionDeleteUtente(temp);
 }
