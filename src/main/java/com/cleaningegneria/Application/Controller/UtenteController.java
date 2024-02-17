@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/Utente")
 public class UtenteController extends AbstractController {
@@ -35,6 +37,14 @@ public class UtenteController extends AbstractController {
     @ResponseBody
     public Utente CreateUtente(@RequestBody CreazioneUtenteDTO uDTO){
         return utenteService.creaUtente(new Utente(uDTO));
+    }
+    @PutMapping("/Cancella")
+    @ResponseBody
+    public void DeleteUtente(@RequestParam int idUtente){
+        if(utenteService.deleteUtente(idUtente).equals(Optional.empty())){
+            System.out.println("Utente non trovato");
+        }
+        else System.out.println("Utente cancellato con successo");
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
