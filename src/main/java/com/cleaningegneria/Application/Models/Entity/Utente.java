@@ -2,10 +2,7 @@ package com.cleaningegneria.Application.Models.Entity;
 
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name="utente")
 public class Utente {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

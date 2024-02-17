@@ -41,11 +41,16 @@ public class UtenteController extends AbstractController {
     }
     @GetMapping("/Cancella")
     @ResponseBody
-    public void DeleteUtente(@RequestParam int idUtente){
-        if(utenteService.deleteUtente(idUtente).equals(Optional.empty())){
+    public String DeleteUtente(@RequestParam int idUtente){
+        Optional<Utente> u = utenteService.deleteUtente(idUtente);
+        if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
+            return ("Utente non trovato");
         }
-        else System.out.println("Utente cancellato con successo");
+        else {
+            System.out.println("Utente con id "+ u.get().getId().toString() + " cancellato con successo!");
+            return "Utente con id "+ u.get().getId().toString() + " cancellato con successo!";
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
