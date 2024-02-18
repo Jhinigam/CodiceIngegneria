@@ -55,8 +55,17 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
-    public Utente VisualizzaDatiUtenteTest(@RequestParam int idUtente){
-        return null;
+    public String VisualizzaDatiUtenteTest(@RequestParam int idUtente){
+        Optional<Utente> u = utenteService.findUtente(idUtente);
+        if(u.equals(Optional.empty())){
+            System.out.println("Utente non trovato");
+            return ("Utente non trovato");
+        }
+        else {
+            System.out.println("Utente trovato");
+            return "L'utente con id: " + u.get().getId() + " si chiama " + u.get().getNome() + " " + u.get().getCognome() + " di eta " + u.get().getEta() + " residente a " + u.get().getComune()
+                    + " che ha ruolo di " + u.get().getRuolo() + " con email " + u.get().getEmail();
+        }
     }
 
 

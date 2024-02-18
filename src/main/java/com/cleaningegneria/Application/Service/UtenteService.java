@@ -31,4 +31,9 @@ public class UtenteService {
         return u;
     }
 
+    public Optional<Utente> findUtente(int id){
+        Optional<Utente> u = utenteRepository.findById(id);
+        return u;
+    }
+
 }
