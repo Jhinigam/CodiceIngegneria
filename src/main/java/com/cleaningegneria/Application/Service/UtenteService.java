@@ -34,9 +34,8 @@ public class UtenteService {
         return u;
     }
 
-    public void modificaRuoloUtente(int id, Ruolo ruolo){
-        Optional<Utente> u = utenteRepository.findById(id);
-        u.get().setRuolo(ruolo);
+    public void modificaRuoloUtente(int id, String ruolo){
+        utenteRepository.setRuolo(ruolo,id);
     }
 
 }

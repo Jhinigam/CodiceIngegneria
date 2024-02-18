@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class ModificaRuoloDTO {
     private int id;
-    private Ruolo newRuolo;
+    private String newRuolo;
 }

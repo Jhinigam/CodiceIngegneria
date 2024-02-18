@@ -21,9 +21,7 @@ public class Utente {
     private String Cognome;
     private String Email;
     private String Comune;
-    //@OneToMany()
-    //private List<Post> PostSalvati;
-    private Ruolo ruolo;
+    private String ruolo;
     private int Eta;
 
 
@@ -33,7 +31,7 @@ public class Utente {
         this.Cognome = uDTO.getCognome();
         this.Email = uDTO.getEmail();
         this.Eta = uDTO.getEta();
-        this.ruolo = StringToRuolo(uDTO.getRuolo());
+        this.ruolo = uDTO.getRuolo();
         this.Comune = uDTO.getComune();
     }
     public Ruolo IntToRuolo(int A){

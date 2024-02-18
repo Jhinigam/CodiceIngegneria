@@ -67,7 +67,7 @@ public class UtenteController extends AbstractController {
         Optional<Utente> u = utenteService.findUtente(idUtente);
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
-            throw new NullPointerException();
+            return Optional.empty();
         }
         else {
             System.out.println("Utente trovato");
