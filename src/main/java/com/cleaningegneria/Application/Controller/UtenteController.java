@@ -28,8 +28,15 @@ public class UtenteController extends AbstractController {
     @PutMapping("/ModificaRuolo")
     @ResponseBody
     public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
-        //User.setRuolo(StringToRuolo(uDTO.getNewRuolo()));
-        return "ok";
+        Optional<Utente> u = utenteService.findUtente(uDTO.getId());
+        if(u.equals(Optional.empty())){
+            System.out.println("Utente non trovato");
+            return ("Utente non trovato");
+        }
+        else {
+            utenteService.modificaRuoloUtente(uDTO.getId(),uDTO.getNewRuolo());
+            return "Utente modificato con successo";
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:63342/")

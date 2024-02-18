@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Models.DTO;
 
+import com.cleaningegneria.Application.Models.Entity.Ruolo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class ModificaRuoloDTO {
-    private String id;
-    private String newRuolo;
+    private int id;
+    private Ruolo newRuolo;
 }

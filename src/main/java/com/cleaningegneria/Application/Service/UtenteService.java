@@ -3,8 +3,6 @@ package com.cleaningegneria.Application.Service;
 import com.cleaningegneria.Application.Models.Entity.Ruolo;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -34,6 +32,11 @@ public class UtenteService {
     public Optional<Utente> findUtente(int id){
         Optional<Utente> u = utenteRepository.findById(id);
         return u;
+    }
+
+    public void modificaRuoloUtente(int id, Ruolo ruolo){
+        Optional<Utente> u = utenteRepository.findById(id);
+        u.get().setRuolo(ruolo);
     }
 
 }

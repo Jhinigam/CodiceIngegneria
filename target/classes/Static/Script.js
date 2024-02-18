@@ -24,26 +24,6 @@ function TestSing(){
         });
 }
 
-function ConnectionDeletUtente(Id){
-const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
-
-return fetch(url, {
-    method: 'GET', // Specifica che si tratta di una richiesta PUT
-
-}).then(response => {
-    return response.json(); // Converti la risposta in JSON
-}).then(data => {
-    console.log(data); // Stampa il risultato
-}).catch(error => {
-    console.error('Errore durante la richiesta:', error);
-});
-}
-function TestP(){
-    let P = document.getElementById('TestP').value;
-    console.log(P);
-    console.log(ConnectionDeletUtente(P));
-}
-
 
 
 
@@ -75,8 +55,8 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         return response.text();
     });
 }
-function ConnectionDati(){
-    return fetch(`${BASE_URL}Utente/DatiUtente`)
+function ConnectionVisualizzaUtenteId(Id){
+    return fetch(`${BASE_URL}Utente/VisualizzaUtente?idUtente=`+ String(Id))
         .then(response => {
             if (response.status !== 200) {
                 throw new Error('Request failed with status ' + response.status);
@@ -154,8 +134,6 @@ const url = `${BASE_URL}Post/CreazioneItinerario`;
 function ConnectionDeleteUtente(Id){
 const url = `${BASE_URL}Utente/Cancella?idUtente=`+ String(Id);
 
-let Ris = '';
-
 return fetch(url, {
     method: 'GET',
 
@@ -187,12 +165,14 @@ function AddUtente(){
    }else{ console.log("Utente non aggiunto"); }
 
 }
-function Dati(){
-    ConnectionDati().then(dati => {
+function VisualizzaUtenteId(){
+    let tepId = document.getElementById('IdVisualizzazioneDati').value;
+
+    ConnectionVisualizzaUtenteId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('NomeL').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
-        document.getElementById('CognomeL').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
+        document.getElementById('NomeVisuallizzaDati').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
+        document.getElementById('CognomeVisualizzaDati').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
     }).catch(error => {
         console.log(dati);
         console.error(error);
