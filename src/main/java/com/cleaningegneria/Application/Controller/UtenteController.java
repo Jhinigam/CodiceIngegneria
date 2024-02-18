@@ -7,6 +7,7 @@ import com.cleaningegneria.Application.Service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -62,16 +63,15 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
-    public String VisualizzaDatiUtenteTest(@RequestParam int idUtente){
+    public Optional<Utente> VisualizzaDatiUtenteTest(@RequestParam int idUtente){
         Optional<Utente> u = utenteService.findUtente(idUtente);
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
-            return ("Utente non trovato");
+            throw new NullPointerException();
         }
         else {
             System.out.println("Utente trovato");
-            return "L'utente con id: " + u.get().getId() + " si chiama " + u.get().getNome() + " " + u.get().getCognome() + " di eta " + u.get().getEta() + " residente a " + u.get().getComune()
-                    + " che ha ruolo di " + u.get().getRuolo() + " con email " + u.get().getEmail();
+            return u;
         }
     }
 

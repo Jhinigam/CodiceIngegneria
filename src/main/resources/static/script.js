@@ -66,7 +66,7 @@ function ConnectionVisualizzaUtenteId(Id){
 }
 //fune esempio
 function ConnectionModificaRuolo(Id, Ruolo){
-    const url = `${BASE_URL}Utente/MRuolo`;
+    const url = `${BASE_URL}Utente/ModificaRuolo`;
 
     const data= {
         id: Id,
@@ -172,7 +172,11 @@ function VisualizzaUtenteId(){
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
         document.getElementById('NomeVisuallizzaDati').textContent = String(dati.nome); // Assumi che l'oggetto Utente abbia una proprietà 'nome'
-        document.getElementById('CognomeVisualizzaDati').textContent = String(dati.ruolo); // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
+        document.getElementById('CognomeVisualizzaDati').textContent = String(dati.cognome) + " - eta:"; // Assumi che l'oggetto Utente abbia una proprietà 'cognome'
+        document.getElementById('EmailVisuallizzaDati').textContent = String(dati.email);
+        document.getElementById('ComuneVisualizzaDati').textContent = String(dati.comune) + " / ";
+        document.getElementById('RuoloVisuallizzaDati').textContent = String(dati.ruolo) + " / ";
+        document.getElementById('etaVisualizzaDati').textContent = String(dati.eta);
     }).catch(error => {
         console.log(dati);
         console.error(error);
@@ -181,9 +185,15 @@ function VisualizzaUtenteId(){
 function CambioRuolo(){
     let tempId = String(document.getElementById('idMR').value);
     let tempRuolo = String(document.getElementById('RuoloMR').value);
+    let tempConf = document.getElementById('ModificaRuoloConferma');
 
-     if(ConnectionModificaRuolo(tempId, tempRuolo) != null){
-            console.log("Utente modificato correttamente");}else{console.log("Utente non modificato")}
+
+    ConnectionModificaRuolo(tempId, tempRuolo).then(text => {
+                                                                   tempConf.textContent = text;
+                                                               }).catch(error => {
+                                                                   console.error('Error:', error);
+                                                                   tempConf.textContent = 'Errore durante l\'eliminazione dell\'utente.';
+                                                               });
 }
 function PostBase(){
     let tempId = document.getElementById('IdUtentePost').value;
