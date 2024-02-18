@@ -43,6 +43,7 @@
             <div class="box">
                 <h1>Modifica Ruolo Utente</h1>
                 <input type="number" id="idMR" placeholder="Id del Utente">
+                <h2><label id="ModificaRuoloConferma"></label> </h2>
                 <select id="RuoloMR" name="Ruolo">
                     <option value="" disabled selected>Ruolo</option>
                     <option value="Contributore">Contributore</option>
@@ -70,8 +71,11 @@
             <div class="box">
                 <h1>Visualizzazione Dati Utente</h1>
                 <input type="number" id="IdVisualizzazioneDati" placeholder="Id Utente">
-                <label id="NomeVisuallizzaDati"></label>
-                <label id="CognomeVisualizzaDati"></label>
+                <h2>
+                    <label id="NomeVisuallizzaDati"></label> <label id="CognomeVisualizzaDati"></label><label id="etaVisualizzaDati"></label><br>
+                    <label id="ComuneVisualizzaDati"></label> <label id="RuoloVisuallizzaDati"></label> <label id="EmailVisuallizzaDati"></label>
+                </h2>
+
                 <button class="quest" onclick="VisualizzaUtenteId()">Aggiorna</button>
             </div>
         </td>
