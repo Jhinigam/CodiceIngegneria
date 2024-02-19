@@ -207,7 +207,9 @@ function PostBase(){
     let tempStato = document.getElementById('TextIdUtentePost');
 
     ConnectionAddPostBase(tempId, tempDesc).then(text => {
-        tempStato.textContent = "Post Aggiunto";
+        if(text == "non ok"){
+        tempStato.textContent = "Post Non Creato utente inadatto";}else{
+        tempStato.textContent = "Post Aggiunto";}
         }).catch(error => {
         console.error('Error:', error);
         tempStato.textContent = "Post Non Creato";
@@ -242,6 +244,23 @@ let tepId = document.getElementById('IdPostVisualizza').value;
         console.log(dati);
         console.error(error);
     });
+}
+function Evento(){
+    let tempId = document.getElementById('IdUtentePostEvento').value;
+    let tempDesc = String(document.getElementById('DescrizioneEvento').value);
+    let tempData = document.getElementById('DescrizioneEvento').value;
+
+    let tempStato = document.getElementById('TextIdUtentePost');
+
+    ConnectionAddEvento(tempId, tempDesc, tempData).then(text => {
+        tempStato.textContent = "Evento Aggiunto";
+        }).catch(error => {
+        console.error('Error:', error);
+        tempStato.textContent = "Evento Non Aggiunto";
+        });
+}
+function VisualizzaEventoId(){
+
 }
 
 
