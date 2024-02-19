@@ -207,7 +207,7 @@ function PostBase(){
     let tempStato = document.getElementById('TextIdUtentePost');
 
     ConnectionAddPostBase(tempId, tempDesc).then(text => {
-        tempStato.textContent = "utente Aggiunto Con successo";
+        tempStato.textContent = "Post Aggiunto";
         }).catch(error => {
         console.error('Error:', error);
         tempStato.textContent = "Post Non Creato";
@@ -237,10 +237,11 @@ let tepId = document.getElementById('IdPostVisualizza').value;
     ConnectionVisualizzaPostId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
+        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
     }).catch(error => {
         console.log(dati);
         console.error(error);
     });
 }
+
 
