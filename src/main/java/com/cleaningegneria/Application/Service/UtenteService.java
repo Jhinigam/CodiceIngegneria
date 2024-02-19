@@ -38,4 +38,18 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
+    /**
+     * verifica se l'utente posta o mette in pending
+     * @param Id
+     * @return true, se posta, false se è pending
+     */
+    public boolean UserPending(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        switch (u.get().getRuolo().toString()){
+            case "ContributoreAutorizzato": return true;
+            case "Animatore": return true;
+            case "Curatore": return true;
+        }
+        return false;
+    }
 }

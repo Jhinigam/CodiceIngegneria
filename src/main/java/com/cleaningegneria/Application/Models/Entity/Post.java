@@ -21,16 +21,14 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Timestamp datapubblicazione;
-    private String comune;
     @ManyToOne
     private Utente utente;
     private String descrizione;
     private boolean pending;
 
 
-    public Post(Timestamp datapubblicazione, String comune, Integer idutente, String descrizione, boolean pending) {
-        this.datapubblicazione = datapubblicazione;
-        this.comune = comune;
+    public Post( Integer idutente, String descrizione, boolean pending) {
+        this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.utente = new Utente();
         this.utente.setId(idutente);
         this.descrizione = descrizione;

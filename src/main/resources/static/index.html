@@ -75,8 +75,25 @@
                     <label id="NomeVisuallizzaDati"></label> <label id="CognomeVisualizzaDati"></label><label id="etaVisualizzaDati"></label><br>
                     <label id="ComuneVisualizzaDati"></label> <label id="RuoloVisuallizzaDati"></label> <label id="EmailVisuallizzaDati"></label>
                 </h2>
-
                 <button class="quest" onclick="VisualizzaUtenteId()">Aggiorna</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="box">
+                <h1>Post Base</h1>
+                <input type="number" id="IdUtentePost" placeholder="IdUtente" min="1" max="100">
+                <input type="text" id="DescrizionePost" placeholder="Descrizione">
+                <button class="quest" onclick="PostBase()">Aggiorna</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Visualizza Post</h1>
+                <input type="number" id="IdPostVisualizza" placeholder="IdPost" min="10" max="100">
+                <h2><label id="ContenutoVisualizzaPost"></label></h2>
+                <button class="quest" onclick="VisualizzaPostId()">Aggiorna</button>
             </div>
         </td>
     </tr>
@@ -99,19 +116,7 @@
         </div>
     </td>
     </tr>
-    <tr>
-        <td>
-            <div class="box">
-                <h1>Post Base</h1>
-                <input type="number" id="IdUtentePost" placeholder="IdUtente" min="10" max="100">
-                <input type="text" id="DescrizionePost" placeholder="Descrizione">
-                <button class="quest" onclick="PostBase()">Aggiorna</button>
-            </div>
-        </td>
-        <td>
 
-        </td>
-    </tr>
 </table>
 
 

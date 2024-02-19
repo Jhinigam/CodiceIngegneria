@@ -24,9 +24,6 @@ function TestSing(){
         });
 }
 
-
-
-
 //Connection List
 function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
     const url = `${BASE_URL}Utente/Creazione`;
@@ -106,6 +103,7 @@ const url = `${BASE_URL}Post/CreazionePostBase`;
             if (response.status !== 200) {
                 throw new Error('Request failed with status ' + response.status);
             }
+            console.log("post aggiunto");
             return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
@@ -144,7 +142,15 @@ return fetch(url, {
 });
 
 }
-
+function ConnectionVisualizzaPostId(Id){
+    return fetch(`${BASE_URL}Post/VisualizzaPost?idPost=`+ String(Id))
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 //Funzioni
 function AddUtente(){
@@ -219,3 +225,16 @@ function EliminaUtente() {
         templable.textContent = 'Errore durante l\'eliminazione dell\'utente.';
     });
 }
+function VisualizzaPostId(){
+let tepId = document.getElementById('IdPostVisualizza').value;
+
+    ConnectionVisualizzaPostId(tepId).then(dati => {
+    console.log(dati);
+        // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
+        document.getElementById('ContenutoVisualizzaPost').textContent = String(dati.id) + String(dati.descrizione);
+    }).catch(error => {
+        console.log(dati);
+        console.error(error);
+    });
+}
+
