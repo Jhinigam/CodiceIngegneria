@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,15 +23,17 @@ public class Evento {
     private Timestamp datainizio;
     private Timestamp datafine;
     @ManyToOne
-    private Utente utente;
+    private Utente creatore;
+    @ManyToMany
+    private List<Utente> partecipanti;
     private String descrizione;
 
 
     public Evento(Timestamp datainizio, Timestamp datafine, Integer idutente, String descrizione) {
         this.datainizio = datainizio;
         this.datafine = datafine;
-        this.utente = new Utente();
-        this.utente.setId(idutente);
+        this.creatore = new Utente();
+        this.creatore.setId(idutente);
         this.descrizione = descrizione;
     }
 }
