@@ -204,8 +204,14 @@ function CambioRuolo(){
 function PostBase(){
     let tempId = document.getElementById('IdUtentePost').value;
     let tempDesc = String(document.getElementById('DescrizionePost').value);
+    let tempStato = document.getElementById('TextIdUtentePost');
 
-    ConnectionAddPostBase(tempId, tempDesc);
+    ConnectionAddPostBase(tempId, tempDesc).then(text => {
+        tempStato.textContent = "utente Aggiunto Con successo";
+        }).catch(error => {
+        console.error('Error:', error);
+        tempStato.textContent = "Post Non Creato";
+        });
 }
 function Itinerario(){
     let tempId = document.getElementById('IdUtenteItinerario').value;
@@ -237,5 +243,4 @@ let tepId = document.getElementById('IdPostVisualizza').value;
         console.error(error);
     });
 }
-
 
