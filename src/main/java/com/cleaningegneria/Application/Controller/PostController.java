@@ -29,8 +29,11 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazionePostBase")
     @ResponseBody
-    public void CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
-        System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
+    public String CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
+        if(utenteService.CanPost(pDTO.getIdUtente())){
+            System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
+            return "ok";
+        } else return "non ok";
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
