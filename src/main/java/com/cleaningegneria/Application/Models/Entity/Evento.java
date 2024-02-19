@@ -21,7 +21,6 @@ public class Evento {
     private Timestamp datapubblicazione;
     private Timestamp datainizio;
     private Timestamp datafine;
-    private String comune;
     @ManyToOne
     private Utente utente;
     private String descrizione;
@@ -31,7 +30,6 @@ public class Evento {
         this.datapubblicazione = datapubblicazione;
         this.datainizio = datainizio;
         this.datafine = datafine;
-        this.comune = comune;
         this.utente = new Utente();
         this.utente.setId(idutente);
         this.descrizione = descrizione;

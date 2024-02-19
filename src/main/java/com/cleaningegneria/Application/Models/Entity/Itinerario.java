@@ -19,7 +19,6 @@ public class Itinerario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Timestamp datapubblicazione;
-    private String comune;
     @ManyToOne
     private Utente utente;
     private String descrizione;
@@ -27,7 +26,6 @@ public class Itinerario {
 
     public Itinerario(Timestamp datapubblicazione, String comune, Integer idutente, String descrizione, boolean pending) {
         this.datapubblicazione = datapubblicazione;
-        this.comune = comune;
         this.utente = new Utente();
         this.utente.setId(idutente);
         this.descrizione = descrizione;
