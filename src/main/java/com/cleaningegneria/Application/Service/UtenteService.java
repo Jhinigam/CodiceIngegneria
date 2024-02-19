@@ -34,6 +34,7 @@ public class UtenteService {
         return u;
     }
 
+
     public void modificaRuoloUtente(int id, String ruolo){
         utenteRepository.setRuolo(ruolo,id);
     }
