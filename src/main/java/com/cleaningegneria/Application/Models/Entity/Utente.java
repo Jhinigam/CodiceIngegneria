@@ -21,6 +21,14 @@ public class Utente {
     private String Cognome;
     private String Email;
     private String Comune;
+    /**
+     * Contributore = 0
+     * Turista = 1
+     * ContributoreAutorizzato = 2
+     * TuristaAutorizzato = 3
+     * Curatore = 4
+     * Animatore = 5
+     */
     private String ruolo;
     private int Eta;
 
@@ -34,26 +42,5 @@ public class Utente {
         this.ruolo = uDTO.getRuolo();
         this.Comune = uDTO.getComune();
     }
-    public Ruolo IntToRuolo(int A){
-        return switch (A) {
-            case 0 -> Ruolo.Contributore;
-            case 1 -> Ruolo.Turista;
-            case 2 -> Ruolo.ContributoreAutorizzato;
-            case 3 -> Ruolo.TuristaAutorizzato;
-            case 4 -> Ruolo.Curatore;
-            default -> Ruolo.Animatore;
-        };
-    }
-    public Ruolo StringToRuolo(String A){
-        return switch (A) {
-            case "Contributore" -> Ruolo.Contributore;
-            case "Turista" -> Ruolo.Turista;
-            case "ContributoreAutorizzato" -> Ruolo.ContributoreAutorizzato;
-            case "TuristaAutorizzato" -> Ruolo.TuristaAutorizzato;
-            case "Curatore" -> Ruolo.Curatore;
-            default -> Ruolo.Animatore;
-        };
-    }
-
 
 }

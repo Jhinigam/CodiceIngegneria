@@ -1,6 +1,5 @@
 package com.cleaningegneria.Application.Models.DTO;
 
-import com.cleaningegneria.Application.Models.Entity.Ruolo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
