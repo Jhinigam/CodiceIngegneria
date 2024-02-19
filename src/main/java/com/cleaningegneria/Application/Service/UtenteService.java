@@ -24,6 +24,7 @@ public class UtenteService {
 
     public Optional<Utente> deleteUtente(int id){
         Optional<Utente> u = utenteRepository.findById(id);
+        utenteRepository.eliminaPostDiUtenteById(u);
         utenteRepository.deleteById(id);
         return u;
     }
