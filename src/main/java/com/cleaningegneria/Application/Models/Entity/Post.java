@@ -27,7 +27,7 @@ public class Post {
     private boolean pending;
 
 
-    public Post( Integer idutente, String descrizione, boolean pending) {
+    public Post(Integer idutente, String descrizione, boolean pending) {
         this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.utente = new Utente();
         this.utente.setId(idutente);

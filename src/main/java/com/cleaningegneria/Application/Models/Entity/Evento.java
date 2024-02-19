@@ -26,8 +26,7 @@ public class Evento {
     private String descrizione;
 
 
-    public Evento(Timestamp datapubblicazione, Timestamp datainizio, Timestamp datafine, String comune, Integer idutente, String descrizione) {
-        this.datapubblicazione = datapubblicazione;
+    public Evento(Timestamp datainizio, Timestamp datafine, Integer idutente, String descrizione) {
         this.datainizio = datainizio;
         this.datafine = datafine;
         this.utente = new Utente();
