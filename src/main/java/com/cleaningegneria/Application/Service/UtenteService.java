@@ -54,6 +54,13 @@ public class UtenteService {
         return true;
     }
 
+    public boolean CanEvent(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        switch (u.get().getRuolo().toString()){
+            case "Animatore": return true;
+        }
+        return false;
+    }
     public boolean CanPost(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){

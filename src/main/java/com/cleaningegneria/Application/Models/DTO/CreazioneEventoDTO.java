@@ -16,6 +16,5 @@ public class CreazioneEventoDTO {
     @NotNull(message = "Il nome non può essere nullo")
     private String descrizione;
 
-    private Timestamp dataInizio;
-    private Timestamp dataFine;
+    private Timestamp dataEvento;
 }

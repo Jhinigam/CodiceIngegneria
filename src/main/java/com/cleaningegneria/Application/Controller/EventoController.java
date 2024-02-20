@@ -29,8 +29,11 @@ public class EventoController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazioneEvento")
     @ResponseBody
-    public void CreaEvento(@RequestBody CreazioneEventoDTO eDTO) {
-        System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), utenteService.UserPending(eDTO.getIdUtente()), eDTO.getDataInizio(), eDTO.getDataFine()));
+    public String CreaEvento(@RequestBody CreazioneEventoDTO eDTO) {
+        if(utenteService.CanEvent(eDTO.getIdUtente())){
+            System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));
+            return "ok";
+        } else return "non ok";
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
@@ -40,7 +43,7 @@ public class EventoController extends AbstractController {
         Optional u = eventoService.findUtente(idEvento);
         if(u.equals(Optional.empty())){
             System.out.println("Evento non trovato");
-            Evento ut = new Evento(null,null,-1,"");
+            Evento ut = new Evento(null,-1,"");
             return Optional.of(ut);
         }
         else {
