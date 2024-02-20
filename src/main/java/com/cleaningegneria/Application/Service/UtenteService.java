@@ -39,14 +39,36 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
+    public void gestisciPending(int idCuratore, int idPost){
+
+    }
+
     /**
      * verifica se l'utente posta o mette in pending
      * @param Id
-     * @return true, se posta, false se è pending
+     * @return false, se posta, true se è pending
      */
     public boolean UserPending(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
+            case "ContributoreAutorizzato": return false;
+            case "Animatore": return false;
+            case "Curatore": return false;
+        }
+        return true;
+    }
+
+    public boolean CanEvent(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        switch (u.get().getRuolo().toString()){
+            case "Animatore": return true;
+        }
+        return false;
+    }
+    public boolean CanPost(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        switch (u.get().getRuolo().toString()){
+            case "Contributore": return true;
             case "ContributoreAutorizzato": return true;
             case "Animatore": return true;
             case "Curatore": return true;

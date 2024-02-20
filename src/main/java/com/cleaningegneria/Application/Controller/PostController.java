@@ -2,14 +2,9 @@ package com.cleaningegneria.Application.Controller;
 
 
 import com.cleaningegneria.Application.Models.DTO.CreazionePostBaseDTO;
-import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
-import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.*;
 import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -29,15 +24,18 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazionePostBase")
     @ResponseBody
-    public void CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
-        System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
+    public String CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
+        if(utenteService.CanPost(pDTO.getIdUtente())){
+            System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
+            return "ok";
+        } else return "non ok";
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaPost")
     @ResponseBody
     public Optional<Post> visualizzaPost(@RequestParam int idPost){
-        Optional u = postService.findUtente(idPost);
+        Optional u = postService.findPostById(idPost);
         if(u.equals(Optional.empty())){
             System.out.println("Post non trovato");
             Post ut = new Post(-1,"",false);

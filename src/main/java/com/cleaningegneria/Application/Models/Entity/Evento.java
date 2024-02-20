@@ -20,8 +20,7 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Timestamp datapubblicazione;
-    private Timestamp datainizio;
-    private Timestamp datafine;
+    private Timestamp DataEvento;
     @ManyToOne
     private Utente creatore;
     @ManyToMany
@@ -29,10 +28,9 @@ public class Evento {
     private String descrizione;
 
 
-    public Evento(Timestamp datapubblicazione, Timestamp datainizio, Timestamp datafine, String comune, Integer idutente, String descrizione) {
-        this.datapubblicazione = datapubblicazione;
-        this.datainizio = datainizio;
-        this.datafine = datafine;
+    public Evento(Timestamp dataEvento, Integer idutente, String descrizione) {
+        this.DataEvento = dataEvento;
+        this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.creatore = new Utente();
         this.creatore.setId(idutente);
         this.descrizione = descrizione;
