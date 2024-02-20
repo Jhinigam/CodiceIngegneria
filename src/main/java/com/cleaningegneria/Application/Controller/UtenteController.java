@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Controller;
 
+import com.cleaningegneria.Application.Models.DTO.GestionePendingDTO;
 import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.Utente;
@@ -76,6 +77,25 @@ public class UtenteController extends AbstractController {
             return u;
         }
     }
+
+    @PutMapping("/GestionePending")
+    @ResponseBody
+    public String GestionePending(@RequestBody GestionePendingDTO pDTO){
+        Optional<Utente> u = utenteService.findUtente(pDTO.getIdCuratore());
+
+        if(u.equals(Optional.empty())){
+            System.out.println("Utente non trovato");
+            return "Utente non trovato";
+        }
+        else {
+            if(u.get().getRuolo().equals("Curatore")){
+                return "Utente non trovato";
+            }
+            utenteService.gestisciPending(pDTO.idPost);
+            return "Utente modificato con successo";
+        }
+    }
+
 
 
 

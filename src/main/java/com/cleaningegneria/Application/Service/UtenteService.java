@@ -39,8 +39,8 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
-    public void gestisciPending(int idCuratore, int idPost){
-
+    public void gestisciPending(int idPost){
+        utenteRepository.GestionePending(idPost);
     }
 
     /**
