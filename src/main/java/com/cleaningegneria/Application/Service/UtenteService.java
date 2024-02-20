@@ -39,6 +39,10 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
+    public void gestisciPending(int idCuratore, int idPost){
+
+    }
+
     /**
      * verifica se l'utente posta o mette in pending
      * @param Id

@@ -22,7 +22,7 @@ public class PostService {
         return "PostSalvato";
     }
 
-    public Optional<Post> findUtente(int id){
+    public Optional<Post> findPostById(int id){
         Optional<Post> u = postRepository.findById(id);
         return u;
     }

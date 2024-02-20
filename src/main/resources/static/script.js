@@ -298,7 +298,7 @@ let tepId = document.getElementById('IdVisualizzaEvento').value;
     ConnectionVisualizzaEventoId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('ContenutoVisualizzaEvento').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / Data Evento: " + String(dati.dataEvento);
+        document.getElementById('ContenutoVisualizzaEvento').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / Data Evento: " + String(dati.dataEvento + " / Da Utente: " + String(dati.creatore.nome));
     }).catch(error => {
         console.log(dati);
         console.error(error);

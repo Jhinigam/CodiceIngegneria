@@ -1,7 +1,6 @@
 package com.cleaningegneria.Application.Service;
 
 import com.cleaningegneria.Application.Models.Entity.Evento;
-import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.EventoRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class EventoService {
         return "EventoSalvato";
     }
 
-    public Optional<Evento> findUtente(int id){
+    public Optional<Evento> findEventoById(int id){
         Optional<Evento> u = eventoRepository.findById(id);
         return u;
     }

@@ -2,15 +2,11 @@ package com.cleaningegneria.Application.Controller;
 
 
 import com.cleaningegneria.Application.Models.DTO.CreazioneEventoDTO;
-import com.cleaningegneria.Application.Models.DTO.CreazionePostBaseDTO;
 import com.cleaningegneria.Application.Models.Entity.Evento;
-import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Service.EventoService;
-import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.util.Optional;
 
 @RestController
@@ -40,7 +36,7 @@ public class EventoController extends AbstractController {
     @GetMapping("/VisualizzaEvento")
     @ResponseBody
     public Optional<Evento> visualizzaEvento(@RequestParam int idEvento){
-        Optional u = eventoService.findUtente(idEvento);
+        Optional u = eventoService.findEventoById(idEvento);
         if(u.equals(Optional.empty())){
             System.out.println("Evento non trovato");
             Evento ut = new Evento(null,-1,"");
