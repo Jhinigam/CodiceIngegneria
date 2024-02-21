@@ -109,8 +109,11 @@ public class UtenteController extends AbstractController {
     }
 
 
-
-
-
+    @PutMapping("/VisualizzaPostComune")
+    @ResponseBody
+    public ArrayList<Post> VisualizzaPostDiComune(@RequestParam String Comune){
+        ArrayList<Post> p = utenteService.visualizzaPostComune(Comune);
+        return p;
+    }
 
 }

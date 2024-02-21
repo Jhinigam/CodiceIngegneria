@@ -84,4 +84,9 @@ public class UtenteService {
         ArrayList<Post> p = utenteRepository.selezionaPostDiUtenteById(u);
         return p;
     }
+
+    public ArrayList<Post> visualizzaPostComune(String Comune){
+        ArrayList<Post> p = utenteRepository.selezionaPostDiComune(Comune);
+        return p;
+    }
 }
