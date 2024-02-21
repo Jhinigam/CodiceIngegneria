@@ -7,6 +7,7 @@ import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -48,4 +49,21 @@ public class PostController extends AbstractController{
     }
 
 
+    @CrossOrigin(origins = "http://localhost:63342")
+    @GetMapping("/VisualizzaPending")
+    @ResponseBody
+    public List<Post> visualizzaPending(){
+        List<Post> u = postService.VisualizzaPostInPending();
+        if(u.equals(Optional.empty())){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovato");
+            System.out.println(u);
+            return u;
+        }
+    }
 }

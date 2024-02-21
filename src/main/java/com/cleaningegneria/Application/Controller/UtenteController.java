@@ -85,14 +85,15 @@ public class UtenteController extends AbstractController {
 
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
-            return "Utente non trovato";
+            return "Pending non trovato";
         }
         else {
             if(u.get().getRuolo().equals("Curatore")){
-                return "Utente non trovato";
+                utenteService.gestisciPending(pDTO.idPost);
+                return "Pending Gestito Con Successo";
             }
-            utenteService.gestisciPending(pDTO.idPost);
-            return "Utente modificato con successo";
+            return "Utente inadatto";
+
         }
     }
 

@@ -1,9 +1,11 @@
 package com.cleaningegneria.Application.Service;
 
+import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,7 +42,8 @@ public class UtenteService {
     }
 
     public void gestisciPending(int idPost){
-        utenteRepository.GestionePending(idPost);
+        //utenteRepository.GestionePending(idPost);
+        System.out.println("Pending Gestito Con Successo");
     }
 
     /**

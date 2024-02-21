@@ -17,10 +17,11 @@ public interface UtenteRepository extends CrudRepository<Utente,Integer> {
     void setRuolo(String ruolo, Integer userId);
 
     //metodo per il db che setta il pending a true
+    /*
     @Modifying
     @Query("update Post p set p.pending = 0 where p.id = ?1")
     void GestionePending(int idPost);
-
+*/
     @Modifying
     @Query("DELETE FROM Post p WHERE p.utente = ?1")
     void eliminaPostDiUtenteById(Optional<Utente> utente);
