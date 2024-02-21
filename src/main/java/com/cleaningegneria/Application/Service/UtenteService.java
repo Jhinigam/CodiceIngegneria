@@ -42,7 +42,7 @@ public class UtenteService {
     }
 
     public void gestisciPending(int idPost){
-        //utenteRepository.GestionePending(idPost);
+        utenteRepository.GestionePending(idPost);
         System.out.println("Pending Gestito Con Successo");
     }
 

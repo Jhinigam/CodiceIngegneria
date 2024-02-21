@@ -184,6 +184,28 @@ function ConnectionVisualizzaEventoId(Id){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionGestionePending(IdCuratore, IdPost){
+        const url = `${BASE_URL}Utente/GestionePending`;
+
+        const data= {
+            idCuratore: IdCuratore,
+            idPost: IdPost
+        };
+
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
 
 //Funzioni
 function AddUtente(){
@@ -272,7 +294,7 @@ let tepId = document.getElementById('IdPostVisualizza').value;
     ConnectionVisualizzaPostId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
+        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / pending:" + String(dati.pending);
     }).catch(error => {
         console.log(dati);
         console.error(error);
@@ -304,5 +326,18 @@ let tepId = document.getElementById('IdVisualizzaEvento').value;
         console.error(error);
     });
 
+}
+function GestionePending(){
+    let tempIdCuratore = String(document.getElementById('IdCuratoreGestionePending').value);
+    let tempIdPost = String(document.getElementById('IdPostGestionePending').value);
+    let tempConf = document.getElementById('TextGestionePending');
+
+
+    ConnectionGestionePending(tempIdCuratore, tempIdPost).then(text => {
+                                                                   tempConf.textContent = text;
+                                                               }).catch(error => {
+                                                                   console.error('Error:', error);
+                                                                   tempConf.textContent = 'Errore durante l\'Aggiornamento dell\'Post.';
+                                                               });
 }
 
