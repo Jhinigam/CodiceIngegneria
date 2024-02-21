@@ -28,8 +28,8 @@ public class EventoController extends AbstractController {
     public String CreaEvento(@RequestBody CreazioneEventoDTO eDTO) {
         if(utenteService.CanEvent(eDTO.getIdUtente())){
             System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));
-            return "ok";
-        } else return "non ok";
+            return "Evento creato";
+        } else return "Utente Non Idoneo";
     }
 
     @CrossOrigin(origins = "http://localhost:63342")

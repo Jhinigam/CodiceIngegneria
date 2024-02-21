@@ -103,8 +103,7 @@ public class UtenteController extends AbstractController {
         }
         else {
             System.out.println("Utente trovato");
-            ArrayList<Post> p = utenteService.visualizzaPostUtente(idUtente);
-            return p;
+            return utenteService.visualizzaPostUtente(idUtente);
         }
     }
 
@@ -112,8 +111,9 @@ public class UtenteController extends AbstractController {
     @PutMapping("/VisualizzaPostComune")
     @ResponseBody
     public ArrayList<Post> VisualizzaPostDiComune(@RequestParam String Comune){
-        ArrayList<Post> p = utenteService.visualizzaPostComune(Comune);
-        return p;
+        return utenteService.visualizzaPostComune(Comune);
     }
+
+
 
 }
