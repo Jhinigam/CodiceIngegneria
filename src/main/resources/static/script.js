@@ -206,6 +206,15 @@ function ConnectionGestionePending(IdCuratore, IdPost){
                 return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
             });
 }
+function ConnectionVisualizzaPending(){
+    return fetch(`${BASE_URL}Post/VisualizzaPending`)
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 //Funzioni
 function AddUtente(){
@@ -308,7 +317,7 @@ function Evento(){
     let tempStato = document.getElementById('TextIdEvento');
 
     ConnectionAddEvento(tempId, tempDesc, tempData).then(text => {
-        tempStato.textContent = "Evento Aggiunto";
+        tempStato.textContent = text;
         }).catch(error => {
         console.error('Error:', error);
         tempStato.textContent = "Evento Non Aggiunto";
@@ -339,5 +348,38 @@ function GestionePending(){
                                                                    console.error('Error:', error);
                                                                    tempConf.textContent = 'Errore durante l\'Aggiornamento dell\'Post.';
                                                                });
+}
+function VisualizzaPostInPending(){
+    let DivVisual = document.getElementById('PostInPending');
+    rimuoviTuttiFigli(DivVisual);
+
+    ConnectionVisualizzaPending().then(dati => {
+        dati.forEach(oggetto => {
+            console.log(oggetto);
+            // Crea un elemento label
+            const label = document.createElement('label');
+
+            // Corregge l'errore di sintassi nella concatenazione
+            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+
+            // Aggiungi un margine per spaziare le label (opzionale)
+            label.style.display = 'block';
+
+            // Aggiunge la label al contenitore
+            DivVisual.appendChild(label);
+        }); // Manca una parentesi chiusa qui
+
+        console.log(dati);
+    }).catch(error => {
+        // console.log(dati); // Questo dovrebbe essere console.log(error); per loggare l'errore
+        console.error(error);
+    });
+}
+
+//funzioni di rutine
+function rimuoviTuttiFigli(DivBox) {
+    while (DivBox.firstChild) {
+        DivBox.removeChild(DivBox.firstChild);
+    }
 }
 
