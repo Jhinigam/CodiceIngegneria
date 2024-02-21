@@ -2,16 +2,12 @@ package com.cleaningegneria.Application.Controller;
 
 
 import com.cleaningegneria.Application.Models.DTO.CreazionePostBaseDTO;
-import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
-import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.*;
 import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -40,7 +36,7 @@ public class PostController extends AbstractController{
     @GetMapping("/VisualizzaPost")
     @ResponseBody
     public Optional<Post> visualizzaPost(@RequestParam int idPost){
-        Optional u = postService.findUtente(idPost);
+        Optional u = postService.findPostById(idPost);
         if(u.equals(Optional.empty())){
             System.out.println("Post non trovato");
             Post ut = new Post(-1,"",false);
@@ -53,4 +49,21 @@ public class PostController extends AbstractController{
     }
 
 
+    @CrossOrigin(origins = "http://localhost:63342")
+    @GetMapping("/VisualizzaPending")
+    @ResponseBody
+    public List<Post> visualizzaPending(){
+        List<Post> u = postService.VisualizzaPostInPending();
+        if(u.equals(Optional.empty())){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovato");
+            System.out.println(u);
+            return u;
+        }
+    }
 }

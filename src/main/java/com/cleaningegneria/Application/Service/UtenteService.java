@@ -1,9 +1,11 @@
 package com.cleaningegneria.Application.Service;
 
+import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,6 +41,11 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
+    public void gestisciPending(int idPost){
+        utenteRepository.GestionePending(idPost);
+        System.out.println("Pending Gestito Con Successo");
+    }
+
     /**
      * verifica se l'utente posta o mette in pending
      * @param Id
@@ -54,6 +61,13 @@ public class UtenteService {
         return true;
     }
 
+    public boolean CanEvent(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        switch (u.get().getRuolo().toString()){
+            case "Animatore": return true;
+        }
+        return false;
+    }
     public boolean CanPost(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){

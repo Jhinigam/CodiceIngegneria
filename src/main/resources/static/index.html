@@ -64,7 +64,7 @@
                 <h1>Elimina utente Tramite ID</h1>
                 <h2><label id="UtenteEliminato"></label></h2>
                 <input type="number" id="IdEliminaUtente" placeholder="ID" min="1" >
-                <button class="quest" onclick="EliminaUtente()">P</button>
+                <button class="quest" onclick="EliminaUtente()">Elimina</button>
             </div>
         </td>
         <td>
@@ -75,7 +75,25 @@
                     <label id="NomeVisuallizzaDati"></label> <label id="CognomeVisualizzaDati"></label><label id="etaVisualizzaDati"></label><br>
                     <label id="ComuneVisualizzaDati"></label> <label id="RuoloVisuallizzaDati"></label> <label id="EmailVisuallizzaDati"></label>
                 </h2>
-                <button class="quest" onclick="VisualizzaUtenteId()">Aggiorna</button>
+                <button class="quest" onclick="VisualizzaUtenteId()">Conferma</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="box">
+                <h1>Gestione Pending</h1>
+                <input type="number" id="IdCuratoreGestionePending" placeholder="Id Curatore" min="1" max="100">
+                <input type="number" id="IdPostGestionePending" placeholder="Id Del Post In Pending">
+                <h2><label id="TextGestionePending"></label></h2>
+                <button class="quest" onclick="GestionePending()">Aggiorna</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Visualizza Post In Pending</h1>
+                <h2><label id="PostInPending"></label></h2>
+                <button class="quest" onclick="VisualizzaPostInPending()">Aggiorna</button>
             </div>
         </td>
     </tr>
@@ -102,9 +120,10 @@
         <td>
             <div class="box">
                 <h1>Post Evento</h1>
-                <input type="number" id="IdUtentePostEvento" placeholder="IdUtente" min="10" max="100">
+                <input type="number" id="IdUtentePostEvento" placeholder="IdUtente" min="1" max="100">
                 <input type="text" id="DescrizioneEvento" placeholder="Descrizione">
                 <input type="date" id="DataEvento" >
+                <h2><label id="TextIdEvento"></label></h2>
                 <button class="quest" onclick="Evento()">Aggiorna</button>
             </div>
         </td>

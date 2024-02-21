@@ -151,6 +151,61 @@ function ConnectionVisualizzaPostId(Id){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionAddEvento(Id, Descrizione, DataEvento){
+const url = `${BASE_URL}Evento/CreazioneEvento`;
+
+    const data= {
+        idUtente: Id,
+        descrizione: Descrizione,
+        dataEvento: DataEvento
+    };
+
+    return fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            console.log("post aggiunto");
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
+function ConnectionVisualizzaEventoId(Id){
+    return fetch(`${BASE_URL}Evento/VisualizzaEvento?idEvento=`+ String(Id))
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
+function ConnectionGestionePending(IdCuratore, IdPost){
+        const url = `${BASE_URL}Utente/GestionePending`;
+
+        const data= {
+            idCuratore: IdCuratore,
+            idPost: IdPost
+        };
+
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
 
 //Funzioni
 function AddUtente(){
@@ -239,7 +294,7 @@ let tepId = document.getElementById('IdPostVisualizza').value;
     ConnectionVisualizzaPostId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
+        document.getElementById('ContenutoVisualizzaPost').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / pending:" + String(dati.pending);
     }).catch(error => {
         console.log(dati);
         console.error(error);
@@ -248,9 +303,9 @@ let tepId = document.getElementById('IdPostVisualizza').value;
 function Evento(){
     let tempId = document.getElementById('IdUtentePostEvento').value;
     let tempDesc = String(document.getElementById('DescrizioneEvento').value);
-    let tempData = document.getElementById('DescrizioneEvento').value;
+    let tempData = document.getElementById('DataEvento').value;
 
-    let tempStato = document.getElementById('TextIdUtentePost');
+    let tempStato = document.getElementById('TextIdEvento');
 
     ConnectionAddEvento(tempId, tempDesc, tempData).then(text => {
         tempStato.textContent = "Evento Aggiunto";
@@ -260,6 +315,29 @@ function Evento(){
         });
 }
 function VisualizzaEventoId(){
+let tepId = document.getElementById('IdVisualizzaEvento').value;
 
+    ConnectionVisualizzaEventoId(tepId).then(dati => {
+    console.log(dati);
+        // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
+        document.getElementById('ContenutoVisualizzaEvento').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / Data Evento: " + String(dati.dataEvento + " / Da Utente: " + String(dati.creatore.nome));
+    }).catch(error => {
+        console.log(dati);
+        console.error(error);
+    });
+
+}
+function GestionePending(){
+    let tempIdCuratore = String(document.getElementById('IdCuratoreGestionePending').value);
+    let tempIdPost = String(document.getElementById('IdPostGestionePending').value);
+    let tempConf = document.getElementById('TextGestionePending');
+
+
+    ConnectionGestionePending(tempIdCuratore, tempIdPost).then(text => {
+                                                                   tempConf.textContent = text;
+                                                               }).catch(error => {
+                                                                   console.error('Error:', error);
+                                                                   tempConf.textContent = 'Errore durante l\'Aggiornamento dell\'Post.';
+                                                               });
 }
 

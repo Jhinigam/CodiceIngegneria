@@ -16,6 +16,10 @@ public interface UtenteRepository extends CrudRepository<Utente,Integer> {
     @Query("update Utente u set u.ruolo = ?1 where u.id = ?2")
     void setRuolo(String ruolo, Integer userId);
 
+    //metodo per il db che setta il pending a true
+    @Modifying
+    @Query(value = "update Post p set p.pending = 0 where p.id = ?1", nativeQuery = true)
+    void GestionePending(int idPost);
 
     @Modifying
     @Query("DELETE FROM Post p WHERE p.utente = ?1")
