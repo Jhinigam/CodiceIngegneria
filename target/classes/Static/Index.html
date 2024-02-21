@@ -110,6 +110,7 @@
         <td>
             <div class="box">
                 <h1>Visualizza Post</h1>
+                <input type="number" id = "IdPostVisualizza">
                 <h2><label id="ContenutoVisualizzaPost"></label></h2>
                 <button class="quest" onclick="VisualizzaPostId()">Aggiorna</button>
             </div>
@@ -138,6 +139,31 @@
     <tr>
         <td>
             <div class="box">
+                <h1>Visualizza Post Di un utente</h1>
+                <input type="number" id="IdUtenteVisualizzaTuttiPost" placeholder="Id Utente">
+                <h2> <div id="TuttiPostDiUnUtente"></div></h2>
+                <button class="quest" onclick="TuttiPostDiUnUtente()">Cerca</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Visualizza Post Di Un Comune</h1>
+                <select id="VisualizzaPostComuni" name="Comuni">
+                    <option value="" disabled selected>Comuni</option>
+                    <option value="Ancona">Ancona</option>
+                    <option value="Macerata">Macerata</option>
+                    <option value="Osimo">Osimo</option>
+                    <option value="Jesi">Jesi</option>
+                    <option value="Camerino">Camerino</option>
+                </select>
+                <h2> <div id="VisualizzaTuttiIPostInComune"></div></h2>
+                <button class="quest" onclick="TuttiIPostInComune()">Cerca</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="box">
                 <h1>Post Itinerario</h1>
                 <input type="number" id="IdUtentePostItinerario" placeholder="IdUtente" min="1" max="100">
                 <input type="text" id="DescrizioneItinerario" placeholder="Descrizione">
@@ -147,6 +173,7 @@
 
     </tr>
 
+
 </table>
 
 
@@ -155,6 +182,7 @@
 <br>
 
 <br>
+
 
 
 <!--Script-->

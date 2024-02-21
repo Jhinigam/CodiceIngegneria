@@ -6,6 +6,7 @@ import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -87,4 +88,10 @@ public class UtenteService {
     public ArrayList<Post> visualizzaPostComune(String Comune){
         return utenteRepository.selezionaPostDiComune(Comune);
     }
+
+    public List<Post> VisualizzaPostDiUnUtente(int idUtente){
+        Optional<Utente> u = findUtente(idUtente);
+        return utenteRepository.selezionaPostDiUtenteById(u);
+    }
+
 }

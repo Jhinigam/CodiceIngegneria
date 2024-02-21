@@ -66,4 +66,42 @@ public class PostController extends AbstractController{
             return u;
         }
     }
+
+    @GetMapping("/VisualizzaPostDiUnUtente")
+    @ResponseBody
+    public List<Post> VisualizzaPostDiUnUtente(@RequestParam int IdUtente){
+        List<Post> u = utenteService.VisualizzaPostDiUnUtente(IdUtente);
+        if(u.isEmpty()){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovati");
+            System.out.println(u);
+            return u;
+        }
+    }
+
+    @GetMapping("/VisualizzaPostDiUnComune")
+    @ResponseBody
+    public List<Post> VisualizzaPostDiUnComune(@RequestParam String Comune){
+        List<Post> u = utenteService.visualizzaPostComune(Comune);
+        if(u.isEmpty()){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovati");
+            System.out.println(u);
+            return u;
+        }
+    }
+
+
+
+
 }

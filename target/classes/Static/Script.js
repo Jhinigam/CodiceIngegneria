@@ -215,6 +215,24 @@ function ConnectionVisualizzaPending(){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionTuttiPostDiUnUtente(IdUtente){
+    return fetch(`${BASE_URL}Post/VisualizzaPostDiUnUtente?IdUtente=`+ String(IdUtente))
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
+function ConnectionTuttiPostDiUnComune(ComuneDiRef){
+    return fetch(`${BASE_URL}Post/VisualizzaPostDiUnComune?Comune=`+ String(ComuneDiRef))
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 //Funzioni
 function AddUtente(){
@@ -375,6 +393,61 @@ function VisualizzaPostInPending(){
         console.error(error);
     });
 }
+function TuttiPostDiUnUtente(){
+    let DivVisual = document.getElementById('TuttiPostDiUnUtente');
+    let IdUtente = document.getElementById('IdUtenteVisualizzaTuttiPost').value;
+    rimuoviTuttiFigli(DivVisual);
+
+    ConnectionVisualizzaPending(IdUtente).then(dati => {
+        dati.forEach(oggetto => {
+            console.log(oggetto);
+            // Crea un elemento label
+            const label = document.createElement('label');
+
+            // Corregge l'errore di sintassi nella concatenazione
+            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+
+            // Aggiungi un margine per spaziare le label (opzionale)
+            label.style.display = 'block';
+
+            // Aggiunge la label al contenitore
+            DivVisual.appendChild(label);
+        }); // Manca una parentesi chiusa qui
+
+        console.log(dati);
+    }).catch(error => {
+        // console.log(dati); // Questo dovrebbe essere console.log(error); per loggare l'errore
+        console.error(error);
+    });
+}
+function TuttiIPostInComune(){
+    let DivVisual = document.getElementById('VisualizzaTuttiIPostInComune');
+    let ComuneDiRef = document.getElementById('VisualizzaPostComuni').value;
+    rimuoviTuttiFigli(DivVisual);
+
+    ConnectionTuttiPostDiUnComune(ComuneDiRef).then(dati => {
+        dati.forEach(oggetto => {
+            console.log(oggetto);
+            // Crea un elemento label
+            const label = document.createElement('label');
+
+            // Corregge l'errore di sintassi nella concatenazione
+            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+
+            // Aggiungi un margine per spaziare le label (opzionale)
+            label.style.display = 'block';
+
+            // Aggiunge la label al contenitore
+            DivVisual.appendChild(label);
+        }); // Manca una parentesi chiusa qui
+
+        console.log(dati);
+    }).catch(error => {
+        // console.log(dati); // Questo dovrebbe essere console.log(error); per loggare l'errore
+        console.error(error);
+    });
+}
+
 
 //funzioni di rutine
 function rimuoviTuttiFigli(DivBox) {
@@ -382,4 +455,6 @@ function rimuoviTuttiFigli(DivBox) {
         DivBox.removeChild(DivBox.firstChild);
     }
 }
+
+
 
