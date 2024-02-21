@@ -81,12 +81,10 @@ public class UtenteService {
 
     public ArrayList<Post> visualizzaPostUtente(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
-        ArrayList<Post> p = utenteRepository.selezionaPostDiUtenteById(u);
-        return p;
+        return utenteRepository.selezionaPostDiUtenteById(u);
     }
 
     public ArrayList<Post> visualizzaPostComune(String Comune){
-        ArrayList<Post> p = utenteRepository.selezionaPostDiComune(Comune);
-        return p;
+        return utenteRepository.selezionaPostDiComune(Comune);
     }
 }
