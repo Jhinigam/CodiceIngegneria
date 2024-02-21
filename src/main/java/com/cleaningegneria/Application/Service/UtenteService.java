@@ -5,7 +5,7 @@ import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -42,7 +42,7 @@ public class UtenteService {
     }
 
     public void gestisciPending(int idPost){
-        //utenteRepository.GestionePending(idPost);
+        utenteRepository.GestionePending(idPost);
         System.out.println("Pending Gestito Con Successo");
     }
 
@@ -77,5 +77,14 @@ public class UtenteService {
             case "Curatore": return true;
         }
         return false;
+    }
+
+    public ArrayList<Post> visualizzaPostUtente(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        return utenteRepository.selezionaPostDiUtenteById(u);
+    }
+
+    public ArrayList<Post> visualizzaPostComune(String Comune){
+        return utenteRepository.selezionaPostDiComune(Comune);
     }
 }
