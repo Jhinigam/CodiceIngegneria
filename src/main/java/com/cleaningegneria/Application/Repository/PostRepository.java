@@ -9,9 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 @Repository
 @Transactional
 public interface PostRepository extends CrudRepository<Post,Integer>{
+    @Query("SELECT p FROM Post p WHERE p.pending = true")
+    ArrayList<Post> VisualizzaPostPending();
 
 
 

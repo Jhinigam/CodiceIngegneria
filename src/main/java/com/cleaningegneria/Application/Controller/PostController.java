@@ -54,14 +54,14 @@ public class PostController extends AbstractController{
     @ResponseBody
     public List<Post> visualizzaPending(){
         List<Post> u = postService.VisualizzaPostInPending();
-        if(u.equals(Optional.empty())){
+        if(u.isEmpty()){
             System.out.println("Post non trovati");
             u.add(new Post(-1,"",false));
             System.out.println(u);
             return u;
         }
         else {
-            System.out.println("Post trovato");
+            System.out.println("Post trovati");
             System.out.println(u);
             return u;
         }
