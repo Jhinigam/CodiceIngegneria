@@ -3,17 +3,13 @@ package com.cleaningegneria.Application.Controller;
 import com.cleaningegneria.Application.Models.DTO.GestionePendingDTO;
 import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
+import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Service.UtenteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
-
-import java.io.Console;
 
 @RestController
 @RequestMapping("/Utente")
@@ -96,6 +92,22 @@ public class UtenteController extends AbstractController {
 
         }
     }
+
+    @PutMapping("/VisualizzaPostUtente")
+    @ResponseBody
+    public ArrayList<Post> VisulizzaPostDiUtente(@RequestParam int idUtente){
+        Optional<Utente> u = utenteService.findUtente(idUtente);
+        if(u.equals(Optional.empty())){
+            System.out.println("Utente non trovato");
+            return null;
+        }
+        else {
+            System.out.println("Utente trovato");
+            ArrayList<Post> p = utenteService.visualizzaPostUtente(idUtente);
+            return p;
+        }
+    }
+
 
 
 

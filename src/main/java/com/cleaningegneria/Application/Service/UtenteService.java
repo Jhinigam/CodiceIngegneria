@@ -5,7 +5,7 @@ import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -77,5 +77,11 @@ public class UtenteService {
             case "Curatore": return true;
         }
         return false;
+    }
+
+    public ArrayList<Post> visualizzaPostUtente(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
+        ArrayList<Post> p = utenteRepository.selezionaPostDiUtenteById(u);
+        return p;
     }
 }
