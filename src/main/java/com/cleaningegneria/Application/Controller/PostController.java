@@ -1,7 +1,7 @@
 package com.cleaningegneria.Application.Controller;
 
 
-import com.cleaningegneria.Application.Models.DTO.CreazionePostBaseDTO;
+import com.cleaningegneria.Application.Models.DTO.CreazionePostEItinerarioDTO;
 import com.cleaningegneria.Application.Models.Entity.*;
 import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
@@ -25,7 +25,7 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazionePostBase")
     @ResponseBody
-    public String CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
+    public String CreaPostBase(@RequestBody CreazionePostEItinerarioDTO pDTO){
         if(utenteService.CanPost(pDTO.getIdUtente())){
             System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
             return "ok";

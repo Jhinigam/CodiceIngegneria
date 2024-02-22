@@ -93,27 +93,4 @@ public class UtenteController extends AbstractController {
         }
     }
 
-    @PutMapping("/VisualizzaPostUtente")
-    @ResponseBody
-    public ArrayList<Post> VisulizzaPostDiUtente(@RequestParam int idUtente){
-        Optional<Utente> u = utenteService.findUtente(idUtente);
-        if(u.equals(Optional.empty())){
-            System.out.println("Utente non trovato");
-            return null;
-        }
-        else {
-            System.out.println("Utente trovato");
-            return utenteService.visualizzaPostUtente(idUtente);
-        }
-    }
-
-
-    @PutMapping("/VisualizzaPostComune")
-    @ResponseBody
-    public ArrayList<Post> VisualizzaPostDiComune(@RequestParam String Comune){
-        return utenteService.visualizzaPostComune(Comune);
-    }
-
-
-
 }

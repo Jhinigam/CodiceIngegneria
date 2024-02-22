@@ -80,9 +80,13 @@ public class UtenteService {
         return false;
     }
 
-    public ArrayList<Post> visualizzaPostUtente(int Id){
+    public boolean CanItinerario(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
-        return utenteRepository.selezionaPostDiUtenteById(u);
+        switch (u.get().getRuolo().toString()){
+            case "ContributoreAutorizzato": return true;
+            case "Curatore": return true;
+        }
+        return false;
     }
 
     public ArrayList<Post> visualizzaPostComune(String Comune){
