@@ -2,11 +2,14 @@ package com.cleaningegneria.Application.Controller;
 
 import com.cleaningegneria.Application.Models.DTO.CreazionePostEItinerarioDTO;
 import com.cleaningegneria.Application.Models.Entity.Itinerario;
+import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Service.ItinerarioService;
 import com.cleaningegneria.Application.Service.UtenteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Itinerario")
@@ -33,28 +36,48 @@ public class ItinerarioController extends AbstractController{
         } else return "non ok";
     }
 
+
     @CrossOrigin(origins = "http://localhost:63342")
-    @PutMapping("/VisualizzaItinerari")
+    @GetMapping("/VisualizzaItinerari")
     @ResponseBody
     public ArrayList<Itinerario> VisualizzaItinerari(){
-        return itinerarioService.VisualizzaItinerari();
+        ArrayList<Itinerario> u = itinerarioService.VisualizzaTuttiGliItinerari();
+        if(u.isEmpty()){
+            System.out.println("Itinerari non trovati");
+            u.add(new Itinerario(-1,"0"));
+            u.add(new Itinerario(-1,"1"));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Itinerari trovati");
+            System.out.println(u);
+            return u;
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:63342")
-    @PutMapping("/VisualizzaItinerario")
+    @GetMapping("/VisualizzaItinerario")
     @ResponseBody
-    public Itinerario VisualizzaItinerario(@RequestParam int idItinerario){
+    public Optional<Itinerario> VisualizzaItinerario(@RequestParam int idItinerario){
         return itinerarioService.VisualizzaItinerario(idItinerario);
     }
 
+    @CrossOrigin(origins = "http://localhost:63342")
+    @GetMapping("/VisualizzaPostInItinerario")
+    @ResponseBody
+    public List<Post> VisualizzaPostInItinerario(@RequestParam int idItinerario){
+        return
+    }
+
+    /*
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/VisualizzaItinerario")
     @ResponseBody
     public String AggiungiPostAItinerario(@RequestParam int idItinerario, int idPost){
         return itinerarioService.AggiungiPostAItinerario(idItinerario,idPost);
     }
-
-
+    */
 
 
 

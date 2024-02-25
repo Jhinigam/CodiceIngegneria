@@ -233,6 +233,38 @@ function ConnectionTuttiPostDiUnComune(ComuneDiRef){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionAddItinerario(Id, Descrizione){
+    const url = `${BASE_URL}Itinerario/CreazioneItinerario`;
+
+        const data= {
+            idUtente: Id,
+            descrizione: Descrizione
+        };
+
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                console.log("post aggiunto");
+                return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
+function ConnectionTextListaItinerari(){
+        return fetch(`${BASE_URL}Itinerario/VisualizzaItinerari`)
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
 
 //Funzioni
 function AddUtente(){
@@ -296,12 +328,6 @@ function PostBase(){
         console.error('Error:', error);
         tempStato.textContent = "Post Non Creato";
         });
-}
-function Itinerario(){
-    let tempId = document.getElementById('IdUtenteItinerario').value;
-    let tempDesc = String(document.getElementById('DescrizioneItinerario').value);
-
-    ConnectionAddItinerario(tempId, tempDesc);
 }
 function EliminaUtente() {
     let temp = document.getElementById('IdEliminaUtente').value;
@@ -426,6 +452,47 @@ function TuttiIPostInComune(){
     rimuoviTuttiFigli(DivVisual);
 
     ConnectionTuttiPostDiUnComune(ComuneDiRef).then(dati => {
+        dati.forEach(oggetto => {
+            console.log(oggetto);
+            // Crea un elemento label
+            const label = document.createElement('label');
+
+            // Corregge l'errore di sintassi nella concatenazione
+            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+
+            // Aggiungi un margine per spaziare le label (opzionale)
+            label.style.display = 'block';
+
+            // Aggiunge la label al contenitore
+            DivVisual.appendChild(label);
+        }); // Manca una parentesi chiusa qui
+
+        console.log(dati);
+    }).catch(error => {
+        // console.log(dati); // Questo dovrebbe essere console.log(error); per loggare l'errore
+        console.error(error);
+    });
+}
+function Itinerario(){
+    let tempId = document.getElementById('IdUtentePostItinerario').value;
+    let tempDesc = String(document.getElementById('DescrizioneItinerario').value);
+    let tempStato = document.getElementById('TextrispostaItinerario');
+
+    ConnectionAddItinerario(tempId, tempDesc).then(text => {
+                                                     if(text == "non ok"){
+                                                     tempStato.textContent = "Itinerario Non Creato utente inadatto";
+                                                     }else{
+                                                     tempStato.textContent = "Itinerario Aggiunto";}
+                                                     }).catch(error => {
+                                                     console.error('Error:', error);
+                                                     tempStato.textContent = "Itinerario Non Creato";
+                                                     });
+}
+function TuttiItinerari(){
+   let DivVisual = document.getElementById('TextListaItinerari');
+    rimuoviTuttiFigli(DivVisual);
+
+    ConnectionTextListaItinerari().then(dati => {
         dati.forEach(oggetto => {
             console.log(oggetto);
             // Crea un elemento label

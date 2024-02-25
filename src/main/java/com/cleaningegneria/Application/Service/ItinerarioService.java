@@ -26,16 +26,20 @@ public class ItinerarioService {
         return "PostSalvato";
     }
 
-    public ArrayList<Itinerario> VisualizzaItinerari(){
-        return itinerarioRepository.VisualizzaItinerari();
+    public ArrayList<Itinerario> VisualizzaTuttiGliItinerari(){
+        ArrayList<Itinerario> u = new ArrayList<Itinerario>();
+        u.add(new Itinerario(1,"it temp 0"));
+        u.add(new Itinerario(1,"it temp 1"));
+        u.add(new Itinerario(1,"it temp 2"));
+        return u;
     }
 
-    public Itinerario VisualizzaItinerario(int itinerarioId){
-        return itinerarioRepository.VisualizzaItinerario(itinerarioId);
+    public Optional<Itinerario> VisualizzaItinerario(int idItinerario){
+        return itinerarioRepository.findById(idItinerario);
     }
 
     public String AggiungiPostAItinerario(int itineraioId, int postId){
-        itinerarioRepository.aggiungiPostAItinerario(itineraioId,postId);
+        //itinerarioRepository.aggiungiPostAItinerario(itineraioId,postId);
         return "Post aggiungto";
     }
 

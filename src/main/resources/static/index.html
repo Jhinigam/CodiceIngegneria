@@ -168,10 +168,36 @@
                 <h2><label id="TextrispostaItinerario"></label></h2>
                 <input type="number" id="IdUtentePostItinerario" placeholder="IdUtente" min="1" max="100">
                 <input type="text" id="DescrizioneItinerario" placeholder="Descrizione">
-                <button class="quest" onclick="Itinerario()">Aggiorna</button>
+                <button class="quest" onclick="Itinerario()">Aggiungi</button>
             </div>
         </td>
-
+        <td>
+            <div class="box">
+                <h1>Visualizza itinerari</h1>
+                <h2><label id="TextListaItinerari"></label></h2>
+                <button class="quest" onclick="TuttiItinerari()">Aggiorna</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="box">
+                <h1>Visualizza contenuto itinerario</h1>
+                <input type="number" id="VisualizzaItinerarioId" placeholder="Id Itinerario">
+                <h2><label id="TextItinerarioVisualizzato"></label></h2>
+                <h2><label id="TextPostContenuti"></label></h2>
+                <button class="quest" onclick="function ContenutoItinerarioById()">Aggiorna</button>
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h1>Aggiungi Post ad itinerario</h1>
+                <h2><label id="RispostaAddPost"></label></h2>
+                <input type="number" id="AggiungiPostIt" placeholder="Id Post">
+                <input type="number" id="AggiungiItinerarioRicevente" placeholder="Id Itineraro">
+                <button class="quest" onclick="AggiungiPostAdItinerario()">Aggiungi</button>
+            </div>
+        </td>
     </tr>
 
 
