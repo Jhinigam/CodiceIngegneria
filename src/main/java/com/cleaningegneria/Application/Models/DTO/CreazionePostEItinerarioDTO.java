@@ -1,6 +1,5 @@
 package com.cleaningegneria.Application.Models.DTO;
 
-import jakarta.validation.constraints.Email;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @Data
-public class CreazionePostBaseDTO {
+public class CreazionePostEItinerarioDTO {
     private int idUtente;
 
     @NotNull(message = "Il nome non può essere nullo")

@@ -33,4 +33,5 @@ public interface UtenteRepository extends CrudRepository<Utente,Integer> {
     @Query("SELECT p FROM Post p JOIN Utente u ON p.utente.id = u.id WHERE u.Comune = ?1")
     ArrayList<Post> selezionaPostDiComune(String Comune);
 
+
 }

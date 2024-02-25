@@ -25,14 +25,12 @@ public class Itinerario {
     @ManyToMany
     private List<Post> contenuti;
     private String descrizione;
-    private boolean pending;
 
-    public Itinerario(Timestamp datapubblicazione, String comune, Integer idutente, String descrizione, boolean pending) {
-        this.datapubblicazione = datapubblicazione;
+    public Itinerario(Integer idutente, String descrizione) {
+        this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.creatore = new Utente();
         this.creatore.setId(idutente);
         this.descrizione = descrizione;
-        this.pending = pending;
     }
 
 

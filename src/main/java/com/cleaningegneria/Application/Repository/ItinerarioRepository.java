@@ -1,5 +1,7 @@
 package com.cleaningegneria.Application.Repository;
 
+
+import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import jakarta.transaction.Transactional;
@@ -13,10 +15,7 @@ import java.util.ArrayList;
 
 @Repository
 @Transactional
-public interface PostRepository extends CrudRepository<Post,Integer>{
-    @Query("SELECT p FROM Post p WHERE p.pending = true")
-    ArrayList<Post> VisualizzaPostPending();
-
+public interface ItinerarioRepository extends CrudRepository<Itinerario,Integer>{
 
 
 }

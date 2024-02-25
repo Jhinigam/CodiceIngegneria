@@ -1,7 +1,7 @@
 package com.cleaningegneria.Application.Controller;
 
 
-import com.cleaningegneria.Application.Models.DTO.CreazionePostBaseDTO;
+import com.cleaningegneria.Application.Models.DTO.CreazionePostEItinerarioDTO;
 import com.cleaningegneria.Application.Models.Entity.*;
 import com.cleaningegneria.Application.Service.PostService;
 import com.cleaningegneria.Application.Service.UtenteService;
@@ -25,7 +25,7 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazionePostBase")
     @ResponseBody
-    public String CreaPostBase(@RequestBody CreazionePostBaseDTO pDTO){
+    public String CreaPostBase(@RequestBody CreazionePostEItinerarioDTO pDTO){
         if(utenteService.CanPost(pDTO.getIdUtente())){
             System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
             return "ok";
@@ -54,16 +54,54 @@ public class PostController extends AbstractController{
     @ResponseBody
     public List<Post> visualizzaPending(){
         List<Post> u = postService.VisualizzaPostInPending();
-        if(u.equals(Optional.empty())){
+        if(u.isEmpty()){
             System.out.println("Post non trovati");
             u.add(new Post(-1,"",false));
             System.out.println(u);
             return u;
         }
         else {
-            System.out.println("Post trovato");
+            System.out.println("Post trovati");
             System.out.println(u);
             return u;
         }
     }
+
+    @GetMapping("/VisualizzaPostDiUnUtente")
+    @ResponseBody
+    public List<Post> VisualizzaPostDiUnUtente(@RequestParam int IdUtente){
+        List<Post> u = utenteService.VisualizzaPostDiUnUtente(IdUtente);
+        if(u.isEmpty()){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovati");
+            System.out.println(u);
+            return u;
+        }
+    }
+
+    @GetMapping("/VisualizzaPostDiUnComune")
+    @ResponseBody
+    public List<Post> VisualizzaPostDiUnComune(@RequestParam String Comune){
+        List<Post> u = utenteService.visualizzaPostComune(Comune);
+        if(u.isEmpty()){
+            System.out.println("Post non trovati");
+            u.add(new Post(-1,"",false));
+            System.out.println(u);
+            return u;
+        }
+        else {
+            System.out.println("Post trovati");
+            System.out.println(u);
+            return u;
+        }
+    }
+
+
+
+
 }
