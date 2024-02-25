@@ -26,4 +26,17 @@ public class ItinerarioService {
         return "PostSalvato";
     }
 
+    public ArrayList<Itinerario> VisualizzaItinerari(){
+        return itinerarioRepository.VisualizzaItinerari();
+    }
+
+    public Itinerario VisualizzaItinerario(int itinerarioId){
+        return itinerarioRepository.VisualizzaItinerario(itinerarioId);
+    }
+
+    public String AggiungiPostAItinerario(int itineraioId, int postId){
+        itinerarioRepository.aggiungiPostAItinerario(itineraioId,postId);
+        return "Post aggiungto";
+    }
+
 }
