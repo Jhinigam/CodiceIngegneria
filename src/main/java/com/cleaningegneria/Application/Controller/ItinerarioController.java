@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Controller;
 
+import com.cleaningegneria.Application.Models.DTO.AggiungiPostAItinerarioDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazionePostEItinerarioDTO;
 import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
@@ -59,25 +60,19 @@ public class ItinerarioController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaItinerario")
     @ResponseBody
+    //Visualizza tutti i contenuti (Post) di un itinerario
     public Optional<Itinerario> VisualizzaItinerario(@RequestParam int idItinerario){
         return itinerarioService.VisualizzaItinerario(idItinerario);
     }
 
+
     @CrossOrigin(origins = "http://localhost:63342")
-    @GetMapping("/VisualizzaPostInItinerario")
+    @PutMapping("/AggiungiPostAItinerario")
     @ResponseBody
-    public List<Post> VisualizzaPostInItinerario(@RequestParam int idItinerario){
-        return
+    public String AggiungiPostAItinerario(@RequestBody AggiungiPostAItinerarioDTO dto){
+        return itinerarioService.AggiungiPostAItinerario(dto.getItinerarioId(),dto.getPostId());
     }
 
-    /*
-    @CrossOrigin(origins = "http://localhost:63342")
-    @PutMapping("/VisualizzaItinerario")
-    @ResponseBody
-    public String AggiungiPostAItinerario(@RequestParam int idItinerario, int idPost){
-        return itinerarioService.AggiungiPostAItinerario(idItinerario,idPost);
-    }
-    */
 
 
 

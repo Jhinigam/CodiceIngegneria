@@ -265,6 +265,24 @@ function ConnectionTextListaItinerari(){
                 return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
             });
 }
+function ConnectionTextListaPostInItinerario(IdItinerario){
+        return fetch(`${BASE_URL}Itinerario/VisualizzaPostInItinerario?idItinerario=`+ String(IdItinerario))
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
+function ConnectTextDatiItinerario(IdItinerario){
+    return fetch(`${BASE_URL}Itinerario/VisualizzaPostInItinerario?idItinerario=`+ String(IdItinerario))
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
 
 //Funzioni
 function AddUtente(){
@@ -514,7 +532,58 @@ function TuttiItinerari(){
         console.error(error);
     });
 }
+function ContenutoItinerarioById(){
+let ValId = document.getElementById('VisualizzaItinerarioId').value;
+let DivVisual0 = document.getElementById('TextItinerarioVisualizzato');
+let DivVisual1 = document.getElementById('TextPostContenuti');
+    rimuoviTuttiFigli(DivVisual1);
 
+     ConnectionVisualizzaPostId(ValId).then(dati => {
+        console.log(dati);
+            // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
+            DivVisual0.textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / pending:" + String(dati.pending);
+        }).catch(error => {
+            console.log(dati);
+            console.error(error);
+        });
+
+    ConnectionTextListaPostInItinerario(ValId).then(dati => {
+        dati.forEach(oggetto => {
+            console.log(oggetto);
+            // Crea un elemento label
+            const label = document.createElement('label');
+
+            // Corregge l'errore di sintassi nella concatenazione
+            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+
+            // Aggiungi un margine per spaziare le label (opzionale)
+            label.style.display = 'block';
+
+            // Aggiunge la label al contenitore
+            DivVisual1.appendChild(label);
+        }); // Manca una parentesi chiusa qui
+
+        console.log(dati);
+    }).catch(error => {
+        // console.log(dati); // Questo dovrebbe essere console.log(error); per loggare l'errore
+        console.error(error);
+    });
+}
+function AggiungiPostAdItinerario(){
+        let tempIdPost = document.getElementById('IdUtentePostItinerario').value;
+        let tempIdItinerario = String(document.getElementById('DescrizioneItinerario').value);
+        let tempStato = document.getElementById('TextrispostaItinerario');
+
+        ConnectionAddItinerario(tempId, tempDesc).then(text => {
+                                                         if(text == "non ok"){
+                                                         tempStato.textContent = "Itinerario Non Creato utente inadatto";
+                                                         }else{
+                                                         tempStato.textContent = "Itinerario Aggiunto";}
+                                                         }).catch(error => {
+                                                         console.error('Error:', error);
+                                                         tempStato.textContent = "Itinerario Non Creato";
+                                                         });
+}
 
 //funzioni di rutine
 function rimuoviTuttiFigli(DivBox) {

@@ -17,20 +17,9 @@ import java.util.ArrayList;
 @Transactional
 public interface ItinerarioRepository extends CrudRepository<Itinerario,Integer>{
 
-    /*
-    @Query("SELECT p FROM Itinerario p")
-    ArrayList<Itinerario> VisualizzaItinerari();
-
-
     @Query("SELECT i FROM Itinerario i WHERE i.id = ?1")
     Itinerario VisualizzaItinerario(int itinerarioID);
 
-
-    @Modifying
-    @Query("UPDATE Itinerario i SET i.contenuti = CONCAT(i.contenuti, ?2) WHERE i.id = ?1")
-    void aggiungiPostAItinerario(Integer idItinerario, int idPost);
-
-     */
 }
 
 

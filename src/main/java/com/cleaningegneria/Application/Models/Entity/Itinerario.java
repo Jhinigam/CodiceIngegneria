@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +24,8 @@ public class Itinerario {
     @ManyToOne
     private Utente creatore;
     @ManyToMany
+    @JoinTable(name = "itinerario_contenuti", joinColumns = @JoinColumn(name = "itinerario_id"),
+                inverseJoinColumns = @JoinColumn(name = "contenuti_id"))
     private List<Post> contenuti;
     private String descrizione;
 
@@ -31,6 +34,11 @@ public class Itinerario {
         this.creatore = new Utente();
         this.creatore.setId(idutente);
         this.descrizione = descrizione;
+    }
+
+    public void AggiungiPost(Optional<Post> p){
+
+        contenuti.add(p.get());
     }
 
 
