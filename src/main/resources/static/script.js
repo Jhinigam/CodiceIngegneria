@@ -465,7 +465,7 @@ function TuttiPostDiUnUtente(){
     let IdUtente = document.getElementById('IdUtenteVisualizzaTuttiPost').value;
     rimuoviTuttiFigli(DivVisual);
 
-    ConnectionVisualizzaPending(IdUtente).then(dati => {
+    ConnectionTuttiPostDiUnUtente(IdUtente).then(dati => {
         dati.forEach(oggetto => {
             console.log(oggetto);
             // Crea un elemento label
@@ -565,7 +565,7 @@ let DivVisual1 = document.getElementById('TextPostContenuti');
      ConnectionTextDatiItinerario(ValId).then(dati => {
         console.log(dati);
             // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-            DivVisual0.textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
+            DivVisual0.textContent = "Itinerario id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
         }).catch(error => {
             console.log(dati);
             console.error(error);
@@ -578,7 +578,7 @@ let DivVisual1 = document.getElementById('TextPostContenuti');
             const label = document.createElement('label');
 
             // Corregge l'errore di sintassi nella concatenazione
-            label.textContent = "id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
+            label.textContent = "Post id: " + oggetto.id + " / Desc: " + oggetto.descrizione;
 
             // Aggiungi un margine per spaziare le label (opzionale)
             label.style.display = 'block';

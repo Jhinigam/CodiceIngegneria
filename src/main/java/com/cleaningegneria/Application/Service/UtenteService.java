@@ -33,8 +33,7 @@ public class UtenteService {
     }
 
     public Optional<Utente> findUtente(int id){
-        Optional<Utente> u = utenteRepository.findById(id);
-        return u;
+        return utenteRepository.findById(id);
     }
 
 
@@ -94,7 +93,9 @@ public class UtenteService {
     }
 
     public List<Post> VisualizzaPostDiUnUtente(int idUtente){
+        System.out.println("Entrato in service: ");
         Optional<Utente> u = findUtente(idUtente);
+        System.out.println(u);
         return utenteRepository.selezionaPostDiUtenteById(u);
     }
 

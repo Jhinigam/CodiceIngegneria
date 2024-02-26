@@ -50,8 +50,8 @@ public class ItinerarioService {
 
 
     public List<Post> VisualizzaPostInItinerario(int idItinerario){
-        return null;
-        //        return itinerarioRepository.VisualizzaPostInItinerario(idItinerario);
+        Optional<Itinerario> i = itinerarioRepository.findById(idItinerario);
+        return i.get().getContenuti();
     }
 
 
