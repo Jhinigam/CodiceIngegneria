@@ -35,9 +35,12 @@ public class ItinerarioService {
         return itinerarioRepository.findById(idItinerario);
     }
 
-    public String AggiungiPostAItinerario(String itinerarioId, String postId){
+    public String AggiungiPostAItinerario(int itinerarioId, int postId){
         Optional<Itinerario> i = itinerarioRepository.findById(Integer.valueOf(itinerarioId));
+        if(i.isEmpty()) return "Itinerario non trovato";
         Optional<Post> p = postRepository.findById(Integer.valueOf(postId));
+        if(p.isEmpty()) return "Post non trovato";
+        if(i.get().getContenuti().contains(p)) return "Post già presente in itinerario";
         i.get().AggiungiPost(p);
         itinerarioRepository.save(i.get());
 
