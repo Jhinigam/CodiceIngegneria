@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class AggiungiPostAItinerarioDTO {
-    private int itinerarioId;
-    private int postId;
+    private int idItinerario;
+    private int idPost;
 }

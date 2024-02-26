@@ -60,20 +60,25 @@ public class ItinerarioController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaItinerario")
     @ResponseBody
-    //Visualizza tutti i contenuti (Post) di un itinerario
     public Optional<Itinerario> VisualizzaItinerario(@RequestParam int idItinerario){
         return itinerarioService.VisualizzaItinerario(idItinerario);
     }
+
 
 
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/AggiungiPostAItinerario")
     @ResponseBody
     public String AggiungiPostAItinerario(@RequestBody AggiungiPostAItinerarioDTO dto){
-        return itinerarioService.AggiungiPostAItinerario(dto.getItinerarioId(),dto.getPostId());
+        return itinerarioService.AggiungiPostAItinerario(dto.getIdItinerario(),dto.getIdPost());
     }
 
-
+    @CrossOrigin(origins = "http://localhost:63342")
+    @GetMapping("/VisualizzaPostInItinerario")
+    @ResponseBody
+    public List<Post> VisualizzaPostInUnItinerario(@RequestParam int idItinerario){
+        return itinerarioService.VisualizzaPostInItinerario(idItinerario);
+    }
 
 
 

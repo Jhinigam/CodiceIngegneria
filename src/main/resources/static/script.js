@@ -61,7 +61,6 @@ function ConnectionVisualizzaUtenteId(Id){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
-//fune esempio
 function ConnectionModificaRuolo(Id, Ruolo){
     const url = `${BASE_URL}Utente/ModificaRuolo`;
 
@@ -274,8 +273,8 @@ function ConnectionTextListaPostInItinerario(IdItinerario){
                 return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
             });
 }
-function ConnectTextDatiItinerario(IdItinerario){
-    return fetch(`${BASE_URL}Itinerario/VisualizzaPostInItinerario?idItinerario=`+ String(IdItinerario))
+function ConnectionTextDatiItinerario(IdItinerario){
+    return fetch(`${BASE_URL}Itinerario/VisualizzaItinerario?idItinerario=`+ String(IdItinerario))
         .then(response => {
             if (response.status !== 200) {
                 throw new Error('Request failed with status ' + response.status);
@@ -283,6 +282,30 @@ function ConnectTextDatiItinerario(IdItinerario){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionAddPostAdItinerario(idPost, idItinerario){
+    const url = `${BASE_URL}Itinerario/AggiungiPostAItinerario`;
+
+        const data= {
+            idPost: idPost,
+            idItinerario: idItinerario
+        };
+        console.log(url + data);
+return fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
+}
+
+
 
 //Funzioni
 function AddUtente(){
@@ -536,12 +559,13 @@ function ContenutoItinerarioById(){
 let ValId = document.getElementById('VisualizzaItinerarioId').value;
 let DivVisual0 = document.getElementById('TextItinerarioVisualizzato');
 let DivVisual1 = document.getElementById('TextPostContenuti');
+
     rimuoviTuttiFigli(DivVisual1);
 
-     ConnectionVisualizzaPostId(ValId).then(dati => {
+     ConnectionTextDatiItinerario(ValId).then(dati => {
         console.log(dati);
             // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-            DivVisual0.textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / pending:" + String(dati.pending);
+            DivVisual0.textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione);
         }).catch(error => {
             console.log(dati);
             console.error(error);
@@ -570,18 +594,20 @@ let DivVisual1 = document.getElementById('TextPostContenuti');
     });
 }
 function AggiungiPostAdItinerario(){
-        let tempIdPost = document.getElementById('IdUtentePostItinerario').value;
-        let tempIdItinerario = String(document.getElementById('DescrizioneItinerario').value);
-        let tempStato = document.getElementById('TextrispostaItinerario');
+        let tempIdPost = document.getElementById('AggiungiPostIt').value;
+        let tempIdItinerario = document.getElementById('AggiungiItinerarioRicevente').value;
+        let tempStato = document.getElementById('RispostaAddPost');
 
-        ConnectionAddItinerario(tempId, tempDesc).then(text => {
+        console.log(tempIdPost + tempIdItinerario);
+
+        ConnectionAddPostAdItinerario(tempIdPost, tempIdItinerario).then(text => {
                                                          if(text == "non ok"){
-                                                         tempStato.textContent = "Itinerario Non Creato utente inadatto";
+                                                         tempStato.textContent = "Non aggiunto";
                                                          }else{
-                                                         tempStato.textContent = "Itinerario Aggiunto";}
+                                                         tempStato.textContent = "Post Aggiunto";}
                                                          }).catch(error => {
                                                          console.error('Error:', error);
-                                                         tempStato.textContent = "Itinerario Non Creato";
+                                                         tempStato.textContent = "Post non aggiunto";
                                                          });
 }
 
@@ -591,6 +617,7 @@ function rimuoviTuttiFigli(DivBox) {
         DivBox.removeChild(DivBox.firstChild);
     }
 }
+
 
 
 

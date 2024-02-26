@@ -6,8 +6,13 @@ import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
 import com.cleaningegneria.Application.Repository.PostRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,16 +40,19 @@ public class ItinerarioService {
         return itinerarioRepository.findById(idItinerario);
     }
 
-    public String AggiungiPostAItinerario(int itinerarioId, int postId){
-        Optional<Itinerario> i = itinerarioRepository.findById(Integer.valueOf(itinerarioId));
-        if(i.isEmpty()) return "Itinerario non trovato";
-        Optional<Post> p = postRepository.findById(Integer.valueOf(postId));
-        if(p.isEmpty()) return "Post non trovato";
-        if(i.get().getContenuti().contains(p)) return "Post già presente in itinerario";
+    public String AggiungiPostAItinerario(int idItinerario, int idPost){
+        Optional<Itinerario> i = itinerarioRepository.findById(idItinerario);
+        Optional<Post> p = postRepository.findById(idPost);
         i.get().AggiungiPost(p);
         itinerarioRepository.save(i.get());
-
         return "Post aggiunto";
     }
+
+
+    public List<Post> VisualizzaPostInItinerario(int idItinerario){
+        return null;
+        //        return itinerarioRepository.VisualizzaPostInItinerario(idItinerario);
+    }
+
 
 }
