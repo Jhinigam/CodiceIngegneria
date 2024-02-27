@@ -283,6 +283,29 @@ function ConnectTextDatiItinerario(IdItinerario){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
+function ConnectionAddItinerario(Id, Descrizione){
+    const url = `${BASE_URL}Itinerario/CreazioneItinerario`;
+
+        const data= {
+            idUtente: Id,
+            descrizione: Descrizione
+        };
+
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Request failed with status ' + response.status);
+                }
+                console.log("post aggiunto");
+                return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+            });
+}
 
 //Funzioni
 function AddUtente(){
@@ -592,5 +615,15 @@ function rimuoviTuttiFigli(DivBox) {
     }
 }
 
+    ConnectionAddItinerario(tempId, tempDesc).then(text => {
+                                                     if(text == "non ok"){
+                                                     tempStato.textContent = "Itinerario Non Creato utente inadatto";
+                                                     }else{
+                                                     tempStato.textContent = "Itinerario Aggiunto";}
+                                                     }).catch(error => {
+                                                     console.error('Error:', error);
+                                                     tempStato.textContent = "Itinerario Non Creato";
+                                                     });
+}
 
 
