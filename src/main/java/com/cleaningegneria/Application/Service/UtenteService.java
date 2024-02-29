@@ -17,31 +17,19 @@ public class UtenteService {
 
     private final UtenteRepository utenteRepository;
     private final ItinerarioRepository itinerarioRepository;
-    private final PostRepository postRepository;
 
 
-    public UtenteService(UtenteRepository utenteRepository){
+    public UtenteService(UtenteRepository utenteRepository, ItinerarioRepository itinerarioRepository){
         this.utenteRepository = utenteRepository;
         this.itinerarioRepository = itinerarioRepository;
-        this.postRepository = postRepository;
     }
 
-    /**
-     * salva l'utente
-     * @param User
-     * @return l'utente
-     */
     public Utente creaUtente(Utente User){
 
         utenteRepository.save(User);
         return User;
     }
 
-    /**
-     * elimina l'utente tramite l'id
-     * @param id
-     * @return l'utente trovato
-     */
     public Optional<Utente> deleteUtente(int id){
         Optional<Utente> u = utenteRepository.findById(id);
         if(u.equals(Optional.empty())){
@@ -64,22 +52,13 @@ public class UtenteService {
         return u;
     }
 
-    /**
-     * trova l'utente tramite l'id
-     * @param Id
-     * @return l'utente trovato
-     */
-    public Optional<Utente> findUtente(int Id){
-        return utenteRepository.findById(Id);
+    public Optional<Utente> findUtente(int id){
+        return utenteRepository.findById(id);
     }
 
 
-    /**
-     * modifica il ruolo dell'utente
-     * @param Id,ruolo
-     */
-    public void modificaRuoloUtente(int Id, String ruolo){
-        utenteRepository.setRuolo(ruolo,Id);
+    public void modificaRuoloUtente(int id, String ruolo){
+        utenteRepository.setRuolo(ruolo,id);
     }
 
     public void gestisciPending(int idPost){
@@ -102,11 +81,6 @@ public class UtenteService {
         return true;
     }
 
-    /**
-     * verifica se l'utente puo creare un evento
-     * @param Id
-     * @return true se è un animatore quindi puo crearlo altrimenti false
-     */
     public boolean CanEvent(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -114,12 +88,6 @@ public class UtenteService {
         }
         return false;
     }
-
-    /**
-     * verifica se l'utente puo creare un post
-     * @param Id
-     * @return true se ha un ruolo che gli permette di creare un post altrimenti false
-     */
     public boolean CanPost(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -131,11 +99,6 @@ public class UtenteService {
         return false;
     }
 
-    /**
-     * verifica se l'utente puo creare un evento
-     * @param Id
-     * @return true se ha un ruolo che gli permette di creare un evento altrimenti false
-     */
     public boolean CanItinerario(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -163,7 +126,7 @@ public class UtenteService {
         System.out.println("Entrato in service: ");
         Optional<Utente> u = findUtente(idUtente);
         System.out.println(u);
-        return utenteRepository.selezionaPostDiUtenteById(u);
+        return utenteRepository.selezionaPostDiUtenteById(u.get());
     }
 
 }
