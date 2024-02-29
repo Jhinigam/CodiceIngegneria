@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Repository;
 
+import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import jakarta.transaction.Transactional;
@@ -27,8 +28,12 @@ public interface UtenteRepository extends CrudRepository<Utente,Integer> {
     @Query("DELETE FROM Post p WHERE p.utente = ?1")
     void eliminaPostDiUtenteById(Optional<Utente> utente);
 
+    @Modifying
+    @Query("DELETE FROM Itinerario i WHERE i.creatore = ?1")
+    void eliminaItinerariDiUtenteById(Optional<Utente> utente);
+
     @Query("SELECT p FROM Post p WHERE p.utente = ?1")
-    ArrayList<Post> selezionaPostDiUtenteById(Optional<Utente> utente);
+    ArrayList<Post> selezionaPostDiUtenteById(Utente utente);
 
     @Query("SELECT p FROM Post p JOIN Utente u ON p.utente.id = u.id WHERE u.Comune = ?1")
     ArrayList<Post> selezionaPostDiComune(String Comune);

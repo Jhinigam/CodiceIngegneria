@@ -1,7 +1,10 @@
 package com.cleaningegneria.Application.Service;
 
+import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
+import com.cleaningegneria.Application.Repository.ItinerarioRepository;
+import com.cleaningegneria.Application.Repository.PostRepository;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +16,15 @@ import java.util.Optional;
 public class UtenteService {
 
     private final UtenteRepository utenteRepository;
+    private final ItinerarioRepository itinerarioRepository;
+    private final PostRepository postRepository;
 
 
-    public UtenteService(UtenteRepository utenteRepository){
+
+    public UtenteService(UtenteRepository utenteRepository, ItinerarioRepository itinerarioRepository, PostRepository postRepository){
         this.utenteRepository = utenteRepository;
+        this.itinerarioRepository = itinerarioRepository;
+        this.postRepository = postRepository;
     }
 
     public Utente creaUtente(Utente User){
@@ -27,7 +35,22 @@ public class UtenteService {
 
     public Optional<Utente> deleteUtente(int id){
         Optional<Utente> u = utenteRepository.findById(id);
-        utenteRepository.eliminaPostDiUtenteById(u);
+        if(u.equals(Optional.empty())){
+            return u;
+        }
+        ArrayList<Itinerario> iList = (ArrayList<Itinerario>) itinerarioRepository.findAll();     //lista di tutti gli itinerari
+        ArrayList<Post> pList = utenteRepository.selezionaPostDiUtenteById(u.get());              //Lista di tutti i post dell'utente con id passato
+        for(Itinerario i: iList){
+            for(Post p: pList){
+                if(i.getContenuti().contains(p)){
+                    i.getContenuti().remove(p);                     //Rimuove da ogni itinerario i post dell'utente che sta per venir eliminato
+                    itinerarioRepository.save(i);
+                }
+            }
+        }
+
+        utenteRepository.eliminaPostDiUtenteById(u);            //Elimino dal DB prima tutti gli itinerari e i post dell'utente
+        utenteRepository.eliminaItinerariDiUtenteById(u);
         utenteRepository.deleteById(id);
         return u;
     }
@@ -96,7 +119,7 @@ public class UtenteService {
         System.out.println("Entrato in service: ");
         Optional<Utente> u = findUtente(idUtente);
         System.out.println(u);
-        return utenteRepository.selezionaPostDiUtenteById(u);
+        return utenteRepository.selezionaPostDiUtenteById(u.get());
     }
 
 }

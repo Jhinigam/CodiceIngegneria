@@ -19,9 +19,7 @@ public class UtenteController extends AbstractController {
     private UtenteService utenteService;
     public UtenteController(UtenteService utenteService) {
         this.utenteService = utenteService;
-
     }
-
 
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/ModificaRuolo")
