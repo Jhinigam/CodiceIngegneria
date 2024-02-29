@@ -16,14 +16,24 @@ public class EventoService {
         this.eventoRepository = eventoRepository;
     }
 
+    /**
+     * crea l'evento
+     * @param Desc,IdUtente,DataEvento
+     * @return la stringa "EventoSalvato" se l'evento è stato creato correttamente
+     */
     public String CreateEvento(String Desc, int IdUtente, Timestamp DataEvento){
         Evento Temp = new Evento(DataEvento,IdUtente,Desc);
         eventoRepository.save(Temp);
         return "EventoSalvato";
     }
 
-    public Optional<Evento> findEventoById(int id){
-        Optional<Evento> u = eventoRepository.findById(id);
+    /**
+     * trova un evento tramite il suo id
+     * @param iD
+     * @return l'evento che ha quel id
+     */
+    public Optional<Evento> findEventoById(int iD){
+        Optional<Evento> u = eventoRepository.findById(iD);
         return u;
     }
 

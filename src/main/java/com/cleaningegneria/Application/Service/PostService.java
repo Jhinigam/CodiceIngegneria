@@ -18,18 +18,32 @@ public class PostService {
         this.postRepository = utenteRepository;
     }
 
+    /**
+     * crea il post
+     * @param Desc,IdUtente,Pending
+     * @return la stringa "PostSalvato" se il post è stato creato correttamente
+     */
     public String CreatePost(String Desc, int IdUtente, boolean Pending){
         Post Temp = new Post(IdUtente, Desc, Pending);
         postRepository.save(Temp);
         return "PostSalvato";
     }
 
+    /**
+     * visualizziamo tutti i post in pending
+     * @return la lista di tutti i post in pending
+     */
     public List<Post> VisualizzaPostInPending(){
         return postRepository.VisualizzaPostPending();
     }
 
-    public Optional<Post> findPostById(int id){
-        Optional<Post> u = postRepository.findById(id);
+    /**
+     * trova un post tramite il suo id
+     * @param Id
+     * @return il post che ha quel id
+     */
+    public Optional<Post> findPostById(int Id){
+        Optional<Post> u = postRepository.findById(Id);
         return u;
     }
 
