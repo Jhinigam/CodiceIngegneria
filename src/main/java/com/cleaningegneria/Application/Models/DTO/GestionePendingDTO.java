@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class GestionePendingDTO {
-
     public int idCuratore;
     public int idPost;
 }

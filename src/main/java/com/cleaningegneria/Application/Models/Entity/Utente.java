@@ -17,10 +17,10 @@ public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String Nome;
-    private String Cognome;
-    private String Email;
-    private String Comune;
+    private String nome;
+    private String cognome;
+    private String email;
+    private String comune;
     /**
      * Contributore = 0
      * Turista = 1
@@ -30,17 +30,17 @@ public class Utente {
      * Animatore = 5
      */
     private String ruolo;
-    private int Eta;
+    private int eta;
 
 
     public Utente(CreazioneUtenteDTO uDTO){
         this.id = 0;
-        this.Nome = uDTO.getNome();
-        this.Cognome = uDTO.getCognome();
-        this.Email = uDTO.getEmail();
-        this.Eta = uDTO.getEta();
+        this.nome = uDTO.getNome();
+        this.cognome = uDTO.getCognome();
+        this.email = uDTO.getEmail();
+        this.eta = uDTO.getEta();
         this.ruolo = uDTO.getRuolo();
-        this.Comune = uDTO.getComune();
+        this.comune = uDTO.getComune();
     }
 
 }

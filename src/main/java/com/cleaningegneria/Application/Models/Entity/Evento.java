@@ -20,7 +20,7 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Timestamp datapubblicazione;
-    private Timestamp DataEvento;
+    private Timestamp dataEvento;
     @ManyToOne
     private Utente creatore;
     @ManyToMany
@@ -29,7 +29,7 @@ public class Evento {
 
 
     public Evento(Timestamp dataEvento, Integer idutente, String descrizione) {
-        this.DataEvento = dataEvento;
+        this.dataEvento = dataEvento;
         this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.creatore = new Utente();
         this.creatore.setId(idutente);

@@ -6,10 +6,6 @@ import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
 import com.cleaningegneria.Application.Repository.PostRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +26,7 @@ public class ItinerarioService {
      * @param Desc,IdUtente
      * @return la stringa "ItinerarioSalvato" se l'itinerario è stato creato correttamente
      */
-    public String CreateItinerario(String Desc, int IdUtente){
+    public String CreaItinerario(String Desc, int IdUtente){
         Itinerario Temp = new Itinerario(IdUtente, Desc);
         itinerarioRepository.save(Temp);
         return "ItinerarioSalvato";

@@ -4,7 +4,6 @@ import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
-import com.cleaningegneria.Application.Repository.PostRepository;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +23,13 @@ public class UtenteService {
         this.itinerarioRepository = itinerarioRepository;
     }
 
-    public Utente creaUtente(Utente User){
+    public Utente CreaUtente(Utente User){
 
         utenteRepository.save(User);
         return User;
     }
 
-    public Optional<Utente> deleteUtente(int id){
+    public Optional<Utente> EliminaUtente(int id){
         Optional<Utente> u = utenteRepository.findById(id);
         if(u.equals(Optional.empty())){
             return u;
@@ -52,7 +51,7 @@ public class UtenteService {
         return u;
     }
 
-    public Optional<Utente> findUtente(int id){
+    public Optional<Utente> TrovaUtenteDalID(int id){
         return utenteRepository.findById(id);
     }
 
@@ -124,7 +123,7 @@ public class UtenteService {
      */
     public List<Post> VisualizzaPostDiUnUtente(int idUtente){
         System.out.println("Entrato in service: ");
-        Optional<Utente> u = findUtente(idUtente);
+        Optional<Utente> u = TrovaUtenteDalID(idUtente);
         System.out.println(u);
         return utenteRepository.selezionaPostDiUtenteById(u.get());
     }
