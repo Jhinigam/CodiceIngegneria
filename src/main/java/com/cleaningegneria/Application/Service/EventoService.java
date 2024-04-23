@@ -17,7 +17,7 @@ public class EventoService {
     }
 
     /**
-     * crea l'evento
+     * Crea l'evento
      * @param Desc,IdUtente,DataEvento
      * @return la stringa "EventoSalvato" se l'evento è stato creato correttamente
      */
@@ -28,7 +28,7 @@ public class EventoService {
     }
 
     /**
-     * trova un evento tramite il suo id
+     * Trova un evento tramite il suo id
      * @param iD
      * @return l'evento che ha quel id
      */

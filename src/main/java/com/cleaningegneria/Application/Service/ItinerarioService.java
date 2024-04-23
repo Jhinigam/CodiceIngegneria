@@ -22,7 +22,7 @@ public class ItinerarioService {
     }
 
     /**
-     * crea l'itinerario
+     * Crea l'itinerario
      * @param Desc,IdUtente
      * @return la stringa "ItinerarioSalvato" se l'itinerario è stato creato correttamente
      */
@@ -33,7 +33,7 @@ public class ItinerarioService {
     }
 
     /**
-     * visualizziamo tutti gli itinerari
+     * Visualizziamo tutti gli itinerari
      * @return la lista di tutti gli itinerari
      */
     public ArrayList<Itinerario> VisualizzaTuttiGliItinerari(){
@@ -42,7 +42,7 @@ public class ItinerarioService {
     }
 
     /**
-     * trova un itinerario tramite il suo id
+     * Trova un itinerario tramite il suo id
      * @param idItinerario
      * @return l'itinerario che ha quel id
      */
@@ -51,7 +51,7 @@ public class ItinerarioService {
     }
 
     /**
-     * aggiunge un determinato post a un determinato itinerario
+     * Aggiunge un determinato post a un determinato itinerario
      * @param idItinerario,idPost
      * @return la stringa "Post aggiunto" se il post è stato aggiunto correttamente all'itinerario
      */
@@ -64,7 +64,7 @@ public class ItinerarioService {
     }
 
     /**
-     * visualizziamo tutti i post che appartengono a un determinato itinerario
+     * Visualizziamo tutti i post che appartengono a un determinato itinerario
      * @param idItinerario
      * @return la lista di tutti i post che appartengono all'itinerario
      */

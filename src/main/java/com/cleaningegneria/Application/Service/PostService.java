@@ -18,7 +18,7 @@ public class PostService {
     }
 
     /**
-     * crea il post
+     * Crea il post
      * @param Desc,IdUtente,Pending
      * @return la stringa "PostSalvato" se il post è stato creato correttamente
      */
@@ -29,7 +29,7 @@ public class PostService {
     }
 
     /**
-     * visualizziamo tutti i post in pending
+     * Visualizziamo tutti i post in pending
      * @return la lista di tutti i post in pending
      */
     public List<Post> VisualizzaPostInPending(){
@@ -37,7 +37,7 @@ public class PostService {
     }
 
     /**
-     * trova un post tramite il suo id
+     * Trova un post tramite il suo id
      * @param Id
      * @return il post che ha quel id
      */
