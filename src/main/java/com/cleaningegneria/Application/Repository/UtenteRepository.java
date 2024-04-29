@@ -29,13 +29,13 @@ public interface UtenteRepository extends CrudRepository<Utente,Integer> {
     void eliminaPostDiUtenteById(Optional<Utente> utente);
 
     @Modifying
-    @Query("DELETE FROM Itinerario i WHERE i.creatore = ?1")
+    @Query("DELETE FROM Itinerario i WHERE i.proprietario = ?1")
     void eliminaItinerariDiUtenteById(Optional<Utente> utente);
 
     @Query("SELECT p FROM Post p WHERE p.utente = ?1")
     ArrayList<Post> selezionaPostDiUtenteById(Utente utente);
 
-    @Query("SELECT p FROM Post p JOIN Utente u ON p.utente.id = u.id WHERE u.Comune = ?1")
+    @Query("SELECT p FROM Post p JOIN Utente u ON p.utente.id = u.id WHERE u.comune = ?1")
     ArrayList<Post> selezionaPostDiComune(String Comune);
 
 

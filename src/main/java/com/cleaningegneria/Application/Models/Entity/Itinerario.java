@@ -22,7 +22,7 @@ public class Itinerario {
     private Integer id;
     private Timestamp datapubblicazione;
     @ManyToOne
-    private Utente creatore;
+    private Utente proprietario;
     @ManyToMany
     @JoinTable(name = "itinerario_contenuti", joinColumns = @JoinColumn(name = "itinerario_id"),
                 inverseJoinColumns = @JoinColumn(name = "contenuti_id"))
@@ -31,8 +31,8 @@ public class Itinerario {
 
     public Itinerario(Integer idutente, String descrizione) {
         this.datapubblicazione = new Timestamp(System.currentTimeMillis());
-        this.creatore = new Utente();
-        this.creatore.setId(idutente);
+        this.proprietario = new Utente();
+        this.proprietario.setId(idutente);
         this.descrizione = descrizione;
     }
 

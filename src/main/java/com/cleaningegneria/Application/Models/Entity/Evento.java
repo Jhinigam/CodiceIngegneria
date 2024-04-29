@@ -22,7 +22,7 @@ public class Evento {
     private Timestamp datapubblicazione;
     private Timestamp DataEvento;
     @ManyToOne
-    private Utente creatore;
+    private Utente proprietario;
     @ManyToMany
     private List<Utente> partecipanti;
     private String descrizione;
@@ -31,8 +31,8 @@ public class Evento {
     public Evento(Timestamp dataEvento, Integer idutente, String descrizione) {
         this.DataEvento = dataEvento;
         this.datapubblicazione = new Timestamp(System.currentTimeMillis());
-        this.creatore = new Utente();
-        this.creatore.setId(idutente);
+        this.proprietario = new Utente();
+        this.proprietario.setId(idutente);
         this.descrizione = descrizione;
     }
 }

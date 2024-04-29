@@ -25,9 +25,9 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazionePostBase")
     @ResponseBody
-    public String CreaPostBase(@RequestBody CreazionePostEItinerarioDTO pDTO){
+    public String CreaPost(@RequestBody CreazionePostEItinerarioDTO pDTO){
         if(utenteService.CanPost(pDTO.getIdUtente())){
-            System.out.println(postService.CreatePost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
+            System.out.println(postService.CreaPost(pDTO.getDescrizione(), pDTO.getIdUtente(), utenteService.UserPending(pDTO.getIdUtente())));
             return "ok";
         } else return "non ok";
     }
@@ -35,8 +35,8 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaPost")
     @ResponseBody
-    public Optional<Post> visualizzaPost(@RequestParam int idPost){
-        Optional u = postService.findPostById(idPost);
+    public Optional<Post> VisualizzaPost(@RequestParam int idPost){
+        Optional u = postService.TrovaPostDalID(idPost);
         if(u.equals(Optional.empty())){
             System.out.println("Post non trovato");
             Post ut = new Post(-1,"",false);

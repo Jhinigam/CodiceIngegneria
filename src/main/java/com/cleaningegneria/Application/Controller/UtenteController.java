@@ -3,12 +3,10 @@ package com.cleaningegneria.Application.Controller;
 import com.cleaningegneria.Application.Models.DTO.GestionePendingDTO;
 import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
-import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Service.UtenteService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -25,13 +23,13 @@ public class UtenteController extends AbstractController {
     @PutMapping("/ModificaRuolo")
     @ResponseBody
     public String CambioRuolo(@RequestBody ModificaRuoloDTO uDTO){
-        Optional<Utente> u = utenteService.findUtente(uDTO.getId());
+        Optional<Utente> u = utenteService.TrovaUtente(uDTO.getId());
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
             return ("Utente non trovato");
         }
         else {
-            utenteService.modificaRuoloUtente(uDTO.getId(),uDTO.getNewRuolo());
+            utenteService.ModificaRuoloUtente(uDTO.getId(),uDTO.getNewRuolo());
             return "Utente modificato con successo";
         }
     }
@@ -39,13 +37,13 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/Creazione")
     @ResponseBody
-    public Utente CreateUtente(@RequestBody CreazioneUtenteDTO uDTO){
-        return utenteService.creaUtente(new Utente(uDTO));
+    public Utente CreaUtente(@RequestBody CreazioneUtenteDTO uDTO){
+        return utenteService.CreaUtente(new Utente(uDTO));
     }
     @GetMapping("/Cancella")
     @ResponseBody
-    public String DeleteUtente(@RequestParam int idUtente){
-        Optional<Utente> u = utenteService.deleteUtente(idUtente);
+    public String EliminaUtente(@RequestParam int idUtente){
+        Optional<Utente> u = utenteService.EliminaUtente(idUtente);
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
             return ("Utente non trovato");
@@ -60,7 +58,7 @@ public class UtenteController extends AbstractController {
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
     public Optional<Utente> VisualizzaDatiUtenteTest(@RequestParam int idUtente){
-        Optional<Utente> u = utenteService.findUtente(idUtente);
+        Optional<Utente> u = utenteService.TrovaUtente(idUtente);
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
             Utente ut = new Utente(-1, "","","","","",-1);
@@ -75,7 +73,7 @@ public class UtenteController extends AbstractController {
     @PutMapping("/GestionePending")
     @ResponseBody
     public String GestionePending(@RequestBody GestionePendingDTO pDTO){
-        Optional<Utente> u = utenteService.findUtente(pDTO.getIdCuratore());
+        Optional<Utente> u = utenteService.TrovaUtente(pDTO.getIdCuratore());
 
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
