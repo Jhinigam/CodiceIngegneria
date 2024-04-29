@@ -4,7 +4,6 @@ import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
-import com.cleaningegneria.Application.Repository.PostRepository;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +23,23 @@ public class UtenteService {
         this.itinerarioRepository = itinerarioRepository;
     }
 
-    public Utente creaUtente(Utente User){
-
+    /**
+     * Crea un Utente
+     * @param User
+     * @return l'utente creato
+     */
+    public Utente CreaUtente(Utente User){
         utenteRepository.save(User);
         return User;
     }
 
-    public Optional<Utente> deleteUtente(int id){
-        Optional<Utente> u = utenteRepository.findById(id);
+    /**
+     * Elimina un Utente tramite il suo Id
+     * @param Id
+     * @return l'utente eliminato
+     */
+    public Optional<Utente> EliminaUtente(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
         if(u.equals(Optional.empty())){
             return u;
         }
@@ -48,17 +56,25 @@ public class UtenteService {
 
         utenteRepository.eliminaPostDiUtenteById(u);            //Elimino dal DB prima tutti gli itinerari e i post dell'utente
         utenteRepository.eliminaItinerariDiUtenteById(u);
-        utenteRepository.deleteById(id);
+        utenteRepository.deleteById(Id);
         return u;
     }
 
-    public Optional<Utente> findUtente(int id){
-        return utenteRepository.findById(id);
+    /**
+     * Trova un Utente tramite il suo Id
+     * @param Id
+     * @return l'utente trovato
+     */
+    public Optional<Utente> TrovaUtenteDalID(int Id){
+        return utenteRepository.findById(Id);
     }
 
-
-    public void modificaRuoloUtente(int id, String ruolo){
-        utenteRepository.setRuolo(ruolo,id);
+    /**
+     * Modifica il ruolo di un Utente tramite il suo Id
+     * @param Id
+     */
+    public void modificaRuoloUtente(int Id, String ruolo){
+        utenteRepository.setRuolo(ruolo,Id);
     }
 
     public void gestisciPending(int idPost){
@@ -81,6 +97,11 @@ public class UtenteService {
         return true;
     }
 
+    /**
+     * Controlla se l'utente può postare un evento
+     * @param Id
+     * @return true se puà, false altrimenti
+     */
     public boolean CanEvent(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -88,6 +109,12 @@ public class UtenteService {
         }
         return false;
     }
+
+    /**
+     * Controlla se l'utente può postare un post
+     * @param Id
+     * @return true se puà, false altrimenti
+     */
     public boolean CanPost(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -99,6 +126,11 @@ public class UtenteService {
         return false;
     }
 
+    /**
+     * Controlla se l'utente può postare un itinerario
+     * @param Id
+     * @return true se puà, false altrimenti
+     */
     public boolean CanItinerario(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
         switch (u.get().getRuolo().toString()){
@@ -124,7 +156,7 @@ public class UtenteService {
      */
     public List<Post> VisualizzaPostDiUnUtente(int idUtente){
         System.out.println("Entrato in service: ");
-        Optional<Utente> u = findUtente(idUtente);
+        Optional<Utente> u = TrovaUtenteDalID(idUtente);
         System.out.println(u);
         return utenteRepository.selezionaPostDiUtenteById(u.get());
     }
