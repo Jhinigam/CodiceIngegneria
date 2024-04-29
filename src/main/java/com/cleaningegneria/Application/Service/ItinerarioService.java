@@ -6,6 +6,10 @@ import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
 import com.cleaningegneria.Application.Repository.PostRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +26,18 @@ public class ItinerarioService {
     }
 
     /**
-     * Crea l'itinerario
+     * crea l'itinerario
      * @param Desc,IdUtente
      * @return la stringa "ItinerarioSalvato" se l'itinerario è stato creato correttamente
      */
-    public String CreaItinerario(String Desc, int IdUtente){
+    public String CreateItinerario(String Desc, int IdUtente){
         Itinerario Temp = new Itinerario(IdUtente, Desc);
         itinerarioRepository.save(Temp);
         return "ItinerarioSalvato";
     }
 
     /**
-     * Visualizziamo tutti gli itinerari
+     * visualizziamo tutti gli itinerari
      * @return la lista di tutti gli itinerari
      */
     public ArrayList<Itinerario> VisualizzaTuttiGliItinerari(){
@@ -42,7 +46,7 @@ public class ItinerarioService {
     }
 
     /**
-     * Trova un itinerario tramite il suo id
+     * trova un itinerario tramite il suo id
      * @param idItinerario
      * @return l'itinerario che ha quel id
      */
@@ -51,7 +55,7 @@ public class ItinerarioService {
     }
 
     /**
-     * Aggiunge un determinato post a un determinato itinerario
+     * aggiunge un determinato post a un determinato itinerario
      * @param idItinerario,idPost
      * @return la stringa "Post aggiunto" se il post è stato aggiunto correttamente all'itinerario
      */
@@ -64,7 +68,7 @@ public class ItinerarioService {
     }
 
     /**
-     * Visualizziamo tutti i post che appartengono a un determinato itinerario
+     * visualizziamo tutti i post che appartengono a un determinato itinerario
      * @param idItinerario
      * @return la lista di tutti i post che appartengono all'itinerario
      */

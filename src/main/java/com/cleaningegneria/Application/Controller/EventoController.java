@@ -27,7 +27,7 @@ public class EventoController extends AbstractController {
     @ResponseBody
     public String CreaEvento(@RequestBody CreazioneEventoDTO eDTO) {
         if(utenteService.CanEvent(eDTO.getIdUtente())){
-            System.out.println(eventoService.CreaEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));
+            System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));
             return "Evento creato";
         } else return "Utente Non Idoneo";
     }
@@ -36,7 +36,7 @@ public class EventoController extends AbstractController {
     @GetMapping("/VisualizzaEvento")
     @ResponseBody
     public Optional<Evento> visualizzaEvento(@RequestParam int idEvento){
-        Optional u = eventoService.TrovaEventoDalID(idEvento);
+        Optional u = eventoService.findEventoById(idEvento);
         if(u.equals(Optional.empty())){
             System.out.println("Evento non trovato");
             Evento ut = new Evento(null,-1,"");

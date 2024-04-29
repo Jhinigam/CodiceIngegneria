@@ -11,4 +11,5 @@ public class CleanIngegneriaApplication {
     public static void main(String[] args) {
         SpringApplication.run(CleanIngegneriaApplication.class, args);
     }
+
 }

@@ -5,6 +5,7 @@ import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,18 +19,18 @@ public class PostService {
     }
 
     /**
-     * Crea il post
+     * crea il post
      * @param Desc,IdUtente,Pending
      * @return la stringa "PostSalvato" se il post è stato creato correttamente
      */
-    public String CreaPost(String Desc, int IdUtente, boolean Pending){
+    public String CreatePost(String Desc, int IdUtente, boolean Pending){
         Post Temp = new Post(IdUtente, Desc, Pending);
         postRepository.save(Temp);
         return "PostSalvato";
     }
 
     /**
-     * Visualizziamo tutti i post in pending
+     * visualizziamo tutti i post in pending
      * @return la lista di tutti i post in pending
      */
     public List<Post> VisualizzaPostInPending(){
@@ -37,11 +38,11 @@ public class PostService {
     }
 
     /**
-     * Trova un post tramite il suo id
+     * trova un post tramite il suo id
      * @param Id
      * @return il post che ha quel id
      */
-    public Optional<Post> CreaPostDalID(int Id){
+    public Optional<Post> findPostById(int Id){
         Optional<Post> u = postRepository.findById(Id);
         return u;
     }

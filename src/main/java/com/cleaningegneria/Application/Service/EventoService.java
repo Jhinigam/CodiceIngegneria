@@ -17,22 +17,22 @@ public class EventoService {
     }
 
     /**
-     * Crea l'evento
+     * crea l'evento
      * @param Desc,IdUtente,DataEvento
      * @return la stringa "EventoSalvato" se l'evento è stato creato correttamente
      */
-    public String CreaEvento(String Desc, int IdUtente, Timestamp DataEvento){
+    public String CreateEvento(String Desc, int IdUtente, Timestamp DataEvento){
         Evento Temp = new Evento(DataEvento,IdUtente,Desc);
         eventoRepository.save(Temp);
         return "EventoSalvato";
     }
 
     /**
-     * Trova un evento tramite il suo id
+     * trova un evento tramite il suo id
      * @param iD
      * @return l'evento che ha quel id
      */
-    public Optional<Evento> TrovaEventoDalID(int iD){
+    public Optional<Evento> findEventoById(int iD){
         Optional<Evento> u = eventoRepository.findById(iD);
         return u;
     }
