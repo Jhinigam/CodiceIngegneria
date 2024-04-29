@@ -4,7 +4,6 @@ import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
-import com.cleaningegneria.Application.Repository.PostRepository;
 import com.cleaningegneria.Application.Repository.UtenteRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,33 +16,30 @@ public class UtenteService {
 
     private final UtenteRepository utenteRepository;
     private final ItinerarioRepository itinerarioRepository;
-    private final PostRepository postRepository;
 
 
-    public UtenteService(UtenteRepository utenteRepository){
+    public UtenteService(UtenteRepository utenteRepository, ItinerarioRepository itinerarioRepository){
         this.utenteRepository = utenteRepository;
         this.itinerarioRepository = itinerarioRepository;
-        this.postRepository = postRepository;
     }
 
     /**
-     * salva l'utente
+     * Crea un Utente
      * @param User
-     * @return l'utente
+     * @return l'utente creato
      */
-    public Utente creaUtente(Utente User){
-
+    public Utente CreaUtente(Utente User){
         utenteRepository.save(User);
         return User;
     }
 
     /**
-     * elimina l'utente tramite l'id
-     * @param id
-     * @return l'utente trovato
+     * Elimina un Utente tramite il suo Id
+     * @param Id
+     * @return l'utente eliminato
      */
-    public Optional<Utente> deleteUtente(int id){
-        Optional<Utente> u = utenteRepository.findById(id);
+    public Optional<Utente> EliminaUtente(int Id){
+        Optional<Utente> u = utenteRepository.findById(Id);
         if(u.equals(Optional.empty())){
             return u;
         }
@@ -60,23 +56,22 @@ public class UtenteService {
 
         utenteRepository.eliminaPostDiUtenteById(u);            //Elimino dal DB prima tutti gli itinerari e i post dell'utente
         utenteRepository.eliminaItinerariDiUtenteById(u);
-        utenteRepository.deleteById(id);
+        utenteRepository.deleteById(Id);
         return u;
     }
 
     /**
-     * trova l'utente tramite l'id
+     * Trova un Utente tramite il suo Id
      * @param Id
      * @return l'utente trovato
      */
-    public Optional<Utente> findUtente(int Id){
+    public Optional<Utente> TrovaUtenteDalID(int Id){
         return utenteRepository.findById(Id);
     }
 
-
     /**
-     * modifica il ruolo dell'utente
-     * @param Id,ruolo
+     * Modifica il ruolo di un Utente tramite il suo Id
+     * @param Id
      */
     public void modificaRuoloUtente(int Id, String ruolo){
         utenteRepository.setRuolo(ruolo,Id);
@@ -103,9 +98,9 @@ public class UtenteService {
     }
 
     /**
-     * verifica se l'utente puo creare un evento
+     * Controlla se l'utente può postare un evento
      * @param Id
-     * @return true se è un animatore quindi puo crearlo altrimenti false
+     * @return true se puà, false altrimenti
      */
     public boolean CanEvent(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
@@ -116,9 +111,9 @@ public class UtenteService {
     }
 
     /**
-     * verifica se l'utente puo creare un post
+     * Controlla se l'utente può postare un post
      * @param Id
-     * @return true se ha un ruolo che gli permette di creare un post altrimenti false
+     * @return true se puà, false altrimenti
      */
     public boolean CanPost(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
@@ -132,9 +127,9 @@ public class UtenteService {
     }
 
     /**
-     * verifica se l'utente puo creare un evento
+     * Controlla se l'utente può postare un itinerario
      * @param Id
-     * @return true se ha un ruolo che gli permette di creare un evento altrimenti false
+     * @return true se puà, false altrimenti
      */
     public boolean CanItinerario(int Id){
         Optional<Utente> u = utenteRepository.findById(Id);
@@ -161,9 +156,9 @@ public class UtenteService {
      */
     public List<Post> VisualizzaPostDiUnUtente(int idUtente){
         System.out.println("Entrato in service: ");
-        Optional<Utente> u = findUtente(idUtente);
+        Optional<Utente> u = TrovaUtenteDalID(idUtente);
         System.out.println(u);
-        return utenteRepository.selezionaPostDiUtenteById(u);
+        return utenteRepository.selezionaPostDiUtenteById(u.get());
     }
 
 }

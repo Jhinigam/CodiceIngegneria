@@ -32,7 +32,7 @@ public class ItinerarioController extends AbstractController{
     public String CreazioneItinerario(@RequestBody CreazionePostEItinerarioDTO iDTO){
         System.out.println(iDTO);
         if(utenteService.CanItinerario(iDTO.getIdUtente())){
-            System.out.println(itinerarioService.CreateItinerario(iDTO.getDescrizione(), iDTO.getIdUtente()));
+            System.out.println(itinerarioService.CreaItinerario(iDTO.getDescrizione(), iDTO.getIdUtente()));
             return "ok";
         } else return "non ok";
     }
