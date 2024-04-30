@@ -23,10 +23,10 @@ public class UtenteService {
         this.itinerarioRepository = itinerarioRepository;
     }
 
-    public Utente CreaUtente(Utente User){
+    public String CreaUtente(Utente User){
 
         utenteRepository.save(User);
-        return User;
+        return "Utente Aggiunto";
     }
 
     public Optional<Utente> EliminaUtente(int id){

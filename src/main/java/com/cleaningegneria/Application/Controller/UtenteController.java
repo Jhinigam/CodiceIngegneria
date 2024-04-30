@@ -5,6 +5,8 @@ import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Service.UtenteService;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -37,8 +39,11 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342/")
     @PutMapping("/Creazione")
     @ResponseBody
-    public Utente CreaUtente(@RequestBody CreazioneUtenteDTO uDTO){
-        return utenteService.CreaUtente(new Utente(uDTO));
+    public String CreaUtente(@RequestBody CreazioneUtenteDTO uDTO){
+        if(uDTO.getNome() != "" && uDTO.getRuolo() != "" && uDTO.getCognome() != "" && uDTO.getEmail() != "" && uDTO.getComune() != ""){
+            return utenteService.CreaUtente(new Utente(uDTO));
+        }
+        return "Utente Non Aggiunto";
     }
     @GetMapping("/Cancella")
     @ResponseBody
