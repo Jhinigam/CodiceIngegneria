@@ -67,6 +67,7 @@ public class PostController extends AbstractController{
         }
     }
 
+
     @GetMapping("/VisualizzaPostDiUnUtente")
     @ResponseBody
     public List<Post> VisualizzaPostDiUnUtente(@RequestParam int IdUtente){

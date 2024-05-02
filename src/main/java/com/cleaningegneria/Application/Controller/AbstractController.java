@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
 public abstract class AbstractController {
-
     @GetMapping("/status")
     @ResponseBody
     public String status(){

@@ -73,6 +73,7 @@ public class UtenteController extends AbstractController {
         }
     }
 
+
     @PutMapping("/GestionePending")
     @ResponseBody
     public String GestionePending(@RequestBody GestionePendingDTO pDTO){

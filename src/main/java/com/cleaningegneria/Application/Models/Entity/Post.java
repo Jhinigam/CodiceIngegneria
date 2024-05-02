@@ -20,6 +20,7 @@ public class Post implements PostBase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Timestamp datapubblicazione;
     @ManyToOne
     private Utente utente;
