@@ -5,8 +5,6 @@ import com.cleaningegneria.Application.Models.DTO.ModificaRuoloDTO;
 import com.cleaningegneria.Application.Models.DTO.CreazioneUtenteDTO;
 import com.cleaningegneria.Application.Models.Entity.Utente;
 import com.cleaningegneria.Application.Service.UtenteService;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -62,7 +60,7 @@ public class UtenteController extends AbstractController {
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaUtente")
     @ResponseBody
-    public Optional<Utente> VisualizzaDatiUtenteTest(@RequestParam int idUtente){
+    public Optional<Utente> VisualizzaDatiUtente(@RequestParam int idUtente){
         Optional<Utente> u = utenteService.TrovaUtente(idUtente);
         if(u.equals(Optional.empty())){
             System.out.println("Utente non trovato");
@@ -86,7 +84,7 @@ public class UtenteController extends AbstractController {
         }
         else {
             if(u.get().getRuolo().equals("Curatore")){
-                utenteService.gestisciPending(pDTO.idPost);
+                utenteService.GestisciPending(pDTO.idPost);
                 return "Pending Gestito Con Successo";
             }
             return "Utente inadatto";

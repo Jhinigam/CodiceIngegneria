@@ -52,7 +52,7 @@ public class PostController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaPending")
     @ResponseBody
-    public List<Post> visualizzaPending(){
+    public List<Post> VisualizzaPending(){
         List<Post> u = postService.VisualizzaPostInPending();
         if(u.isEmpty()){
             System.out.println("Post non trovati");

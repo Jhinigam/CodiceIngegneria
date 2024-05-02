@@ -20,7 +20,7 @@ public class Evento implements PostBase{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Timestamp datapubblicazione;
-    private Timestamp DataEvento;
+    private Timestamp dataEvento;
     @ManyToOne
     private Utente proprietario;
     @ManyToMany
@@ -29,7 +29,7 @@ public class Evento implements PostBase{
 
 
     public Evento(Timestamp dataEvento, Integer idutente, String descrizione) {
-        this.DataEvento = dataEvento;
+        this.dataEvento = dataEvento;
         this.datapubblicazione = new Timestamp(System.currentTimeMillis());
         this.proprietario = new Utente();
         this.proprietario.setId(idutente);

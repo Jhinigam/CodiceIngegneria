@@ -60,7 +60,7 @@ public class UtenteService {
         utenteRepository.setRuolo(ruolo,id);
     }
 
-    public void gestisciPending(int idPost){
+    public void GestisciPending(int idPost){
         utenteRepository.GestionePending(idPost);
         System.out.println("Pending Gestito Con Successo");
     }
