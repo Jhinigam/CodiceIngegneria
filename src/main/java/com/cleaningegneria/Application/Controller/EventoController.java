@@ -22,28 +22,33 @@ public class EventoController extends AbstractController {
         this.utenteService = utenteService;
     }
 
+    // Metodo per gestire la creazione di un nuovo evento.
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazioneEvento")
     @ResponseBody
     public String CreaEvento(@RequestBody CreazioneEventoDTO eDTO) {
-        if(utenteService.CanEvent(eDTO.getIdUtente())){
-            System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));
+        if(utenteService.CanEvent(eDTO.getIdUtente())){              // Verifica se l'utente è autorizzato a creare un evento.
+            System.out.println(eventoService.CreateEvento(eDTO.getDescrizione(), eDTO.getIdUtente(), eDTO.getDataEvento()));    // Creazione dell'evento utilizzando il servizio EventoService.
             return "Evento creato";
-        } else return "Utente Non Idoneo";
+        }
+        else {
+            return "Utente Non Idoneo";     // Messaggio di errore nel caso in cui l'utente non sia autorizzato.
+        }
     }
 
+    // Metodo per visualizzare un evento specifico.
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/VisualizzaEvento")
     @ResponseBody
     public Optional<Evento> visualizzaEvento(@RequestParam int idEvento){
-        Optional u = eventoService.findEventoById(idEvento);
+        Optional u = eventoService.findEventoById(idEvento);        // Ricerca dell'evento tramite il servizio EventoService.
         if(u.equals(Optional.empty())){
             System.out.println("Evento non trovato");
-            Evento ut = new Evento(null,-1,"");
+            Evento ut = new Evento(null,-1,"");  // Se l'evento non viene trovato, viene restituito un evento vuoto con un ID negativo.
             return Optional.of(ut);
         }
         else {
-            System.out.println("Evento trovato");
+            System.out.println("Evento trovato");       // Se l'evento viene trovato, viene restituito l'evento trovato.
             return u;
         }
     }
