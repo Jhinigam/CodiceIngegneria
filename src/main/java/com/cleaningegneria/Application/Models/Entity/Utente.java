@@ -10,7 +10,7 @@ import lombok.*;
 @Data
 @Entity
 @Table(name="utente")
-public class Utente {
+public class Utente{
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +39,10 @@ public class Utente {
         this.Eta = uDTO.getEta();
         this.ruolo = uDTO.getRuolo();
         this.comune = uDTO.getComune();
+    }
+
+    public PostBase CreaPost(int IdUtente, String Desc){
+        return null;
     }
 
 }

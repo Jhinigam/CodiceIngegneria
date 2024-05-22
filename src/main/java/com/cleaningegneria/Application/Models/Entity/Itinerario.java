@@ -16,7 +16,7 @@ import java.util.Optional;
 @Data
 @Entity
 @Table(name="itinerario")
-public class Itinerario {
+public class Itinerario implements PostBase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

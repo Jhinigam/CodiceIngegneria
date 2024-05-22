@@ -1,6 +1,7 @@
 package com.cleaningegneria.Application.Service;
 
 
+import com.cleaningegneria.Application.Models.Entity.CreatoreItinerario;
 import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.ItinerarioRepository;
@@ -31,8 +32,8 @@ public class ItinerarioService {
      * @return la stringa "ItinerarioSalvato" se l'itinerario è stato creato correttamente
      */
     public String CreateItinerario(String Desc, int IdUtente){
-        Itinerario Temp = new Itinerario(IdUtente, Desc);
-        itinerarioRepository.save(Temp);
+        CreatoreItinerario Temp = new CreatoreItinerario();
+        itinerarioRepository.save((Itinerario)Temp.CreaPost(IdUtente, Desc));
         return "ItinerarioSalvato";
     }
 

@@ -1,5 +1,6 @@
 package com.cleaningegneria.Application.Service;
 
+import com.cleaningegneria.Application.Models.Entity.CreatoreEvento;
 import com.cleaningegneria.Application.Models.Entity.Evento;
 import com.cleaningegneria.Application.Repository.EventoRepository;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class EventoService {
      * @return la stringa "EventoSalvato" se l'evento è stato creato correttamente
      */
     public String CreateEvento(String Desc, int IdUtente, Timestamp DataEvento){
-        Evento Temp = new Evento(DataEvento,IdUtente,Desc);
-        eventoRepository.save(Temp);
+        CreatoreEvento Temp = new CreatoreEvento(DataEvento);
+        eventoRepository.save((Evento)Temp.CreaPost(IdUtente,Desc));
         return "EventoSalvato";
     }
 

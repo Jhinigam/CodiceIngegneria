@@ -66,7 +66,7 @@ public class UtenteService {
     }
 
     /**
-     * verifica se l'utente posta o mette in pending
+     * Verifica se l'utente posta o mette in pending
      * @param Id
      * @return false, se posta, true se è pending
      */
@@ -108,7 +108,7 @@ public class UtenteService {
     }
 
     /**
-     * visualizziamo tutti i post appartenenti a un comune specifico
+     * Visualizziamo tutti i post appartenenti a un comune specifico
      * @param Comune
      * @return la lista di tutti i post appartententi a quel comune
      */
@@ -117,7 +117,7 @@ public class UtenteService {
     }
 
     /**
-     * visualizziamo tutti i post appartenenti a un utente specifico
+     * Visualizziamo tutti i post appartenenti a un utente specifico
      * @param idUtente
      * @return la lista di tutti i post appartententi a quel utente
      */

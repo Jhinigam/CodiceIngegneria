@@ -45,12 +45,13 @@ function ConnectAddUtente(nome, cognome, email, comune, ruolo, eta){
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (response.status !== 200) {
-            throw new Error('Errore nella richiesta: ' + response.statusText);
-        }
-        return response.text();
-    });
+        .then(response => {
+            if (response.status !== 200) {
+                throw new Error('Request failed with status ' + response.status);
+            }
+            console.log(response);
+            return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
+        });
 }
 function ConnectionVisualizzaUtenteId(Id){
     return fetch(`${BASE_URL}Utente/VisualizzaUtente?idUtente=`+ String(Id))
@@ -309,6 +310,7 @@ return fetch(url, {
 
 //Funzioni
 function AddUtente(){
+   let tempConf = document.getElementById('AggiungiUtente');
    var ValNome = document.getElementById('Nome').value;
    var ValCognome = document.getElementById('Cognome').value;
    var ValEmail = document.getElementById('Email').value;
@@ -316,14 +318,16 @@ function AddUtente(){
    var ValRuolo = document.getElementById('Ruolo').value;
    var ValEta = document.getElementById('eta').value;
 
-   if(ConnectAddUtente(String(ValNome),
+   ConnectAddUtente(String(ValNome),
                        String(ValCognome),
                        String(ValEmail),
                        String(ValComuni),
                        String(ValRuolo),
-                       String(ValEta)) != null){
-        console.log("Utente aggiunto correttamente");
-   }else{ console.log("Utente non aggiunto"); }
+                       String(ValEta)).then(text => {
+
+            console.log(text);
+                                              tempConf.textContent = text});
+
 
 }
 function VisualizzaUtenteId(){
@@ -414,7 +418,7 @@ let tepId = document.getElementById('IdVisualizzaEvento').value;
     ConnectionVisualizzaEventoId(tepId).then(dati => {
     console.log(dati);
         // Assicurati che gli ID corrispondano agli elementi nel tuo HTML
-        document.getElementById('ContenutoVisualizzaEvento').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / Data Evento: " + String(dati.dataEvento + " / Da Utente: " + String(dati.creatore.nome));
+        document.getElementById('ContenutoVisualizzaEvento').textContent = "id:" + String(dati.id)+ " / Descrizione:" + String(dati.descrizione) + " / Data Evento: " + String(dati.dataEvento) + " / Da Utente: " + String(dati.proprietario.nome);
     }).catch(error => {
         console.log(dati);
         console.error(error);

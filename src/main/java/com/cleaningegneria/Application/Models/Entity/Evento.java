@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="evento")
-public class Evento {
+public class Evento implements PostBase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="post")
-public class Post {
+public class Post implements PostBase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

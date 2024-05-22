@@ -1,6 +1,7 @@
 package com.cleaningegneria.Application.Service;
 
 
+import com.cleaningegneria.Application.Models.Entity.CreatorePost;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Repository.PostRepository;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class PostService {
      * @return la stringa "PostSalvato" se il post è stato creato correttamente
      */
     public String CreaPost(String Desc, int IdUtente, boolean Pending){
-        Post Temp = new Post(IdUtente, Desc, Pending);
-        postRepository.save(Temp);
+        CreatorePost Temp = new CreatorePost(Pending);
+        postRepository.save((Post)Temp.CreaPost(IdUtente, Desc));
         return "PostSalvato";
     }
 
