@@ -107,11 +107,12 @@ const url = `${BASE_URL}Post/CreazionePostBase`;
             return response.text(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
-function ConnectionAddItinerario(Id, Descrizione){
+function ConnectionAddItinerario(Id, Descrizione, IdPost){
 const url = `${BASE_URL}Post/CreazioneItinerario`;
 
     const data= {
         idUtente: Id,
+        idPost: IdPost,
         descrizione: Descrizione
     };
 
@@ -233,13 +234,14 @@ function ConnectionTuttiPostDiUnComune(ComuneDiRef){
             return response.json(); // Questo ritorna una Promise che si risolve con i dati JSON
         });
 }
-function ConnectionAddItinerario(Id, Descrizione){
+function ConnectionAddItinerario(Id, Descrizione, IdPost){
     const url = `${BASE_URL}Itinerario/CreazioneItinerario`;
 
-        const data= {
-            idUtente: Id,
-            descrizione: Descrizione
-        };
+       const data= {
+          idUtente: Id,
+          idPost: IdPost,
+          descrizione: Descrizione
+       };
 
         return fetch(url, {
             method: 'PUT',
@@ -521,9 +523,10 @@ function TuttiIPostInComune(){
 function Itinerario(){
     let tempId = document.getElementById('IdUtentePostItinerario').value;
     let tempDesc = String(document.getElementById('DescrizioneItinerario').value);
+    let tempIdPost = document.getElementById('PrimoPost').value;
     let tempStato = document.getElementById('TextrispostaItinerario');
 
-    ConnectionAddItinerario(tempId, tempDesc).then(text => {
+    ConnectionAddItinerario(tempId, tempDesc, tempIdPost).then(text => {
                                                      if(text == "non ok"){
                                                      tempStato.textContent = "Itinerario Non Creato utente inadatto";
                                                      }else{

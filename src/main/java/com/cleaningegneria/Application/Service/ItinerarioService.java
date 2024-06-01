@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +33,15 @@ public class ItinerarioService {
      * @param Desc,IdUtente
      * @return la stringa "ItinerarioSalvato" se l'itinerario è stato creato correttamente
      */
-    public String CreateItinerario(String Desc, int IdUtente){
+    public String CreateItinerario(String Desc, int IdUtente, int IdPost){
         CreatoreItinerario Temp = new CreatoreItinerario();
-        itinerarioRepository.save((Itinerario)Temp.CreaPost(IdUtente, Desc));
+        Itinerario iti = (Itinerario)Temp.CreaPost(IdUtente, Desc);
+
+        Optional<Post> P = postRepository.findById(IdPost);
+
+        iti.AggiungiPost(P);
+
+        itinerarioRepository.save(iti);
         return "ItinerarioSalvato";
     }
 
@@ -79,5 +86,9 @@ public class ItinerarioService {
         return i.get().getContenuti();
     }
 
-
+    public int IdUltimoItinerario(){
+        ArrayList<Itinerario> All = (ArrayList<Itinerario>) itinerarioRepository.findAll();
+        Itinerario L = All.get(All.size()-1);
+        return L.getId();
+    }
 }

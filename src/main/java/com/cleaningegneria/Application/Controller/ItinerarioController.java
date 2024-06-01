@@ -1,7 +1,7 @@
 package com.cleaningegneria.Application.Controller;
 
 import com.cleaningegneria.Application.Models.DTO.AggiungiPostAItinerarioDTO;
-import com.cleaningegneria.Application.Models.DTO.CreazionePostEItinerarioDTO;
+import com.cleaningegneria.Application.Models.DTO.CreazioneItinerarioDTO;
 import com.cleaningegneria.Application.Models.Entity.Itinerario;
 import com.cleaningegneria.Application.Models.Entity.Post;
 import com.cleaningegneria.Application.Service.ItinerarioService;
@@ -29,10 +29,10 @@ public class ItinerarioController extends AbstractController{
     @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping("/CreazioneItinerario")
     @ResponseBody
-    public String CreazioneItinerario(@RequestBody CreazionePostEItinerarioDTO iDTO){
+    public String CreazioneItinerario(@RequestBody CreazioneItinerarioDTO iDTO){
         System.out.println(iDTO);
         if(utenteService.CanItinerario(iDTO.getIdUtente())){    // Verifica se l'utente è autorizzato a creare un itinerario.
-            System.out.println(itinerarioService.CreateItinerario(iDTO.getDescrizione(), iDTO.getIdUtente()));  // Creazione dell'itinerario utilizzando itinerarioService.
+            System.out.println(itinerarioService.CreateItinerario(iDTO.getDescrizione(), iDTO.getIdUtente(), iDTO.getIdPost()));  // Creazione dell'itinerario utilizzando itinerarioService.
             return "ok";
         } else{
             return "non ok";    // Messaggio di errore nel caso in cui l'utente non sia autorizzato.
