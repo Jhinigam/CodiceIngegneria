@@ -64,7 +64,13 @@ public class ItinerarioController extends AbstractController{
     @GetMapping("/VisualizzaItinerario")
     @ResponseBody
     public Optional<Itinerario> VisualizzaItinerario(@RequestParam int idItinerario){
-        return itinerarioService.VisualizzaItinerario(idItinerario); // Ottiene l'itinerario specifico utilizzando itinerarioService.
+        Optional<Itinerario> i = itinerarioService.VisualizzaItinerario(idItinerario); // Ottiene l'itinerario specifico utilizzando itinerarioService.
+        if (i.isEmpty()){
+            return i = Optional.of(new Itinerario());   //Ritorna un Itinerario vuoto
+        }
+        else{
+            return i;   //Ritorna un Itinerario
+        }
     }
 
 
@@ -83,10 +89,5 @@ public class ItinerarioController extends AbstractController{
     public List<Post> VisualizzaPostInUnItinerario(@RequestParam int idItinerario){
         return itinerarioService.VisualizzaPostInItinerario(idItinerario);  // Ottiene i post in un itinerario specifico utilizzando itinerarioService.
     }
-
-
-
-
-
 
 }
