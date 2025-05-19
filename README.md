@@ -1,0 +1,1 @@
+This repository was made for a University project, and consists in a object-oriented Java code, that lead to a "social media" app, made for a certain city to organize events, content and other things.
